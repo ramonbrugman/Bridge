@@ -307,13 +307,6 @@ namespace Bridge.ClientTest.SimpleTypes
         }
 
         [Test]
-        public void GetUtcDateWorks()
-        {
-            var dt = new Date(2011, 7, 12, 13, 42, 56, 345);
-            Assert.AreEqual(12, dt.GetUTCDate());
-        }
-
-        [Test]
         public void GetUtcHoursWorks()
         {
             var dt = new Date(2011, 7, 12, 13, 42, 56, 345);
@@ -324,8 +317,14 @@ namespace Bridge.ClientTest.SimpleTypes
         [Test]
         public void GetUtcMinutesWorks()
         {
-            var dt = new Date(2011, 7, 12, 13, 42, 56, 345);
-            Assert.AreEqual(42, dt.GetUTCMinutes());
+            var d0 = new Date(2011, 7, 12, 13, 42, 56, 345);
+
+            var d1 = new DateTime(2011, 8, 12, 13, 42, 56, 345);
+            d1 = d1.ToUniversalTime();
+            var d2 = AddTimezoneMinutesOffset(d0);
+
+            Assert.AreEqual(d1.Minute, d0.GetUTCMinutes());
+            Assert.AreEqual(42, d2.GetUTCMinutes());
         }
 
         [Test]
@@ -340,13 +339,6 @@ namespace Bridge.ClientTest.SimpleTypes
         {
             var dt = new Date(2011, 7, 12, 13, 42, 56, 345);
             Assert.AreEqual(345, dt.GetUTCMilliseconds());
-        }
-
-        [Test]
-        public void GetUtcDayWorks()
-        {
-            var dt = new Date(2011, 7, 12, 13, 42, 56, 345);
-            Assert.AreEqual(5, dt.GetUTCDay());
         }
 
         // #SPI
@@ -483,9 +475,16 @@ namespace Bridge.ClientTest.SimpleTypes
         [Test]
         public void ToUtcStringWorks()
         {
-            var dt = new Date(2011, 7, 12, 13, 42);
-            var s = dt.ToUTCString();
-            Assert.True(s.IndexOf("2011") >= 0 && s.IndexOf("42") >= 0);
+            var d0 = new Date(2011, 7, 12, 13, 42);
+            var d1 = AddTimezoneMinutesOffset(d0);
+            var s0 = d0.ToUTCString();
+            var s1 = d1.ToUTCString();
+
+            var d2 = new DateTime(2011, 8, 12, 13, 42, 0);
+            d2 = d2.ToUniversalTime();
+
+            Assert.True(s0.IndexOf("2011") >= 0 && s0.IndexOf(d2.Minute.ToString()) >= 0);
+            Assert.True(s1.IndexOf("2011") >= 0 && s1.IndexOf("42") >= 0);
         }
 
         [Test]

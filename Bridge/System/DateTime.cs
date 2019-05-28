@@ -17,10 +17,10 @@ namespace System
         [Bridge.Template("System.DateTime.DaysTo1970")]
         internal const int DaysTo1970 = 719162;
 
-        [Bridge.Template("System.DateTime.MinTicks")]
+        [Bridge.Template("System.DateTime.getMinTicks()")]
         internal const long MinTicks = 0;
 
-        [Bridge.Template("System.DateTime.MaxTicks")]
+        [Bridge.Template("System.DateTime.getMaxTicks()")]
         internal const long MaxTicks = 3652059 * 864000000000 - 1;
 
         /// <summary>

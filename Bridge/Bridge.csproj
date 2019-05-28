@@ -53,7 +53,7 @@
     <AdditionalExplicitAssemblyReferences />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Attributes\Convention.cs" />
+    <Compile Include="Attributes\ConventionAttribute.cs" />
     <Compile Include="Attributes\ToAwaitAttribute.cs" />
     <Compile Include="Attributes\OptionalAttribute.cs" />
     <Compile Include="Attributes\PrivateProtectedAttribute.cs" />
@@ -1586,7 +1586,6 @@
     <Content Include="Resources\.generated\System\Void.js" />
     <Content Include="Resources\ArraySegment.js" />
     <Content Include="Resources\Bool.js" />
-    <Content Include="Resources\DateTimeHelpers.js" />
     <Content Include="Resources\Diagnostics.js" />
     <Content Include="Resources\Convert.js" />
     <Content Include="Resources\Enum.js" />

@@ -123,11 +123,11 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
                     if (date1.Minute > date0.Minute)
                     {
                         deltaHr--;
-                        deltaMn = date1.Minute - date0.Minute;
+                        deltaMn = 60 - (date1.Minute - date0.Minute);
                     }
                     else if (date1.Minute < date0.Minute)
                     {
-                        deltaMn = date1.Minute + (60 - date0.Minute);
+                        deltaMn = date0.Minute - date1.Minute;
                     }
                 }
                 else // deltaHr < 0
@@ -139,7 +139,7 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
                     else if (date1.Minute < date0.Minute)
                     {
                         deltaHr++;
-                        deltaMn = date0.Minute - (60 + date1.Minute);
+                        deltaMn = (date0.Minute - date1.Minute) - 60;
                     }
                 }
             }

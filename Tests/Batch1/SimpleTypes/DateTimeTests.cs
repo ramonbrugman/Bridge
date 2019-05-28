@@ -498,7 +498,7 @@ namespace Bridge.ClientTest.SimpleTypes
         public void GetDayWorks()
         {
             var dt = new DateTime(2011, 7, 12, 13, 42, 56, 345);
-            Assert.AreEqual(2, dt.DayOfWeek);
+            Assert.AreEqual(DayOfWeek.Tuesday, dt.DayOfWeek);
         }
 
         // Not C# API
@@ -519,9 +519,30 @@ namespace Bridge.ClientTest.SimpleTypes
         //}
 
         [Test]
-        public void TicksWorks()
+        public static void TicksWorks()
         {
-            var dt = new DateTime(1000, 1, 2);
+            var d0 = new DateTime(1970, 1, 1);
+            var d1 = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            var d2 = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified);
+            var d3 = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            var d4 = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Local);
+
+            var d5 = new DateTime(1969, 12, 31, 23, 59, 59, 999);
+            var d6 = new DateTime(1969, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified);
+            var d7 = new DateTime(1969, 12, 31, 23, 59, 59, 999, DateTimeKind.Utc);
+            var d8 = new DateTime(1969, 12, 31, 23, 59, 59, 999, DateTimeKind.Local);
+
+            var d9 = new DateTime(2020, 1, 1);
+            var d10 = new DateTime(2020, 1, 1, 0, 0, 0, 0);
+            var d11 = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified);
+            var d12 = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            var d13 = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Local);
+
+            var d14 = new DateTime(2020, 7, 1);
+            var d15 = new DateTime(2020, 7, 1, 0, 0, 0, 0);
+            var d16 = new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified);
+            var d17 = new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            var d18 = new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Local);
 
             // Ignore the test due to #3633
             if (Bridge.Browser.IsChrome && Bridge.Browser.ChromeVersion >= 67)
@@ -530,7 +551,25 @@ namespace Bridge.ClientTest.SimpleTypes
             }
             else
             {
-                Assert.AreEqual(315254592000000000.ToString(), dt.Ticks.ToString());
+                DateHelper.AssertDate(d0, DateTimeKind.Unspecified, 621355968000000000, 1970, 1, 1);
+                DateHelper.AssertDate(d1, DateTimeKind.Unspecified, 621355968000000000, 1970, 1, 1);
+                DateHelper.AssertDate(d2, DateTimeKind.Unspecified, 621355968000000000, 1970, 1, 1);
+                DateHelper.AssertDate(d3, DateTimeKind.Utc, 621355968000000000, 1970, 1, 1);
+                DateHelper.AssertDate(d4, DateTimeKind.Local, 621355968000000000, 1970, 1, 1);
+                DateHelper.AssertDate(d5, DateTimeKind.Unspecified, 621355967999990000, 1969, 12, 31);
+                DateHelper.AssertDate(d6, DateTimeKind.Unspecified, 621355967999990000, 1969, 12, 31);
+                DateHelper.AssertDate(d7, DateTimeKind.Utc, 621355967999990000, 1969, 12, 31);
+                DateHelper.AssertDate(d8, DateTimeKind.Local, 621355967999990000, 1969, 12, 31);
+                DateHelper.AssertDate(d9, DateTimeKind.Unspecified, 637134336000000000, 2020, 1, 1);
+                DateHelper.AssertDate(d10, DateTimeKind.Unspecified, 637134336000000000, 2020, 1, 1);
+                DateHelper.AssertDate(d11, DateTimeKind.Unspecified, 637134336000000000, 2020, 1, 1);
+                DateHelper.AssertDate(d12, DateTimeKind.Utc, 637134336000000000, 2020, 1, 1);
+                DateHelper.AssertDate(d13, DateTimeKind.Local, 637134336000000000, 2020, 1, 1);
+                DateHelper.AssertDate(d14, DateTimeKind.Unspecified, 637291584000000000, 2020, 7, 1);
+                DateHelper.AssertDate(d15, DateTimeKind.Unspecified, 637291584000000000, 2020, 7, 1);
+                DateHelper.AssertDate(d16, DateTimeKind.Unspecified, 637291584000000000, 2020, 7, 1);
+                DateHelper.AssertDate(d17, DateTimeKind.Utc, 637291584000000000, 2020, 7, 1);
+                DateHelper.AssertDate(d18, DateTimeKind.Local, 637291584000000000, 2020, 7, 1);
             }
         }
 
