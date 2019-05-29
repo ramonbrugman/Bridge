@@ -39521,6 +39521,88 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977", {
+        statics: {
+            methods: {
+                TestDirectJoinInvocation: function () {
+                    var table1 = System.Array.init([Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder.op_Implicit("hello"), Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder.op_Implicit("goodbye")], Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder);
+
+                    var table2 = System.Array.init([Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder.op_Implicit("world"), Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder.op_Implicit("everybody")], Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder);
+
+                    System.Linq.Enumerable.from(table2, Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder).join(table1, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.f1, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.f2, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.f3).all($asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.f4);
+                }
+            }
+        }
+    });
+
+    Bridge.ns("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977", $asm.$);
+
+    Bridge.apply($asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977, {
+        f1: function (row2) {
+            return true;
+        },
+        f2: function (row1) {
+            return true;
+        },
+        f3: function (t1Val, t2Val) {
+            if (t2Val._val == null) {
+                Bridge.Test.NUnit.Assert.Fail("t2Val._val == null");
+            }
+
+            if (t1Val._val == null) {
+                Bridge.Test.NUnit.Assert.Fail("t1Val._val == null");
+            }
+
+            Bridge.Test.NUnit.Assert.True(Bridge.referenceEquals(t1Val._val, "world") || Bridge.referenceEquals(t1Val._val, "everybody"));
+            Bridge.Test.NUnit.Assert.True(Bridge.referenceEquals(t2Val._val, "hello") || Bridge.referenceEquals(t2Val._val, "goodbye"));
+            return true;
+        },
+        f4: function (retc) {
+            return retc === true;
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder", {
+        $kind: "nested struct",
+        statics: {
+            methods: {
+                op_Implicit: function (value) {
+                    return new Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder.$ctor1(value);
+                },
+                getDefaultValue: function () { return new Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder(); }
+            }
+        },
+        fields: {
+            _val: null
+        },
+        ctors: {
+            $ctor1: function (val) {
+                this.$initialize();
+                this._val = val;
+            },
+            ctor: function () {
+                this.$initialize();
+            }
+        },
+        methods: {
+            getHashCode: function () {
+                var h = Bridge.addHash([5555372109, this._val]);
+                return h;
+            },
+            equals: function (o) {
+                if (!Bridge.is(o, Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder)) {
+                    return false;
+                }
+                return Bridge.equals(this._val, o._val);
+            },
+            $clone: function (to) {
+                var s = to || new Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder();
+                s._val = this._val;
+                return s;
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge407", {
         $kind: "struct",
         statics: {

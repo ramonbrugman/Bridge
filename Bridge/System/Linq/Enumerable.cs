@@ -210,7 +210,7 @@ namespace System.Linq
         /// The sum of the elements in the sequence is larger than System.Decimal.MaxValue.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableAverage(System.Decimal.Zero)")]
+        [Bridge.Template("{source}.nullableAverage(System.Decimal.Zero)")]
         public static extern decimal? Average(this EnumerableInstance<decimal?> source);
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.average(System.Decimal.Zero)")]
+        [Bridge.Template("{source}.average(System.Decimal.Zero)")]
         public static extern decimal Average(this EnumerableInstance<decimal> source);
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableAverage()")]
+        [Bridge.Template("{source}.nullableAverage()")]
         public static extern double? Average(this EnumerableInstance<double?> source);
 
         /// <summary>
@@ -318,7 +318,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.average()")]
+        [Bridge.Template("{source}.average()")]
         public static extern double Average(this EnumerableInstance<double> source);
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableAverage()")]
+        [Bridge.Template("{source}.nullableAverage()")]
         public static extern float? Average(this EnumerableInstance<float?> source);
 
         /// <summary>
@@ -388,7 +388,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.average()")]
+        [Bridge.Template("{source}.average()")]
         public static extern float Average(this EnumerableInstance<float> source);
 
         /// <summary>
@@ -426,7 +426,7 @@ namespace System.Linq
         /// The sum of the elements in the sequence is larger than System.Int64.MaxValue.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableAverage()")]
+        [Bridge.Template("{source}.nullableAverage()")]
         public static extern double? Average(this EnumerableInstance<int?> source);
 
         /// <summary>
@@ -464,7 +464,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.average()")]
+        [Bridge.Template("{source}.average()")]
         public static extern double Average(this EnumerableInstance<int> source);
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace System.Linq
         /// The sum of the elements in the sequence is larger than System.Int64.MaxValue.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableAverage()")]
+        [Bridge.Template("{source}.nullableAverage()")]
         public static extern double? Average(this EnumerableInstance<long?> source);
 
         /// <summary>
@@ -540,7 +540,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.average()")]
+        [Bridge.Template("{source}.average()")]
         public static extern double Average(this EnumerableInstance<long> source);
 
         /// <summary>
@@ -1723,7 +1723,7 @@ namespace System.Linq
         /// outer or inner or outerKeySelector or innerKeySelector or resultSelector
         /// is null.
         /// </exception>
-        [Bridge.Template("System.Linq.Enumerable.from({this}, {TOuter}).join({inner}, {outerKeySelector}, {innerKeySelector}, {resultSelector})")]
+        [Bridge.Template("System.Linq.Enumerable.from({outer}, {TOuter}).join({inner}, {outerKeySelector}, {innerKeySelector}, {resultSelector})")]
         public static extern EnumerableInstance<TResult> Join<TOuter, TInner, TKey, TResult>(this IEnumerable<TOuter> outer,
             IEnumerable<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector,
             Func<TOuter, TInner, TResult> resultSelector);
@@ -1770,7 +1770,7 @@ namespace System.Linq
         /// outer or inner or outerKeySelector or innerKeySelector or resultSelector
         /// is null.
         /// </exception>
-        [Bridge.Template("System.Linq.Enumerable.from({this}, {TOuter}).join({inner}, {outerKeySelector}, {innerKeySelector}, {resultSelector}, {comparer})")]
+        [Bridge.Template("System.Linq.Enumerable.from({outer}, {TOuter}).join({inner}, {outerKeySelector}, {innerKeySelector}, {resultSelector}, {comparer})")]
         public static extern EnumerableInstance<TResult> Join<TOuter, TInner, TKey, TResult>(this IEnumerable<TOuter> outer,
             IEnumerable<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector,
             Func<TOuter, TInner, TResult> resultSelector, IEqualityComparer<TKey> comparer);
@@ -1933,7 +1933,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMax()")]
+        [Bridge.Template("{source}.nullableMax()")]
         public static extern decimal? Max(this EnumerableInstance<decimal?> source);
 
         /// <summary>
@@ -1969,7 +1969,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.max()")]
+        [Bridge.Template("{source}.max()")]
         public static extern decimal Max(this EnumerableInstance<decimal> source);
 
         /// <summary>
@@ -2005,7 +2005,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMax()")]
+        [Bridge.Template("{source}.nullableMax()")]
         public static extern double? Max(this EnumerableInstance<double?> source);
 
         /// <summary>
@@ -2041,7 +2041,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.max()")]
+        [Bridge.Template("{source}.max()")]
         public static extern double Max(this EnumerableInstance<double> source);
 
         /// <summary>
@@ -2077,7 +2077,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMax()")]
+        [Bridge.Template("{source}.nullableMax()")]
         public static extern float? Max(this EnumerableInstance<float?> source);
 
         /// <summary>
@@ -2113,7 +2113,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.max()")]
+        [Bridge.Template("{source}.max()")]
         public static extern float Max(this EnumerableInstance<float> source);
 
         /// <summary>
@@ -2149,7 +2149,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMax()")]
+        [Bridge.Template("{source}.nullableMax()")]
         public static extern int? Max(this EnumerableInstance<int?> source);
 
         /// <summary>
@@ -2185,7 +2185,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.max()")]
+        [Bridge.Template("{source}.max()")]
         public static extern int Max(this EnumerableInstance<int> source);
 
         /// <summary>
@@ -2221,7 +2221,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMax()")]
+        [Bridge.Template("{source}.nullableMax()")]
         public static extern long? Max(this EnumerableInstance<long?> source);
 
         /// <summary>
@@ -2257,7 +2257,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.max()")]
+        [Bridge.Template("{source}.max()")]
         public static extern long Max(this EnumerableInstance<long> source);
 
         /// <summary>
@@ -2538,7 +2538,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMin()")]
+        [Bridge.Template("{source}.nullableMin()")]
         public static extern decimal? Min(this EnumerableInstance<decimal?> source);
 
         /// <summary>
@@ -2673,7 +2673,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.min()")]
+        [Bridge.Template("{source}.min()")]
         public static extern decimal Min(this EnumerableInstance<decimal> source);
 
         /// <summary>
@@ -2709,7 +2709,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMin()")]
+        [Bridge.Template("{source}.nullableMin()")]
         public static extern double? Min(this EnumerableInstance<double?> source);
 
         /// <summary>
@@ -2745,7 +2745,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.min()")]
+        [Bridge.Template("{source}.min()")]
         public static extern double Min(this EnumerableInstance<double> source);
 
         /// <summary>
@@ -2781,7 +2781,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMin()")]
+        [Bridge.Template("{source}.nullableMin()")]
         public static extern float? Min(this EnumerableInstance<float?> source);
 
         /// <summary>
@@ -2817,7 +2817,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.min()")]
+        [Bridge.Template("{source}.min()")]
         public static extern float Min(this EnumerableInstance<float> source);
 
         /// <summary>
@@ -2853,7 +2853,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMin()")]
+        [Bridge.Template("{source}.nullableMin()")]
         public static extern int? Min(this EnumerableInstance<int?> source);
 
         /// <summary>
@@ -2889,7 +2889,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.min()")]
+        [Bridge.Template("{source}.min()")]
         public static extern int Min(this EnumerableInstance<int> source);
 
         /// <summary>
@@ -2925,7 +2925,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableMin()")]
+        [Bridge.Template("{source}.nullableMin()")]
         public static extern long? Min(this EnumerableInstance<long?> source);
 
         /// <summary>
@@ -2961,7 +2961,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">
         /// source contains no elements.
         /// </exception>
-        [Bridge.Template("{this}.min()")]
+        [Bridge.Template("{source}.min()")]
         public static extern long Min(this EnumerableInstance<long> source);
 
         /// <summary>
@@ -3840,7 +3840,7 @@ namespace System.Linq
         /// The sum is larger than System.Decimal.MaxValue.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableSum(System.Decimal.Zero)")]
+        [Bridge.Template("{source}.nullableSum(System.Decimal.Zero)")]
         public static extern decimal? Sum(this EnumerableInstance<decimal?> source);
 
         /// <summary>
@@ -3877,7 +3877,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">
         /// The sum is larger than System.Decimal.MaxValue.
         /// </exception>
-        [Bridge.Template("{this}.sum(System.Decimal.Zero)")]
+        [Bridge.Template("{source}.sum(System.Decimal.Zero)")]
         public static extern decimal Sum(this EnumerableInstance<decimal> source);
 
         /// <summary>
@@ -3911,7 +3911,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableSum()")]
+        [Bridge.Template("{source}.nullableSum()")]
         public static extern double? Sum(this EnumerableInstance<double?> source);
 
         /// <summary>
@@ -3942,7 +3942,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">
         /// source is null.
         /// </exception>
-        [Bridge.Template("{this}.sum()")]
+        [Bridge.Template("{source}.sum()")]
         public static extern double Sum(this EnumerableInstance<double> source);
 
         /// <summary>
@@ -3973,7 +3973,7 @@ namespace System.Linq
         /// source is null.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableSum()")]
+        [Bridge.Template("{source}.nullableSum()")]
         public static extern float? Sum(this EnumerableInstance<float?> source);
 
         /// <summary>
@@ -4004,7 +4004,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">
         /// source is null.
         /// </exception>
-        [Bridge.Template("{this}.sum()")]
+        [Bridge.Template("{source}.sum()")]
         public static extern float Sum(this EnumerableInstance<float> source);
 
         /// <summary>
@@ -4038,7 +4038,7 @@ namespace System.Linq
         /// The sum is larger than System.Int32.MaxValue.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableSum()")]
+        [Bridge.Template("{source}.nullableSum()")]
         public static extern int? Sum(this EnumerableInstance<int?> source);
 
         /// <summary>
@@ -4075,7 +4075,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">
         /// The sum is larger than System.Int32.MaxValue.
         /// </exception>
-        [Bridge.Template("{this}.sum()")]
+        [Bridge.Template("{source}.sum()")]
         public static extern int Sum(this EnumerableInstance<int> source);
 
         /// <summary>
@@ -4112,7 +4112,7 @@ namespace System.Linq
         /// The sum is larger than System.Int64.MaxValue.
         /// </exception>
         /// <remarks>Bridge.NET has no mapping for this in JavaScript.</remarks>
-        [Bridge.Template("{this}.nullableSum(System.Int64.Zero)")]
+        [Bridge.Template("{source}.nullableSum(System.Int64.Zero)")]
         public static extern long? Sum(this EnumerableInstance<long?> source);
 
         /// <summary>
@@ -4149,7 +4149,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">
         /// The sum is larger than System.Int64.MaxValue.
         /// </exception>
-        [Bridge.Template("{this}.sum(System.Int64.Zero)")]
+        [Bridge.Template("{source}.sum(System.Int64.Zero)")]
         public static extern long Sum(this EnumerableInstance<long> source);
 
         /// <summary>
