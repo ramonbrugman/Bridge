@@ -39521,9 +39521,27 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * Ensures Linq's .Join() extension works for referencing inner and outer
+     parameter tables.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977
+     */
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977", {
         statics: {
             methods: {
+                /**
+                 * Tests by joining two arrays of stringHolder structs, by inspecting
+                 the individual values. If any happens to be 'null', then the
+                 feature is broken.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977
+                 * @return  {void}
+                 */
                 TestDirectJoinInvocation: function () {
                     var table1 = System.Array.init([Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder.op_Implicit("hello"), Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder.op_Implicit("goodbye")], Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder);
 
@@ -39553,8 +39571,9 @@ Bridge.$N1391Result =                     r;
                 Bridge.Test.NUnit.Assert.Fail("t1Val._val == null");
             }
 
-            Bridge.Test.NUnit.Assert.True(Bridge.referenceEquals(t1Val._val, "world") || Bridge.referenceEquals(t1Val._val, "everybody"));
-            Bridge.Test.NUnit.Assert.True(Bridge.referenceEquals(t2Val._val, "hello") || Bridge.referenceEquals(t2Val._val, "goodbye"));
+            Bridge.Test.NUnit.Assert.True(Bridge.referenceEquals(t1Val._val, "world") || Bridge.referenceEquals(t1Val._val, "everybody"), "table 1 element value is '" + (t1Val._val || "") + "'.");
+            Bridge.Test.NUnit.Assert.True(Bridge.referenceEquals(t2Val._val, "hello") || Bridge.referenceEquals(t2Val._val, "goodbye"), "table 2 element value is '" + (t2Val._val || "") + "'.");
+
             return true;
         },
         f4: function (retc) {
@@ -39562,6 +39581,12 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * A simple struct to base the tests with.
+     *
+     * @private
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder
+     */
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3977.stringHolder", {
         $kind: "nested struct",
         statics: {
