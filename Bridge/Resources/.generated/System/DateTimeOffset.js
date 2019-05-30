@@ -32,8 +32,8 @@
                     this.UnixEpochTicks = System.Int64([-139100160,144670709]);
                     this.UnixEpochSeconds = System.Int64([2006054656,14]);
                     this.UnixEpochMilliseconds = System.Int64([304928768,14467]);
-                    this.MinValue = new System.DateTimeOffset.$ctor5(System.DateTime.MinTicks, System.TimeSpan.zero);
-                    this.MaxValue = new System.DateTimeOffset.$ctor5(System.DateTime.MaxTicks, System.TimeSpan.zero);
+                    this.MinValue = new System.DateTimeOffset.$ctor5(System.DateTime.getMinTicks(), System.TimeSpan.zero);
+                    this.MaxValue = new System.DateTimeOffset.$ctor5(System.DateTime.getMaxTicks(), System.TimeSpan.zero);
                 }
             },
             methods: {
@@ -104,7 +104,7 @@
                 },
                 ValidateDate: function (dateTime, offset) {
                     var utcTicks = System.DateTime.getTicks(dateTime).sub(offset.getTicks());
-                    if (utcTicks.lt(System.DateTime.MinTicks) || utcTicks.gt(System.DateTime.MaxTicks)) {
+                    if (utcTicks.lt(System.DateTime.getMinTicks()) || utcTicks.gt(System.DateTime.getMaxTicks())) {
                         throw new System.ArgumentOutOfRangeException.$ctor4("offset", System.Environment.GetResourceString("Argument_UTCOutOfRange"));
                     }
                     return System.DateTime.create$2(utcTicks, 0);

@@ -2623,6 +2623,20 @@ Bridge.assembly("Bridge.ClientTest.Batch3", function ($asm, globals) {
         }
     });
 
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge1181", {
+        statics: {
+            methods: {
+                TestMinDateTimeUtcConvert: function () {
+                    var start = System.DateTime.getMinValue();
+                    var end = System.DateTime.addHours(start, 8);
+                    var difference = (System.DateTime.subdd(end, start)).getTotalMinutes();
+
+                    Bridge.Test.NUnit.Assert.AreEqual(480, difference, "Minutes difference between DateTime.MinValue and itself.AddHours(8) in minutes is 480.");
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge1184", {
         statics: {
             methods: {
@@ -31514,16 +31528,16 @@ Bridge.$N1391Result =                     r;
                         if (deltaHr > 0) {
                             if (System.DateTime.getMinute(date1) > System.DateTime.getMinute(date0)) {
                                 deltaHr = (deltaHr - 1) | 0;
-                                deltaMn = (System.DateTime.getMinute(date1) - System.DateTime.getMinute(date0)) | 0;
+                                deltaMn = (60 - (((System.DateTime.getMinute(date1) - System.DateTime.getMinute(date0)) | 0))) | 0;
                             } else if (System.DateTime.getMinute(date1) < System.DateTime.getMinute(date0)) {
-                                deltaMn = (System.DateTime.getMinute(date1) + (((60 - System.DateTime.getMinute(date0)) | 0))) | 0;
+                                deltaMn = (System.DateTime.getMinute(date0) - System.DateTime.getMinute(date1)) | 0;
                             }
                         } else {
                             if (System.DateTime.getMinute(date1) > System.DateTime.getMinute(date0)) {
                                 deltaMn = (System.DateTime.getMinute(date0) - System.DateTime.getMinute(date1)) | 0;
                             } else if (System.DateTime.getMinute(date1) < System.DateTime.getMinute(date0)) {
                                 deltaHr = (deltaHr + 1) | 0;
-                                deltaMn = (System.DateTime.getMinute(date0) - (((60 + System.DateTime.getMinute(date1)) | 0))) | 0;
+                                deltaMn = ((((System.DateTime.getMinute(date0) - System.DateTime.getMinute(date1)) | 0)) - 60) | 0;
                             }
                         }
                     } else {
@@ -35858,6 +35872,54 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * The tests here ensures DateTime value when not bound any value is its
+     MinValue(), or 1/1/0001 12:00:00 AM.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734", {
+        statics: {
+            fields: {
+                A: null,
+                B: null
+            },
+            ctors: {
+                init: function () {
+                    this.A = System.DateTime.getDefaultValue();
+                    this.B = System.DateTime.getDefaultValue();
+                    this.B = System.DateTime.getMinValue();
+                }
+            },
+            methods: {
+                /**
+                 * Tests by checking the static DateTime instances against the value
+                 they assumed.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734
+                 * @return  {void}
+                 */
+                TestDateTimeInitialize: function () {
+                    // The format from native .NET app is '1/1/0001 12:00:00 AM'
+                    var initDateStr = "01/01/0001 00:00:00";
+                    var aDateStr = System.DateTime.format(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734.A);
+                    var bDateStr = System.DateTime.format(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734.B);
+
+                    Bridge.Test.NUnit.Assert.AreEqual(initDateStr, aDateStr, "DateTime A (" + (aDateStr || "") + ") is '" + (initDateStr || "") + "'.");
+                    Bridge.Test.NUnit.Assert.AreEqual(initDateStr, bDateStr, "DateTime B (" + (bDateStr || "") + ") is '" + (initDateStr || "") + "'.");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.Int64(0), System.DateTime.getTicks(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734.A), "DateTime A has 0 ticks.");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.Int64(0), System.DateTime.getTicks(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734.B), "DateTime B has 0 ticks.");
+                    Bridge.Test.NUnit.Assert.True(Bridge.equals(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734.A, System.DateTime.getMinValue()), "A is min value.");
+                    Bridge.Test.NUnit.Assert.True(Bridge.equals(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3734.B, System.DateTime.getMinValue()), "B is min value.");
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge37383", {
         statics: {
             methods: {
@@ -36465,6 +36527,118 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * The tests here ensures parsing DateTime strings in UTC results in the
+     exact same date/time in UTC, and UTC setting is preserved.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3770
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3770", {
+        statics: {
+            methods: {
+                /**
+                 * Tests by parsing a date string, then specifying it is UTC, then
+                 checking the object time zone and value.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge3770
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3770
+                 * @return  {void}
+                 */
+                TestUtcParseLogic: function () {
+                    var time = System.DateTime.parse("2018-11-04T00:00:00.000Z");
+
+                    time = System.DateTime.specifyKind(time, 1);
+
+                    Bridge.Test.NUnit.Assert.AreEqual("Utc", System.Enum.toString(System.DateTimeKind, System.DateTime.getKind(time)), "Parsed time is in UTC.");
+
+                    Bridge.Test.NUnit.Assert.AreEqual("2018-11-04 00:00:00Z", System.DateTime.format(time, "u"), "Parsed time .ToString(\"u\") is '2018-11-04 00:00:00Z'.");
+                }
+            }
+        }
+    });
+
+    /**
+     * The tests here ensures a datetime object crossing daylight saving
+     time zone via .AddDays() retains a DST-independent value in the
+     resulting math.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3771
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3771", {
+        statics: {
+            methods: {
+                /**
+                 * Tests by creating a date then removing 7 days, then checking
+                 whether the result is exactly 7 days before it (without hours
+                 shift due to time zone change).
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge3771
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3771
+                 * @return  {void}
+                 */
+                TestDateTimeAddDaysAcrossTZ: function () {
+                    var time = System.DateTime.create(2018, 11, 4, 0, 0, 0, 0, 1);
+
+                    time = System.DateTime.addDays(time, -7.0);
+
+                    Bridge.Test.NUnit.Assert.AreEqual("Utc", System.Enum.toString(System.DateTimeKind, System.DateTime.getKind(time)), "Time subject to .AddDays() is in UTC.");
+                    Bridge.Test.NUnit.Assert.AreEqual("2018-10-28 00:00:00Z", System.DateTime.format(time, "u"), "Time subject to .AddDays() is '2018-10-28 00:00:00Z'.");
+                }
+            }
+        }
+    });
+
+    /**
+     * The tests here ensures a datetime object crossing daylight saving
+     time zone (this specifically used to fail in pacific time -8h) would
+     not result three times in 1 PM while incrementing the date.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3773
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3773", {
+        statics: {
+            methods: {
+                /**
+                 * Tests by issuing a date where daylight saving kicks in in the 
+                 affected time zone and checks whether it reaches 1PM less than
+                 two times. To some time zones (like BRT) it won't reach 1PM at all.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge3773
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3773
+                 * @return  {void}
+                 */
+                TestDateTimeAddDaysAcrossTZ: function () {
+                    var dtloc;
+                    var step = new System.TimeSpan(0, 15, 0);
+                    var dateUtc = System.DateTime.create(2018, 11, 4, 7, 45, 0, 0, 1);
+
+                    var oneAmCount = 0;
+
+                    for (var i = 0; i < 20; i = (i + 1) | 0) {
+                        dtloc = System.DateTime.toLocalTime(dateUtc);
+
+                        if (System.DateTime.getHour(dtloc) === 1 && System.DateTime.getMinute(dtloc) === 0) {
+                            oneAmCount = (oneAmCount + 1) | 0;
+                        }
+
+                        dateUtc = System.DateTime.adddt(dateUtc, step);
+                    }
+
+                    Bridge.Test.NUnit.Assert.True(oneAmCount <= 2, "Within the increments of DateTime, 1 PM happened at most twice. In this sample, it appeared: " + oneAmCount + "x.");
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3775", {
         statics: {
             methods: {
@@ -36512,6 +36686,37 @@ Bridge.$N1391Result =                     r;
             }
         }
     }; });
+
+    /**
+     * The tests here consists in ensuring DateTime.AddDays() results are
+     comparable with DateTime instances.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3777
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3777", {
+        statics: {
+            methods: {
+                /**
+                 * Tests by creating two DateTime instances, one from Now and another
+                 from .AddDays(3) to that instance, then compare whether they are
+                 different.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge3777
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3777
+                 * @return  {void}
+                 */
+                TestAddDays: function () {
+                    var d = System.DateTime.getNow();
+                    var d2 = System.DateTime.addDays(d, 3);
+
+                    Bridge.Test.NUnit.Assert.AreEqual(-1, Bridge.compare(d, d2), "DateTime value is different than its .AddDays(3) result.");
+                }
+            }
+        }
+    });
 
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3785", {
         statics: {
