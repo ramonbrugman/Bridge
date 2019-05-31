@@ -612,17 +612,19 @@
                     return true;
                 }
 
-                var countExp = 0;
+                var countExp = 0,
+                    ePrev = false;
 
                 for (var i = 0; i < s.length; i++) {
                     if (!System.Char.isNumber(s[i].charCodeAt(0)) &&
                         s[i] !== "." &&
                         s[i] !== "," &&
-                        s[i] !== nfInfo.positiveSign &&
-                        s[i] !== nfInfo.negativeSign &&
+                        (s[i] !== nfInfo.positiveSign || i !== 0 && !ePrev) &&
+                        (s[i] !== nfInfo.negativeSign || i !== 0 && !ePrev) &&
                         s[i] !== point &&
                         s[i] !== thousands) {
                         if (s[i].toLowerCase() === "e") {
+                            ePrev = true;
                             countExp++;
 
                             if (countExp > 1) {
@@ -633,12 +635,15 @@
                                 throw new System.FormatException.$ctor1(errMsg);
                             }
                         } else {
+                            ePrev = false;
                             if (safe) {
                                 return false;
                             }
 
                             throw new System.FormatException.$ctor1(errMsg);
                         }
+                    } else {
+                        ePrev = false;
                     }
                 }
 
