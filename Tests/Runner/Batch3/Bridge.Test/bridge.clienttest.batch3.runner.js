@@ -153,6 +153,7 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
             QUnit.test("#3964 - TestIndexOfAny", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3964.TestIndexOfAny);
             QUnit.test("#3969 - TestCharIndexer", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3969.TestCharIndexer);
             QUnit.test("#3970 - TestNamespaceAndClassSameName", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3970.TestNamespaceAndClassSameName);
+            QUnit.test("#3979 - TestDoubleParse", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3979.TestDoubleParse);
             QUnit.module("Issues3");
             QUnit.test("#69 - ThisKeywordInStructConstructorWorks", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge069.ThisKeywordInStructConstructorWorks);
             QUnit.test("#1000 - TestStaticViaChild", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1000.TestStaticViaChild);
@@ -19691,6 +19692,32 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
                 var $t;
                 if (this.context == null) {
                     this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge3970", $t.File = "Batch3\\BridgeIssues\\3900\\N3970.cs", $t);
+                }
+                return this.context;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3979", {
+        inherits: [Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979)],
+        $kind: "nested class",
+        statics: {
+            methods: {
+                TestDoubleParse: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3979, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "TestDoubleParse()", $t.Line = "9", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979.TestDoubleParse();
+                }
+            }
+        },
+        fields: {
+            context: null
+        },
+        methods: {
+            GetContext: function () {
+                var $t;
+                if (this.context == null) {
+                    this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979", $t.File = "Batch3\\BridgeIssues\\3900\\N3979.cs", $t);
                 }
                 return this.context;
             }

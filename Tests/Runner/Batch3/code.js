@@ -39521,6 +39521,36 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979", {
+        statics: {
+            methods: {
+                TestDoubleParse: function () {
+                    Bridge.Test.NUnit.Assert.Throws$2(System.FormatException, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979.f1);
+                    Bridge.Test.NUnit.Assert.Throws$2(System.FormatException, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979.f2);
+                    Bridge.Test.NUnit.Assert.Throws$2(System.FormatException, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979.f3);
+                    Bridge.Test.NUnit.Assert.Throws$2(System.FormatException, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979.f4);
+                }
+            }
+        }
+    });
+
+    Bridge.ns("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979", $asm.$);
+
+    Bridge.apply($asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979, {
+        f1: function () {
+            System.Double.parse("2+1");
+        },
+        f2: function () {
+            System.Double.parse("2ee+1");
+        },
+        f3: function () {
+            System.Double.parse("2e++1");
+        },
+        f4: function () {
+            System.Double.parse("2e+-1");
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge407", {
         $kind: "struct",
         statics: {
