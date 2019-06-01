@@ -27,11 +27,26 @@
                 v = v.replace(nfInfo.numberDecimalSeparator, ".");
             }
 
-            if (!/^\s*[+-]?(\d+|\d+.|\d*\.\d+)((e|E)[+-]?\d+)?\s*$/.test(v)) {
+            // Native .NET accepts the sign in postfixed form. Yet, it is documented otherwise.
+            // https://docs.microsoft.com/en-us/dotnet/api/system.decimal.parse
+            if (!/^\s*[+-]?(\d+|\d+\.|\d*\.\d+)((e|E)[+-]?\d+)?\s*$/.test(v) &&
+                !/^\s*(\d+|\d+\.|\d*\.\d+)((e|E)[+-]?\d+)?[+-]\s*$/.test(v)) {
                 throw new System.FormatException();
             }
 
             v = v.replace(/\s/g, "");
+
+            // Move the postfixed - to front, or remove '+' so the underlying
+            // decimal handler knows what to do with the string.
+            if (/[+-]$/.test(v)) {
+                if (v.endsWith('-')) {
+                    v = v.replace(/(.*)(-)$/, "$2$1");
+                } else {
+                    v = v.substr(0, v.length - 1);
+                }
+            } else if (v.startsWith("+")) {
+                v = v.substr(1);
+            }
 
             if (!this.$precision && (dot = v.indexOf('.')) >= 0) {
                 this.$precision = v.length - dot - 1;
