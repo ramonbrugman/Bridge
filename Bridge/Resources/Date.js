@@ -1139,7 +1139,18 @@
             },
 
             subdd: function (a, b) {
-                return Bridge.hasValue$1(a, b) ? (new System.TimeSpan((this.getTicks(a).sub(this.getTicks(b))))) : null;
+                var offset = 0,
+                    ticksA = this.getTicks(a),
+                    ticksB = this.getTicks(b),
+                    valA = ticksA.toNumber(),
+                    valB = ticksB.toNumber(),
+                    spread = ticksA.sub(ticksB);
+
+                if ((valA === 0 && valB !== 0) || (valB === 0 && valA !== 0)) {
+                    offset = Math.round((spread.toNumberDivided(6e8) - (Math.round(spread.toNumberDivided(9e9)) * 15)) * 6e8);
+                }
+
+                return new System.TimeSpan(spread.sub(offset));
             },
 
             addYears: function (d, v) {
