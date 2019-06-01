@@ -16,14 +16,14 @@
             $min: null,
             $max: null,
 
-            TicksPerDay: System.Int64("864000000000"),
+            TicksPerDay: System.Int64(864e9),
 
             DaysTo1970: 719162,
             YearDaysByMonth: [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
 
             getMinTicks: function () {
                 if (this.$minTicks === null) {
-                    this.$minTicks = System.Int64("0");
+                    this.$minTicks = System.Int64(0);
                 }
 
                 return this.$minTicks;
@@ -31,7 +31,7 @@
 
             getMaxTicks: function () {
                 if (this.$maxTicks === null) {
-                    this.$maxTicks = System.Int64("3652059").mul(System.Int64("864000000000")).sub(1);
+                    this.$maxTicks = System.Int64("3652059").mul(this.TicksPerDay).sub(1);
                 }
 
                 return this.$maxTicks;
@@ -40,7 +40,7 @@
             // Difference in Ticks from 1-Jan-0001 to 1-Jan-1970 at UTC
             $getMinOffset: function () {
                 if (this.$minOffset === null) {
-                    this.$minOffset = System.Int64("621355968000000000");
+                    this.$minOffset = System.Int64(621355968e9);
                 }
 
                 return this.$minOffset;
@@ -98,7 +98,7 @@
 
             $getTzOffset: function (d) {
                 // 60 seconds * 1000 milliseconds * 10000
-                return System.Int64(d.getTimezoneOffset()).mul(600000000);
+                return System.Int64(d.getTimezoneOffset()).mul(6e8);
             },
 
             toLocalTime: function (d, throwOnOverflow) {
@@ -270,7 +270,7 @@
                 return dt;
             },
 
-            $FileTimeOffset: System.Int64("584388").mul(System.Int64("864000000000")),
+            $FileTimeOffset: System.Int64("584388").mul(System.Int64(864e9)),
 
             FromFileTime: function (fileTime) {
                 return this.toLocalTime(this.FromFileTimeUtc(fileTime));
