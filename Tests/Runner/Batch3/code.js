@@ -39628,6 +39628,54 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * The tests here ensures TryParse/Parse behaves correctly in some
+     situations.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979", {
+        statics: {
+            methods: {
+                /**
+                 * Tests several combinations for float and double.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3979
+                 * @return  {void}
+                 */
+                TestFloatingPointParse: function () {
+                    var $t;
+                    var invalid_samples = System.Array.init(["2+1", "2ee+1", "2e++1", "2e+-1", "2e--1", "2-e--1", "2+e+1", "2++", "2-e+-1", "-2+", "+2-", "+2--", "+2--++-+-+3+-+-0-9", ".2++", ".2+2", "+.2+", "-3.2-", "+4.2-", "-.2-", "+.2-", ".2+", ".2-", "1.2-"], System.String);
+
+                    $t = Bridge.getEnumerator(invalid_samples);
+                    try {
+                        while ($t.moveNext()) {
+                            var sample = { v : $t.Current };
+                            Bridge.Test.NUnit.Assert.Throws$2(System.FormatException, (function ($me, sample) {
+                                return function () {
+                                    System.Single.parse(sample.v);
+                                };
+                            })(this, sample), "float.Parse(\"" + (sample.v || "") + "\") throws FormatException");
+                            Bridge.Test.NUnit.Assert.Throws$2(System.FormatException, (function ($me, sample) {
+                                return function () {
+                                    System.Double.parse(sample.v);
+                                };
+                            })(this, sample), "double.Parse(\"" + (sample.v || "") + "\") throws FormatException.");
+                        }
+                    } finally {
+                        if (Bridge.is($t, System.IDisposable)) {
+                            $t.System$IDisposable$Dispose();
+                        }
+                    }
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge407", {
         $kind: "struct",
         statics: {
