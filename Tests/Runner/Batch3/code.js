@@ -39676,6 +39676,72 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * The tests here ensures TryParse/Parse behaves correctly in some
+     situations with Decimals.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge3982
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3982", {
+        statics: {
+            methods: {
+                /**
+                 * Tests some combinations for decimal.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge3982
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3982
+                 * @return  {void}
+                 */
+                TestFloatingPointParse: function () {
+                    var $t, $t1;
+                    var tmpm = { };
+
+                    var invalid_samples = System.Array.init(["2ee+1", "2+e+1", "-2+", "+2-"], System.String);
+
+                    var valid_samples = System.Array.init([{ Item1: System.Decimal(0.2, 1), Item2: ".2+" }, { Item1: System.Decimal(-0.2, 1), Item2: ".2-" }, { Item1: System.Decimal(-1.2, 1), Item2: "1.2-" }, { Item1: System.Decimal(0.2, 1), Item2: "+.2" }, { Item1: System.Decimal(1.2, 1), Item2: "+1.2" }], System.Tuple$2(System.Decimal,System.String));
+
+                    $t = Bridge.getEnumerator(invalid_samples);
+                    try {
+                        while ($t.moveNext()) {
+                            var sample = { v : $t.Current };
+                            Bridge.Test.NUnit.Assert.Throws$2(System.FormatException, (function ($me, sample) {
+                                return function () {
+                                    System.Decimal(sample.v);
+                                };
+                            })(this, sample), "decimal.Parse(\"" + (sample.v || "") + "\") throws FormatException");
+                        }
+                    } finally {
+                        if (Bridge.is($t, System.IDisposable)) {
+                            $t.System$IDisposable$Dispose();
+                        }
+                    }
+
+                    $t1 = Bridge.getEnumerator(valid_samples);
+                    try {
+                        while ($t1.moveNext()) {
+                            var st = $t1.Current;
+                            var sample1 = st.Item2;
+                            var assertMsg = "decimal.TryParse(\"" + (sample1 || "") + "\") succeeds.";
+                            if (System.Decimal.tryParse(sample1, null, tmpm)) {
+                                Bridge.Test.NUnit.Assert.True(true, assertMsg);
+                                Bridge.Test.NUnit.Assert.AreEqual(st.Item1, tmpm.v, "Parsed value is " + st.Item1 + ".");
+                            } else {
+                                Bridge.Test.NUnit.Assert.Fail(assertMsg);
+                            }
+                        }
+                    } finally {
+                        if (Bridge.is($t1, System.IDisposable)) {
+                            $t1.System$IDisposable$Dispose();
+                        }
+                    }
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge407", {
         $kind: "struct",
         statics: {
