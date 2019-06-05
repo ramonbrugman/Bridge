@@ -1356,32 +1356,16 @@ namespace Bridge.Translator
 
         protected byte[] ReadStream(Stream stream)
         {
+            if (stream is MemoryStream memoryStream)
+                return memoryStream.ToArray();
+
             if (stream.Position != 0)
-            {
                 stream.Seek(0, SeekOrigin.Begin);
-                stream.Position = 0;
-            }
-
-            byte[] bytes = new byte[stream.Length];
-
-            int numBytesToRead = (int)stream.Length;
-            int numBytesRead = 0;
-
-            var chunkLength = 1 * 1024 * 1024;
-            if (chunkLength > numBytesToRead)
+            using (memoryStream = new MemoryStream())
             {
-                chunkLength = numBytesToRead;
+                stream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
             }
-
-            do
-            {
-                int n = stream.Read(bytes, numBytesRead, chunkLength);
-
-                numBytesRead += n;
-                numBytesToRead -= n;
-            } while (numBytesToRead > 0);
-
-            return bytes;
         }
 
         //private string NormalizePath(string value)
