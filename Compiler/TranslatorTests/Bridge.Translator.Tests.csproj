@@ -189,6 +189,7 @@
     <Compile Include="IntegrationTests\IntegrationTest.cs" />
     <Compile Include="ContractTests\ConfigHelperTests.cs" />
     <Compile Include="IntegrationTests\TranslatorRunner.cs" />
+    <Compile Include="TranslatorTests\TranslatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Builder\Bridge.Builder.csproj">
