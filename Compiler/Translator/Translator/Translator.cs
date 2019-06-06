@@ -59,20 +59,23 @@ namespace Bridge.Translator
             LocalRenaming = Microsoft.Ajax.Utilities.LocalRenaming.KeepAll,
             TermSemicolons = true,
             StrictMode = false,
-            RemoveUnneededCode = false
+            RemoveUnneededCode = false,
+            AlwaysEscapeNonAscii = true
         };
 
         private static readonly CodeSettings MinifierCodeSettingsInternal = new CodeSettings
         {
             TermSemicolons = true,
             StrictMode = false,
-            RemoveUnneededCode = false
+            RemoveUnneededCode = false,
+            AlwaysEscapeNonAscii = true
         };
 
         private static readonly CodeSettings MinifierCodeSettingsLocales = new CodeSettings
         {
             TermSemicolons = true,
-            RemoveUnneededCode = false
+            RemoveUnneededCode = false,
+            AlwaysEscapeNonAscii = true
         };
 
         protected Translator(string location)
