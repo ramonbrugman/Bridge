@@ -161,6 +161,7 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
             QUnit.test("#3977 - TestDirectJoinInvocation", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3977.TestDirectJoinInvocation);
             QUnit.test("#3979 - TestFloatingPointParse", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3979.TestFloatingPointParse);
             QUnit.test("#3982 - TestFloatingPointParse", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3982.TestFloatingPointParse);
+            QUnit.test("#3994 - TestEnumOptionalParam", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3994.TestEnumOptionalParam);
             QUnit.module("Issues3");
             QUnit.test("#69 - ThisKeywordInStructConstructorWorks", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge069.ThisKeywordInStructConstructorWorks);
             QUnit.test("#1000 - TestStaticViaChild", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1000.TestStaticViaChild);
@@ -19934,6 +19935,32 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
                 var $t;
                 if (this.context == null) {
                     this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge3982", $t.File = "Batch3\\BridgeIssues\\3900\\N3982.cs", $t);
+                }
+                return this.context;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3994", {
+        inherits: [Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994)],
+        $kind: "nested class",
+        statics: {
+            methods: {
+                TestEnumOptionalParam: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3994, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "TestEnumOptionalParam()", $t.Line = "20", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994.TestEnumOptionalParam();
+                }
+            }
+        },
+        fields: {
+            context: null
+        },
+        methods: {
+            GetContext: function () {
+                var $t;
+                if (this.context == null) {
+                    this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994", $t.File = "Batch3\\BridgeIssues\\3900\\N3994.cs", $t);
                 }
                 return this.context;
             }

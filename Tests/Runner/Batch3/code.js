@@ -39947,6 +39947,30 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994", {
+        statics: {
+            methods: {
+                TestFnc: function (testEnum) {
+                    if (testEnum === void 0) { testEnum = 0; }
+                    return testEnum;
+                },
+                TestEnumOptionalParam: function () {
+                    Bridge.Test.NUnit.Assert.AreEqual(Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994.TestEnum.Test, Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994.TestFnc());
+                }
+            }
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994.TestEnum", {
+        $kind: "nested enum",
+        statics: {
+            fields: {
+                Test: 0,
+                Test01: 1
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge407", {
         $kind: "struct",
         statics: {
