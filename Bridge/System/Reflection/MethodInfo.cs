@@ -72,7 +72,15 @@ namespace System.Reflection
 
         public extern bool IsGenericMethodDefinition
         {
-            [Bridge.Template("(!!{this}.tpc)")]
+            [Bridge.Template("Bridge.Reflection.isGenericMethodDefinition({this})")]
+            get;
+            [Bridge.Template("X")]
+            private set;
+        }
+
+        public extern bool IsGenericMethod
+        {
+            [Bridge.Template("Bridge.Reflection.isGenericMethod({this})")]
             get;
             [Bridge.Template("X")]
             private set;
@@ -122,6 +130,12 @@ namespace System.Reflection
         /// <returns>An array of Type objects that represent the type arguments of a generic method or the type parameters of a generic method definition. Returns an empty array if the current method is not a generic method.</returns>
         [Bridge.Template("Bridge.Reflection.getMethodGenericArguments({this})")]
         public extern Type[] GetGenericArguments();
+
+        [Bridge.Template("Bridge.Reflection.makeGenericMethod({this}, {typeArguments:array})")]
+        public extern MethodInfo MakeGenericMethod(params Type[] typeArguments);
+
+        [Bridge.Template("Bridge.Reflection.getGenericMethodDefinition({this})")]
+        public extern System.Reflection.MethodInfo GetGenericMethodDefinition();
 
         internal extern MethodInfo();
     }

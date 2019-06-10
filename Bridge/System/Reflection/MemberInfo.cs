@@ -130,6 +130,12 @@ namespace System.Reflection
         [Bridge.Template("System.Attribute.isDefined({this}, {attributeType}, {inherit})")]
         public extern bool IsDefined(Type attributeType, bool inherit);
 
+        public extern bool ContainsGenericParameters
+        {
+            [Bridge.Template("Bridge.Reflection.containsGenericParameters({this})")]
+            get;
+        }
+
         internal extern MemberInfo();
     }
 }

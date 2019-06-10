@@ -770,6 +770,7 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
             QUnit.test("#2872 - TestChainingAssignment", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2872.TestChainingAssignment);
             QUnit.test("#2874 - TestExternalOverriding", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2874.TestExternalOverriding);
             QUnit.test("#2886 - Test2DArrayDefValue", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2886.Test2DArrayDefValue);
+            QUnit.test("#2894 - TestMakeGenericMethod", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2894.TestMakeGenericMethod);
             QUnit.test("#2898 - TestCreateDelegate", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2898.TestCreateDelegate);
             QUnit.test("#2898 - TestCreateDelegateReflection", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2898_2.TestCreateDelegateReflection);
             QUnit.test("#2899 - TestDelegateCombining", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2899.TestDelegateCombining);
@@ -13238,6 +13239,32 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
                 var $t;
                 if (this.context == null) {
                     this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge2886", $t.File = "Batch3\\BridgeIssues\\2800\\N2886.cs", $t);
+                }
+                return this.context;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2894", {
+        inherits: [Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge2894)],
+        $kind: "nested class",
+        statics: {
+            methods: {
+                TestMakeGenericMethod: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge2894).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge2894, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "TestMakeGenericMethod()", $t.Line = "25", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge2894.TestMakeGenericMethod();
+                }
+            }
+        },
+        fields: {
+            context: null
+        },
+        methods: {
+            GetContext: function () {
+                var $t;
+                if (this.context == null) {
+                    this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge2894", $t.File = "Batch3\\BridgeIssues\\2800\\N2894.cs", $t);
                 }
                 return this.context;
             }

@@ -129,7 +129,7 @@ namespace System
         /// </summary>
         public extern bool ContainsGenericParameters
         {
-            [Bridge.Template("Bridge.Reflection.hasGenericParameters({this})")]
+            [Bridge.Template("Bridge.Reflection.containsGenericParameters({this})")]
             get;
         }
 
@@ -143,11 +143,28 @@ namespace System
         }
 
         /// <summary>
+        /// Gets the position of the type parameter in the type parameter list of the generic type or method that declared the parameter, when the Type object represents a type parameter of a generic type or a generic method.
+        /// </summary>
+        public extern int GenericParameterPosition
+        {
+            [Bridge.Template("Bridge.Reflection.genericParameterPosition({this})")]
+            get;
+        }
+
+        public extern MethodInfo DeclaringMethod
+        {
+            [Bridge.Template("Bridge.Reflection.getMetaValue({this}, \"md\", null)")]
+            get;
+        }
+
+        /// <summary>
         /// Returns an array of Type objects that represent the type arguments of a closed generic type or the type parameters of a generic type definition.
         /// </summary>
         /// <returns>An array of Type objects that represent the type arguments of a generic type. Returns an empty array if the current type is not a generic type.</returns>
         [Bridge.Template("Bridge.Reflection.getGenericArguments({this})")]
         public extern Type[] GetGenericArguments();
+
+   
 
         [Bridge.Template("Bridge.Reflection.getInterfaces({this})")]
         public extern Type[] GetInterfaces();
