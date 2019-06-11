@@ -23,5 +23,6 @@
   "test": {
     "skipResources": true,
     "skipAuxiliary": true
-  }
+  },
+  "ignoreDuplicateTypes": true
 }

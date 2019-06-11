@@ -25,5 +25,6 @@
       "name": "bridge.meta.js",
       "extract": false
     }
-  ]
+  ],
+  "ignoreDuplicateTypes": true
 }
