@@ -227,5 +227,11 @@ namespace Bridge.Contract
             get;
             set;
         }
+
+        bool IgnoreDuplicateTypes
+        {
+            get;
+            set;
+        }
     }
  }

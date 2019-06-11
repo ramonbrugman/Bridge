@@ -24,6 +24,7 @@ namespace Bridge.Translator
             this.Console = new ConsoleConfig();
             this.Report = new ReportConfig();
             this.Rules = new CompilerRule();
+            this.IgnoreDuplicateTypes = false;
         }
 
         /// <summary>
@@ -336,6 +337,17 @@ namespace Bridge.Translator
         }
 
         public string[] References
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Skips loading types off assemblies when they have already been loaded.
+        /// If false, throws an exception when a same type comes from more than
+        /// one assembly.
+        /// </summary>
+        public bool IgnoreDuplicateTypes
         {
             get;
             set;

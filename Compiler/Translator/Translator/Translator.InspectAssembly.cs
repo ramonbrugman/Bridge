@@ -187,6 +187,8 @@ namespace Bridge.Translator
 
         protected virtual void AddNestedTypes(IEnumerable<TypeDefinition> types)
         {
+            bool skip_key;
+
             foreach (TypeDefinition type in types)
             {
                 if (type.FullName.Contains("<"))
@@ -200,6 +202,7 @@ namespace Bridge.Translator
 
                 BridgeType duplicateBridgeType = null;
 
+                skip_key = false;
                 if (this.BridgeTypes.TryGetValue(key, out duplicateBridgeType))
                 {
                     var duplicate = duplicateBridgeType.TypeDefinition;
@@ -211,21 +214,31 @@ namespace Bridge.Translator
                         duplicate.Module.Assembly.FullName,
                         duplicate.FullName);
 
-                    this.Log.Error(message);
-                    throw new System.InvalidOperationException(message);
+                    if (!this.AssemblyInfo.IgnoreDuplicateTypes)
+                    {
+                        this.Log.Error(message);
+                        throw new System.InvalidOperationException(message);
+                    } else
+                    {
+                        this.Log.Warn(message);
+                    }
+                    skip_key = true;
                 }
 
-                this.TypeDefinitions.Add(key, type);
-
-                this.BridgeTypes.Add(key, new BridgeType(key)
+                if (!skip_key)
                 {
-                    TypeDefinition = type
-                });
+                    this.TypeDefinitions.Add(key, type);
 
-                if (type.HasNestedTypes)
-                {
-                    Translator.InheritAttributes(type);
-                    this.AddNestedTypes(type.NestedTypes);
+                    this.BridgeTypes.Add(key, new BridgeType(key)
+                    {
+                        TypeDefinition = type
+                    });
+
+                    if (type.HasNestedTypes)
+                    {
+                        Translator.InheritAttributes(type);
+                        this.AddNestedTypes(type.NestedTypes);
+                    }
                 }
             }
         }
