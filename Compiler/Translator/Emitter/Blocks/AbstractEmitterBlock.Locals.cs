@@ -276,10 +276,7 @@ namespace Bridge.Translator
                                     {
                                         var enumMode = Helpers.EnumEmitMode(prm.Type);
 
-                                        if (enumMode == -1 || enumMode == 2)
-                                        {
-                                            this.WriteScript(prm.ConstantValue);
-                                        } else if (enumMode >= 3 && enumMode < 7)
+                                        if (enumMode >= 3 && enumMode < 7)
                                         {
                                             var members = prm.Type.GetMembers(options: GetMemberOptions.IgnoreInheritedMembers);
                                             var member = members.FirstOrDefault(m => m is IField field && field.ConstantValue == prm.ConstantValue);
@@ -291,6 +288,9 @@ namespace Bridge.Translator
                                             } else {
                                                 this.WriteScript(prm.ConstantValue);
                                             }
+                                        } else
+                                        {
+                                            this.WriteScript(prm.ConstantValue);
                                         }
                                     }
                                     else
