@@ -7,7 +7,6 @@ using ICSharpCode.NRefactory.TypeSystem;
 using ICSharpCode.NRefactory.TypeSystem.Implementation;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Win32.SafeHandles;
 
 namespace Bridge.Translator
 {
@@ -285,10 +284,13 @@ namespace Bridge.Translator
                                             {
                                                 string enumStringName = this.Emitter.GetEntityName(member);
                                                 this.WriteScript(enumStringName);
-                                            } else {
+                                            }
+                                            else
+                                            {
                                                 this.WriteScript(prm.ConstantValue);
                                             }
-                                        } else
+                                        }
+                                        else
                                         {
                                             this.WriteScript(prm.ConstantValue);
                                         }
