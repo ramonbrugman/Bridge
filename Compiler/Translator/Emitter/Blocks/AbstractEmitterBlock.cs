@@ -82,9 +82,6 @@ namespace Bridge.Translator
             }
 
             return false;
-
-            //return this.Emitter.Translator.EmitNode != null && !this.Emitter.Translator.EmitNode.Region.IsEmpty;
-            //return this.Emitter.Translator.EmitNode is Statement && !(this.Emitter.Translator.EmitNode is BlockStatement);
         }
 
         public virtual void EmitBlockOrIndentedLine(AstNode node)
@@ -166,7 +163,7 @@ namespace Bridge.Translator
 
             if (node is BinaryOperatorExpression)
             {
-                var binaryOperatorExpression = (BinaryOperatorExpression) node;
+                var binaryOperatorExpression = (BinaryOperatorExpression)node;
                 if (binaryOperatorExpression.Operator == BinaryOperatorType.BitwiseAnd ||
                     binaryOperatorExpression.Operator == BinaryOperatorType.BitwiseOr ||
                     binaryOperatorExpression.Operator == BinaryOperatorType.ConditionalOr ||
@@ -224,8 +221,10 @@ namespace Bridge.Translator
             this.Write(JS.Vars.ASYNC_TASK + index + ".isCompleted()");
 
             this.WriteCloseParentheses();
-            this.Write(" continue;");
-            this.WriteNewLine();
+
+            this.WriteSpace();
+
+            this.WriteBlock("continue;");
 
             this.Write(JS.Vars.ASYNC_TASK + index + "." + JS.Funcs.CONTINUE_WITH + "(" + JS.Funcs.ASYNC_BODY + ");");
 

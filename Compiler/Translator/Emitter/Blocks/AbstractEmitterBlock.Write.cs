@@ -117,6 +117,24 @@ namespace Bridge.Translator
             this.WriteCloseBrace();
         }
 
+        /// <summary>
+        /// Used to write simple blocks. Optionally doesn't end the block with a newline.
+        /// </summary>
+        /// <param name="what"></param>
+        /// <param name="newline"></param>
+        public virtual void WriteBlock(string what, bool newline = true)
+        {
+            this.BeginBlock();
+            this.Write(what);
+            this.WriteNewLine();
+            this.EndBlock();
+
+            if (newline)
+            {
+                this.WriteNewLine();
+            }
+        }
+
         public virtual void Write(object value)
         {
             this.WriteIndent();
