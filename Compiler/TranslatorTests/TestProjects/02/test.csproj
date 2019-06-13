@@ -45,6 +45,7 @@
     <Compile Include="BridgeIssues\N1424.cs" />
     <Compile Include="BridgeIssues\N1193.cs" />
     <Compile Include="BridgeIssues\N770.cs" />
+    <Compile Include="BridgeIssues\N3902.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClassB.cs" />
     <Compile Include="TestClassA.cs" />
