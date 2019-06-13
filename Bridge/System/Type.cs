@@ -164,8 +164,6 @@ namespace System
         [Bridge.Template("Bridge.Reflection.getGenericArguments({this})")]
         public extern Type[] GetGenericArguments();
 
-   
-
         [Bridge.Template("Bridge.Reflection.getInterfaces({this})")]
         public extern Type[] GetInterfaces();
 
