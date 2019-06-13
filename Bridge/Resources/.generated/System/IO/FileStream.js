@@ -171,7 +171,9 @@
                                     case 1: {
                                         $task1 = System.IO.FileStream.ReadBytesAsync(this.name);
                                         $step = 2;
-                                        if ($task1.isCompleted()) continue;
+                                        if ($task1.isCompleted()) {
+                                            continue;
+                                        }
                                         $task1.continue($asyncBody);
                                         return;
                                     }

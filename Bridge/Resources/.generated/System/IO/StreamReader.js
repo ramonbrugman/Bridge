@@ -275,7 +275,9 @@
                                     case 1: {
                                         $task1 = this.stream.EnsureBufferAsync();
                                         $step = 2;
-                                        if ($task1.isCompleted()) continue;
+                                        if ($task1.isCompleted()) {
+                                            continue;
+                                        }
                                         $task1.continue($asyncBody);
                                         return;
                                     }
@@ -287,7 +289,9 @@
                                     case 3: {
                                         $task2 = System.IO.TextReader.prototype.ReadToEndAsync.call(this);
                                         $step = 4;
-                                        if ($task2.isCompleted()) continue;
+                                        if ($task2.isCompleted()) {
+                                            continue;
+                                        }
                                         $task2.continue($asyncBody);
                                         return;
                                     }
