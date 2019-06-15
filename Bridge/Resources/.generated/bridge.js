@@ -9017,7 +9017,11 @@ Bridge.define("System.Type", {
             }
         }
 
-        if (T && T.precision && typeof v === "number") {
+        if (isNaN(v) || System.Decimal.MaxValue && typeof v === "number" && (System.Decimal.MinValue.gt(v) || System.Decimal.MaxValue.lt(v))) {
+            throw new System.OverflowException();
+        }
+
+        if (T && T.precision && typeof v === "number" && Number.isFinite(v)) {
             var i = Bridge.Int.trunc(v);
             var length = (i + "").length;
             var p = T.precision - length;
@@ -9029,7 +9033,7 @@ Bridge.define("System.Type", {
 
         if (v instanceof System.Decimal) {
             this.$precision = v.$precision;
-        }
+        }        
 
         this.value = System.Decimal.getValue(v);
     }
@@ -9061,7 +9065,7 @@ Bridge.define("System.Type", {
 
         if (d instanceof System.Int64 || d instanceof System.UInt64) {
             return new Bridge.$Decimal(d.toString());
-        }
+        }        
 
         return new Bridge.$Decimal(d);
     };

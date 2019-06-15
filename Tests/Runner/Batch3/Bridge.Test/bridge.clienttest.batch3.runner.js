@@ -231,6 +231,7 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
             QUnit.test("#1141 - TestLongDivisionInfiniteLoopFixed", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1141.TestLongDivisionInfiniteLoopFixed);
             QUnit.test("#1144 - TestStringFormat", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1144.TestStringFormat);
             QUnit.test("#1146 - TestLongIssues", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1146.TestLongIssues);
+            QUnit.test("#1148 - TestDecimalOverflow", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1148.TestDecimalOverflow);
             QUnit.test("#1149 - TestBitwiseOrAnd", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1149.TestBitwiseOrAnd);
             QUnit.test("#1160 - TestBitwiseOrAnd", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1160.TestBitwiseOrAnd);
             QUnit.test("#1170 - TestAsyncUsing", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1170.TestAsyncUsing);
@@ -2304,6 +2305,32 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
                 var $t;
                 if (this.context == null) {
                     this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge1146", $t.File = "Batch3\\BridgeIssues\\1100\\N1146.cs", $t);
+                }
+                return this.context;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1148", {
+        inherits: [Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1148)],
+        $kind: "nested class",
+        statics: {
+            methods: {
+                TestDecimalOverflow: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1148).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1148, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "TestDecimalOverflow()", $t.Line = "10", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1148.TestDecimalOverflow();
+                }
+            }
+        },
+        fields: {
+            context: null
+        },
+        methods: {
+            GetContext: function () {
+                var $t;
+                if (this.context == null) {
+                    this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge1148", $t.File = "Batch3\\BridgeIssues\\1100\\N1148.cs", $t);
                 }
                 return this.context;
             }

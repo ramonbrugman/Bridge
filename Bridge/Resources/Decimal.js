@@ -53,7 +53,11 @@
             }
         }
 
-        if (T && T.precision && typeof v === "number") {
+        if (isNaN(v) || System.Decimal.MaxValue && typeof v === "number" && (System.Decimal.MinValue.gt(v) || System.Decimal.MaxValue.lt(v))) {
+            throw new System.OverflowException();
+        }
+
+        if (T && T.precision && typeof v === "number" && Number.isFinite(v)) {
             var i = Bridge.Int.trunc(v);
             var length = (i + "").length;
             var p = T.precision - length;
@@ -555,12 +559,12 @@
 
     System.Decimal.prototype.toFormat = function (dp, rm, provider) {
         var config = {
-                decimalSeparator : ".",
-                groupSeparator : ",",
-                groupSize : 3,
-                secondaryGroupSize : 0,
-                fractionGroupSeparator : "\xA0",
-                fractionGroupSize : 0
+                decimalSeparator: ".",
+                groupSeparator: ",",
+                groupSize: 3,
+                secondaryGroupSize: 0,
+                fractionGroupSeparator: "\xA0",
+                fractionGroupSize: 0
             },
             d;
 
@@ -597,10 +601,10 @@
             bytes[2] = d.length * 4;
 
             for (var i = 0; i < d.length; i++) {
-                bytes[i*4 + 3] = d[i] & 255;
-                bytes[i*4 + 4] = (d[i] >> 8) & 255;
-                bytes[i*4 + 5] = (d[i] >> 16) & 255;
-                bytes[i*4 + 6] = (d[i] >> 24) & 255;
+                bytes[i * 4 + 3] = d[i] & 255;
+                bytes[i * 4 + 4] = (d[i] >> 8) & 255;
+                bytes[i * 4 + 5] = (d[i] >> 16) & 255;
+                bytes[i * 4 + 6] = (d[i] >> 24) & 255;
             }
         } else {
             bytes[2] = 0;
