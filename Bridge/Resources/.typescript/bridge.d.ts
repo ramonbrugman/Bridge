@@ -210,7 +210,7 @@ declare module Bridge {
         }
         export interface EnumerableHelpersFunc extends Function {
             prototype: Bridge.Collections.EnumerableHelpers;
-            new (): Bridge.Collections.EnumerableHelpers;
+            new(): Bridge.Collections.EnumerableHelpers;
             ToArray<T>(T: { prototype: T }, source: System.Collections.Generic.IEnumerable$1<T>): T[];
             ToArray$1<T>(T: { prototype: T }, source: System.Collections.Generic.IEnumerable$1<T>, length: { v: number }): T[];
         }
@@ -219,8 +219,7 @@ declare module Bridge {
 }
 
 declare module System {
-    export class Decimal
-    {
+    export class Decimal {
         prototype: Decimal;
         static readonly Zero: Decimal;
         static readonly One: Decimal;
@@ -437,7 +436,7 @@ declare module System {
         static create(error: string): Exception;
         static create(error: Error): Exception;
     }
-    
+
     export class SystemException extends Exception {
         constructor(message: string, innerException: Exception);
         constructor(message: string);
@@ -571,22 +570,22 @@ declare module System {
     export interface GuidFunc extends Function {
         prototype: Guid;
         $ctor4: {
-            new (uuid: string): Guid;
+            new(uuid: string): Guid;
         };
         $ctor1: {
-            new (b: number[]): Guid;
+            new(b: number[]): Guid;
         };
         $ctor5: {
-            new (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number): Guid;
+            new(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number): Guid;
         };
         $ctor3: {
-            new (a: number, b: number, c: number, d: number[]): Guid;
+            new(a: number, b: number, c: number, d: number[]): Guid;
         };
         $ctor2: {
-            new (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number): Guid;
+            new(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number): Guid;
         };
         ctor: {
-            new (): Guid;
+            new(): Guid;
         };
         Empty: System.Guid;
         Parse(input: string): System.Guid;
@@ -643,10 +642,10 @@ declare module System {
     export interface RandomFunc extends Function {
         prototype: Random;
         ctor: {
-            new (): Random;
+            new(): Random;
         };
         $ctor1: {
-            new (seed: number): Random;
+            new(seed: number): Random;
         };
     }
     var Random: RandomFunc;
@@ -662,849 +661,1322 @@ declare module System {
             moveNext(): boolean;
             reset(): void;
             readonly Current: any;
-    }
-    var IEnumerator: Function;
-
-    export interface IEqualityComparer {
-        equals(x: any, y: any): boolean;
-        getHashCode(obj: any): number;
-    }
-    var IEqualityComparer: Function;
-
-    export interface ICollection extends IEnumerable {
-        getCount(): number;
-        System$Collections$IList$Count: number;
-        Count: number;
-    }
-    var ICollection: Function;
-
-    export interface BitArray extends System.Collections.ICollection, System.ICloneable {
-        GetItem(index: number): boolean;
-        SetItem(index: number, value: boolean): void;
-        Length: number;
-        Count: number;
-        IsReadOnly: boolean;
-        IsSynchronized: boolean;
-        CopyTo(array: Array<any>, index: number): void;
-        Get(index: number): boolean;
-        Set(index: number, value: boolean): void;
-        SetAll(value: boolean): void;
-        And(value: System.Collections.BitArray): System.Collections.BitArray;
-        Or(value: System.Collections.BitArray): System.Collections.BitArray;
-        Xor(value: System.Collections.BitArray): System.Collections.BitArray;
-        Not(): System.Collections.BitArray;
-        Clone(): any;
-        GetEnumerator(): System.Collections.IEnumerator;
-    }
-    export interface BitArrayFunc extends Function {
-        prototype: BitArray;
-        BitArrayEnumeratorSimple: System.Collections.BitArray.BitArrayEnumeratorSimpleFunc;
-        $ctor3: {
-            new (length: number): BitArray
-        };
-        $ctor4: {
-            new (length: number, defaultValue: boolean): BitArray
-        };
-        $ctor1: {
-            new (bytes: number[]): BitArray
-        };
-        ctor: {
-            new (values: boolean[]): BitArray
-        };
-        $ctor5: {
-            new (values: number[]): BitArray
-        };
-        $ctor2: {
-            new (bits: System.Collections.BitArray): BitArray
-        };
-        getArrayLength(n: number, div: number): number;
-    }
-    var BitArray: BitArrayFunc;
-
-    module BitArray {
-        export interface BitArrayEnumeratorSimple extends System.Collections.IEnumerator {
-            Current: any;
-            moveNext(): boolean;
-            reset(): void;
         }
-        export interface BitArrayEnumeratorSimpleFunc extends Function {
-            prototype: BitArrayEnumeratorSimple;
+        var IEnumerator: Function;
+
+        export interface IEqualityComparer {
+            equals(x: any, y: any): boolean;
+            getHashCode(obj: any): number;
         }
-    }
+        var IEqualityComparer: Function;
 
-    export interface HashHelpers {
-    }
-    export interface HashHelpersFunc extends Function {
-        prototype: HashHelpers;
-        new (): HashHelpers;
-        primes: number[];
-        MaxPrimeArrayLength: number;
-        isPrime(candidate: number): boolean;
-        getPrime(min: number): number;
-        getMinPrime(): number;
-        expandPrime(oldSize: number): number;
-    }
-    var HashHelpers: HashHelpersFunc;
-
-    export interface IList extends System.Collections.ICollection, System.Collections.IEnumerable {
-        System$Collections$IList$getItem(index: number): any;
-        getItem(index: number): any;
-        System$Collections$IList$setItem(index: number, value: any): void;
-        setItem(index: number, value: any): void;
-        System$Collections$IList$IsReadOnly: boolean;
-        IsReadOnly: boolean;
-        add(item: any): number;
-        System$Collections$IList$add(item: any): number;
-        clear(): void;
-        System$Collections$IList$clear(): void;
-        contains(item: any): boolean;
-        System$Collections$IList$contains(item: any): boolean;
-        indexOf(item: any): number;
-        System$Collections$IList$indexOf(item: any): number;
-        insert(index: number, item: any): void;
-        System$Collections$IList$insert(index: number, item: any): void;
-        removeAt(index: number): void;
-        System$Collections$IList$removeAt(index: number): void;
-        remove(item: any): void;
-        System$Collections$IList$remove(item: any): void;
-    }
-
-    module Generic {
-        export class KeyNotFoundException extends Exception {
-            constructor(message?: string, innerException?: Exception);
+        export interface ICollection extends IEnumerable {
+            getCount(): number;
+            System$Collections$IList$Count: number;
+            Count: number;
         }
-        export interface IEnumerator$1<T> extends IEnumerator {
-            getCurrent(): T;
-                readonly Current: T;
-    }
-    export function IEnumerator$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: IEnumerator$1<T>;
-    }
+        var ICollection: Function;
 
-    export interface IEnumerable$1<T> extends IEnumerable {
-        GetEnumerator(): IEnumerator$1<T>;
-    }
-    export function IEnumerable$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: IEnumerable$1<T>;
-    }
-
-    export interface ICollection$1<T> extends IEnumerable$1<T> {
-        getCount(): number;
-        add(item: T): void;
-        clear(): void;
-        contains(item: T): boolean;
-        remove(item: T): boolean;
-    }
-    export function ICollection$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: ICollection$1<T>;
-    }
-
-    export interface IEqualityComparer$1<T> extends IEqualityComparer {
-        equals(x: T, y: T): boolean;
-        getHashCode(obj: T): number;
-    }
-    export function IEqualityComparer$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: IEqualityComparer$1<T>;
-    }
-
-    export interface IDictionary$2<TKey, TValue> extends IEnumerable$1<KeyValuePair$2<TKey, TValue>> {
-        get(key: TKey): TValue;
-        set(key: TKey, value: TValue): void;
-        getKeys(): ICollection$1<TKey>;
-        getValues(): ICollection$1<TValue>;
-        getCount(): number;
-        containsKey(key: TKey): boolean;
-        add(key: TKey, value: TValue): void;
-        remove(key: TKey): boolean;
-        tryGetValue(key: TKey, value: { v: TValue }): boolean;
-    }
-    export function IDictionary$2<TKey, TValue>(tKey: Bridge.TypeRef<TKey>, tValue: Bridge.TypeRef<TValue>): {
-        prototype: IDictionary$2<TKey, TValue>;
-    }
-
-    export interface IList$1<T> extends ICollection$1<T> {
-        getItem(index: number): T;
-        setItem(index: number, value: T): void;
-        indexOf(item: T): number;
-        insert(index: number, item: T): void;
-        removeAt(index: number): void;
-    }
-    export function IList$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: IList$1<T>;
-    }
-
-    export interface IComparer$1<T> {
-        compare(x: T, y: T): number;
-    }
-    export function IComparer$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: IComparer$1<T>;
-    }
-
-    export interface EqualityComparer$1<T> extends IEqualityComparer$1<T> {
-        equals(x: T, y: T): boolean;
-        getHashCode(obj: T): number;
-    }
-    export function EqualityComparer$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: EqualityComparer$1<T>;
-        new (): EqualityComparer$1<T>;
-    }
-
-    export interface Comparer$1<T> extends IComparer$1<T> {
-        compare(x: T, y: T): number;
-    }
-    export function Comparer$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: Comparer$1<T>;
-        new (fn: { (x: T, y: T): number }): Comparer$1<T>;
-    }
-
-    export interface KeyValuePair$2<TKey, TValue> {
-        key: TKey;
-        value: TValue;
-    }
-    export function KeyValuePair$2<TKey, TValue>(tKey: Bridge.TypeRef<TKey>, tValue: Bridge.TypeRef<TValue>): {
-        prototype: KeyValuePair$2<TKey, TValue>;
-        new (key: TKey, value: TValue): KeyValuePair$2<TKey, TValue>;
-    }
-
-    export interface Dictionary$2<TKey, TValue> extends IDictionary$2<TKey, TValue> {
-        getKeys(): ICollection$1<TKey>;
-        getValues(): ICollection$1<TValue>;
-        clear(): void;
-        containsKey(key: TKey): boolean;
-        containsValue(value: TValue): boolean;
-        get(key: TKey): TValue;
-        set(key: TKey, value: TValue, add?: boolean): void;
-        add(key: TKey, value: TValue): void;
-        remove(key: TKey): boolean;
-        getCount(): number;
-        getComparer(): IEqualityComparer$1<TKey>;
-        tryGetValue(key: TKey, value: { v: TValue }): boolean;
-        GetEnumerator(): IEnumerator$1<KeyValuePair$2<TKey, TValue>>;
-    }
-    export function Dictionary$2<TKey, TValue>(tKey: Bridge.TypeRef<TKey>, tValue: Bridge.TypeRef<TValue>): {
-        prototype: Dictionary$2<TKey, TValue>;
-        new (): Dictionary$2<TKey, TValue>;
-        new (obj: Dictionary$2<TKey, TValue>, comparer?: IEqualityComparer$1<TKey>): Dictionary$2<TKey, TValue>;
-        new (obj: any, comparer?: IEqualityComparer$1<TKey>): Dictionary$2<TKey, TValue>;
-    }
-
-    export interface List$1<T> extends System.Collections.Generic.IList$1<T> {
-        Capacity: number;
-        Count: number;
-        System$Collections$IList$IsReadOnly: boolean;
-        GetItem(index: number): T;
-        SetItem(index: number, value: T): void;
-        System$Collections$IList$GetItem(index: number): any;
-        System$Collections$IList$SetItem(index: number, value: any): void;
-        Add(item: T): void;
-        System$Collections$IList$Add(item: any): number;
-        AddRange(collection: System.Collections.Generic.IEnumerable$1<T>): void;
-        AsReadOnly(): System.Collections.ObjectModel.ReadOnlyCollection$1<T>;
-        BinarySearch$2(index: number, count: number, item: T, comparer: System.Collections.Generic.IComparer$1<T>): number;
-        BinarySearch(item: T): number;
-        BinarySearch$1(item: T, comparer: System.Collections.Generic.IComparer$1<T>): number;
-        Clear(): void;
-        Contains(item: T): boolean;
-        System$Collections$IList$Contains(item: any): boolean;
-        ConvertAll<TOutput>(TOutput: {prototype: TOutput}, converter: {(input: T): TOutput}): System.Collections.Generic.List$1<TOutput>;
-        CopyTo$1(array: T[]): void;
-        System$Collections$ICollection$CopyTo(array: any[], arrayIndex: number): void;
-        CopyTo$2(index: number, array: T[], arrayIndex: number, count: number): void;
-        CopyTo(array: T[], arrayIndex: number): void;
-        EnsureCapacity(min: number): void;
-        Exists(match: {(obj: T): boolean}): boolean;
-        Find(match: {(obj: T): boolean}): T;
-        FindAll(match: {(obj: T): boolean}): System.Collections.Generic.List$1<T>;
-        FindIndex$2(match: {(obj: T): boolean}): number;
-        FindIndex$1(startIndex: number, match: {(obj: T): boolean}): number;
-        FindIndex(startIndex: number, count: number, match: {(obj: T): boolean}): number;
-        FindLast(match: {(obj: T): boolean}): T;
-        FindLastIndex$2(match: {(obj: T): boolean}): number;
-        FindLastIndex$1(startIndex: number, match: {(obj: T): boolean}): number;
-        FindLastIndex(startIndex: number, count: number, match: {(obj: T): boolean}): number;
-        ForEach(action: {(arg: T): void}): void;
-        GetEnumerator(): IEnumerator$1<T>;
-        System$Collections$IEnumerable$GetEnumerator(): System.Collections.IEnumerator;
-        GetRange(index: number, count: number): System.Collections.Generic.List$1<T>;
-        IndexOf(item: T): number;
-        System$Collections$IList$IndexOf(item: any): number;
-        IndexOf$1(item: T, index: number): number;
-        IndexOf$2(item: T, index: number, count: number): number;
-        Insert(index: number, item: T): void;
-        System$Collections$IList$Insert(index: number, item: any): void;
-        InsertRange(index: number, collection: System.Collections.Generic.IEnumerable$1<T>): void;
-        LastIndexOf(item: T): number;
-        LastIndexOf$1(item: T, index: number): number;
-        LastIndexOf$2(item: T, index: number, count: number): number;
-        Remove(item: T): boolean;
-        System$Collections$IList$Remove(item: any): void;
-        RemoveAll(match: {(obj: T): boolean}): number;
-        RemoveAt(index: number): void;
-        RemoveRange(index: number, count: number): void;
-        Reverse(): void;
-        Reverse$1(index: number, count: number): void;
-        Sort(): void;
-        Sort$1(comparer: System.Collections.Generic.IComparer$1<T>): void;
-        Sort$3(index: number, count: number, comparer: System.Collections.Generic.IComparer$1<T>): void;
-        Sort$2(comparison: {(x: T, y: T): number}): void;
-        ToArray(): T[];
-        TrimExcess(): void;
-        TrueForAll(match: {(obj: T): boolean}): boolean;
-        toJSON(): any;
-    }
-    export interface List$1Func extends Function {
-        <T>($T: Bridge.TypeRef<T>): {
-            prototype: List$1<T>;
-            new (): List$1<T>;
-            ctor: {
-                new (): List$1<T>
-            };
-            $ctor2: {
-                new (capacity: number): List$1<T>
-            };
-            $ctor1: {
-                new (collection: System.Collections.Generic.IEnumerable$1<T>): List$1<T>
-                new (collection: T[]): List$1<T>
-            };
-            IsCompatibleObject(value: any): boolean;
+        export interface BitArray extends System.Collections.ICollection, System.ICloneable {
+            GetItem(index: number): boolean;
+            SetItem(index: number, value: boolean): void;
+            Length: number;
+            Count: number;
+            IsReadOnly: boolean;
+            IsSynchronized: boolean;
+            CopyTo(array: Array<any>, index: number): void;
+            Get(index: number): boolean;
+            Set(index: number, value: boolean): void;
+            SetAll(value: boolean): void;
+            And(value: System.Collections.BitArray): System.Collections.BitArray;
+            Or(value: System.Collections.BitArray): System.Collections.BitArray;
+            Xor(value: System.Collections.BitArray): System.Collections.BitArray;
+            Not(): System.Collections.BitArray;
+            Clone(): any;
+            GetEnumerator(): System.Collections.IEnumerator;
         }
-    }
-    var List$1: List$1Func;
-
-    export interface BitHelper {
-        MarkBit(bitPosition: number): void;
-        IsMarked(bitPosition: number): boolean;
-    }
-    export interface BitHelperFunc extends Function {
-        prototype: BitHelper;
-        IoIntArrayLength(n: number): number;
-    }
-    var BitHelper: BitHelperFunc;
-
-    export interface ISet$1<T> extends System.Collections.Generic.ICollection$1<T> {
-        Add(item: T): boolean;
-        UnionWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        IntersectWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        ExceptWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        SymmetricExceptWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        IsSubsetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        IsSupersetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        IsProperSupersetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        IsProperSubsetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        Overlaps(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        SetEquals(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-    }
-
-    export interface HashSet$1<T> extends System.Collections.Generic.ICollection$1<T>, System.Collections.Generic.ISet$1<T> {
-        Count: number;
-        IsReadOnly: boolean;
-        Comparer: System.Collections.Generic.IEqualityComparer$1<T>;
-        //"System$Collections$Generic$ICollection$1$" + Bridge.getTypeAlias(T) + "$add"(item: T): void;
-        Add(item: T): boolean;
-        Clear(): void;
-        ArrayClear(array: Array<any>, index: number, length: number): void;
-        Contains(item: T): boolean;
-        CopyTo(array: T[], arrayIndex: number): void;
-        CopyTo$1(array: T[]): void;
-        CopyTo$2(array: T[], arrayIndex: number, count: number): void;
-        Remove(item: T): boolean;
-        GetEnumerator(): System.Collections.Generic.HashSet$1.Enumerator<T>;
-        System$Collections$IEnumerable$GetEnumerator(): System.Collections.IEnumerator;
-        UnionWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        IntersectWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        ExceptWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        SymmetricExceptWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        IsSubsetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        IsProperSubsetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        IsSupersetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        IsProperSupersetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        Overlaps(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        SetEquals(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        RemoveWhere(match: { (arg: T): boolean }): number;
-        TrimExcess(): void;
-        Initialize(capacity: number): void;
-        IncreaseCapacity(): void;
-        SetCapacity(newSize: number, forceNewHashCodes: boolean): void;
-        AddIfNotPresent(value: T): boolean;
-        ContainsAllElements(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
-        IsSubsetOfHashSetWithSameEC(other: System.Collections.Generic.HashSet$1<T>): boolean;
-        IntersectWithHashSetWithSameEC(other: System.Collections.Generic.HashSet$1<T>): void;
-        IntersectWithEnumerable(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        InternalIndexOf(item: T): number;
-        SymmetricExceptWithUniqueHashSet(other: System.Collections.Generic.HashSet$1<T>): void;
-        SymmetricExceptWithEnumerable(other: System.Collections.Generic.IEnumerable$1<T>): void;
-        AddOrGetLocation(value: T, location: { v: number }): boolean;
-        CheckUniqueAndUnfoundElements(other: System.Collections.Generic.IEnumerable$1<T>, returnIfUnfound: boolean): System.Collections.Generic.HashSet$1.ElementCount<T>;
-        ToArray(): T[];
-        InternalGetHashCode(item: T): number;
-    }
-    export interface HashSet$1Func extends Function {
-        <T>($T: Bridge.TypeRef<T>): {
-            prototype: HashSet$1<T>;
-            ElementCount: System.Collections.Generic.HashSet$1.ElementCountFunc;
-            Enumerator: System.Collections.Generic.HashSet$1.EnumeratorFunc;
-            Slot: System.Collections.Generic.HashSet$1.SlotFunc;
-            new (): HashSet$1<T>;
-            ctor: {
-                new (): HashSet$1<T>
-            };
+        export interface BitArrayFunc extends Function {
+            prototype: BitArray;
+            BitArrayEnumeratorSimple: System.Collections.BitArray.BitArrayEnumeratorSimpleFunc;
             $ctor3: {
-                new (comparer: System.Collections.Generic.IEqualityComparer$1<T>): HashSet$1<T>
+                new(length: number): BitArray
+            };
+            $ctor4: {
+                new(length: number, defaultValue: boolean): BitArray
             };
             $ctor1: {
-                new (collection: System.Collections.Generic.IEnumerable$1<T>): HashSet$1<T>
+                new(bytes: number[]): BitArray
             };
-            $ctor2: {
-                new (collection: System.Collections.Generic.IEnumerable$1<T>, comparer: System.Collections.Generic.IEqualityComparer$1<T>): HashSet$1<T>
-            };
-            HashSetEquals(set1: System.Collections.Generic.HashSet$1<T>, set2: System.Collections.Generic.HashSet$1<T>, comparer: System.Collections.Generic.IEqualityComparer$1<T>): boolean;
-            AreEqualityComparersEqual(set1: System.Collections.Generic.HashSet$1<T>, set2: System.Collections.Generic.HashSet$1<T>): boolean;
-        }
-    }
-    var HashSet$1: HashSet$1Func;
-
-    module HashSet$1 {
-        export interface ElementCount<T> {
-            getHashCode(): System.Collections.Generic.HashSet$1.ElementCount<T>;
-            equals(o: System.Collections.Generic.HashSet$1.ElementCount<T>): Boolean;
-            $clone(to: System.Collections.Generic.HashSet$1.ElementCount<T>): System.Collections.Generic.HashSet$1.ElementCount<T>;
-        }
-        export interface ElementCountFunc extends Function {
-            <T>($T: Bridge.TypeRef<T>): {
-                prototype: ElementCount<T>;
-                new (): ElementCount<T>;
-            }
-        }
-
-        export interface Enumerator<T> extends System.Collections.Generic.IEnumerator$1<T> {
-            Current: T;
-            System$Collections$IEnumerator$Current: any;
-            Dispose(): void;
-            moveNext(): boolean;
-            System$Collections$IEnumerator$reset(): void;
-            getHashCode(): System.Collections.Generic.HashSet$1.Enumerator<T>;
-            equals(o: System.Collections.Generic.HashSet$1.Enumerator<T>): Boolean;
-            $clone(to: System.Collections.Generic.HashSet$1.Enumerator<T>): System.Collections.Generic.HashSet$1.Enumerator<T>;
-        }
-        export interface EnumeratorFunc extends Function {
-            <T>($T: Bridge.TypeRef<T>): {
-                prototype: Enumerator<T>;
-                new (): Enumerator<T>;
-                ctor: {
-                    new (): Enumerator<T>
-                };
-            }
-        }
-
-        export interface Slot<T> {
-            getHashCode(): System.Collections.Generic.HashSet$1.Slot<T>;
-            equals(o: System.Collections.Generic.HashSet$1.Slot<T>): Boolean;
-            $clone(to: System.Collections.Generic.HashSet$1.Slot<T>): System.Collections.Generic.HashSet$1.Slot<T>;
-        }
-        export interface SlotFunc extends Function {
-            <T>($T: Bridge.TypeRef<T>): {
-                prototype: Slot<T>;
-                new (): Slot<T>;
-            }
-        }
-    }
-
-    export interface Queue$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.ICollection {
-        Count: number;
-        IsReadOnly: boolean;
-
-        CopyTo(array: Array<any>, index: number): void;
-        CopyTo$1(array: T[], arrayIndex: number): void;
-        Clear(): void;
-        Enqueue(item: T): void;
-        GetEnumerator(): System.Collections.Generic.Queue$1.Enumerator<T>;
-        System$Collections$IEnumerable$GetEnumerator(): System.Collections.IEnumerator;
-        Dequeue(): T;
-        Peek(): T;
-        Contains(item: T): boolean;
-        GetElement(i: number): T;
-        ToArray(): T[];
-        SetCapacity(capacity: number): void;
-        MoveNext(index: number): number;
-        TrimExcess(): void;
-    }
-    export interface Queue$1Func extends Function {
-        <T>($T: Bridge.TypeRef<T>): {
-            prototype: Queue$1<T>;
-            Enumerator: System.Collections.Generic.Queue$1.EnumeratorFunc;
-            new (): Queue$1<T>;
             ctor: {
-                new (): Queue$1<T>
+                new(values: boolean[]): BitArray
+            };
+            $ctor5: {
+                new(values: number[]): BitArray
             };
             $ctor2: {
-                new (capacity: number): Queue$1<T>
+                new(bits: System.Collections.BitArray): BitArray
             };
-            $ctor1: {
-                new (collection: System.Collections.Generic.IEnumerable$1<T>): Queue$1<T>
-            };
+            getArrayLength(n: number, div: number): number;
         }
-    }
-    var Queue$1: Queue$1Func;
+        var BitArray: BitArrayFunc;
 
-    module Queue$1 {
-        export interface Enumerator<T> extends System.Collections.Generic.IEnumerator$1<T> {
-            Current: T;
-            System$Collections$IEnumerator$Current: any;
-            Dispose(): void;
-            moveNext(): boolean;
-            System$Collections$IEnumerator$reset(): void;
-            getHashCode(): System.Collections.Generic.Queue$1.Enumerator<T>;
-            equals(o: System.Collections.Generic.Queue$1.Enumerator<T>): Boolean;
-            $clone(to: System.Collections.Generic.Queue$1.Enumerator<T>): System.Collections.Generic.Queue$1.Enumerator<T>;
-        }
-        export interface EnumeratorFunc extends Function {
-            <T>($T: Bridge.TypeRef<T>): {
-                prototype: Enumerator<T>;
-                new (): Enumerator<T>;
-                ctor: {
-                    new (): Enumerator<T>
-                };
+        module BitArray {
+            export interface BitArrayEnumeratorSimple extends System.Collections.IEnumerator {
+                Current: any;
+                moveNext(): boolean;
+                reset(): void;
+            }
+            export interface BitArrayEnumeratorSimpleFunc extends Function {
+                prototype: BitArrayEnumeratorSimple;
             }
         }
+
+        export interface HashHelpers {
+        }
+        export interface HashHelpersFunc extends Function {
+            prototype: HashHelpers;
+            new(): HashHelpers;
+            primes: number[];
+            MaxPrimeArrayLength: number;
+            isPrime(candidate: number): boolean;
+            getPrime(min: number): number;
+            getMinPrime(): number;
+            expandPrime(oldSize: number): number;
+        }
+        var HashHelpers: HashHelpersFunc;
+
+        export interface IList extends System.Collections.ICollection, System.Collections.IEnumerable {
+            System$Collections$IList$getItem(index: number): any;
+            getItem(index: number): any;
+            System$Collections$IList$setItem(index: number, value: any): void;
+            setItem(index: number, value: any): void;
+            System$Collections$IList$IsReadOnly: boolean;
+            IsReadOnly: boolean;
+            add(item: any): number;
+            System$Collections$IList$add(item: any): number;
+            clear(): void;
+            System$Collections$IList$clear(): void;
+            contains(item: any): boolean;
+            System$Collections$IList$contains(item: any): boolean;
+            indexOf(item: any): number;
+            System$Collections$IList$indexOf(item: any): number;
+            insert(index: number, item: any): void;
+            System$Collections$IList$insert(index: number, item: any): void;
+            removeAt(index: number): void;
+            System$Collections$IList$removeAt(index: number): void;
+            remove(item: any): void;
+            System$Collections$IList$remove(item: any): void;
+        }
+
+        export interface IDictionaryEnumerator extends System.Collections.IEnumerator {
+            System$Collections$IDictionaryEnumerator$Key: any | null;
+            Key: any | null;
+            System$Collections$IDictionaryEnumerator$Value: any | null;
+            Value: any | null;
+            System$Collections$IDictionaryEnumerator$Entry: System.Collections.DictionaryEntry;
+            Entry: System.Collections.DictionaryEntry;
+        }
+
+        export interface DictionaryEntry {
+            Key: any | null;
+            Value: any | null;
+            getHashCode(): number;
+            equals(o: System.Collections.DictionaryEntry): boolean;
+            $clone(to: System.Collections.DictionaryEntry): System.Collections.DictionaryEntry;
+        }
+        export interface DictionaryEntryFunc extends Function {
+            prototype: DictionaryEntry;
+            new(key: any | null, value: any | null): DictionaryEntry;
+        }
+        var DictionaryEntry: DictionaryEntryFunc;
+
+        module Generic {
+            export class KeyNotFoundException extends Exception {
+                constructor(message?: string, innerException?: Exception);
+            }
+            export interface IEnumerator$1<T> extends IEnumerator {
+                getCurrent(): T;
+                readonly Current: T;
+            }
+            export function IEnumerator$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: IEnumerator$1<T>;
+            }
+
+            export interface IEnumerable$1<T> extends IEnumerable {
+                GetEnumerator(): IEnumerator$1<T>;
+            }
+            export function IEnumerable$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: IEnumerable$1<T>;
+            }
+
+            export interface ICollection$1<T> extends IEnumerable$1<T> {
+                getCount(): number;
+                add(item: T): void;
+                clear(): void;
+                contains(item: T): boolean;
+                remove(item: T): boolean;
+            }
+            export function ICollection$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: ICollection$1<T>;
+            }
+
+            export interface IEqualityComparer$1<T> extends IEqualityComparer {
+                equals(x: T, y: T): boolean;
+                getHashCode(obj: T): number;
+            }
+            export function IEqualityComparer$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: IEqualityComparer$1<T>;
+            }
+
+            export interface IReadOnlyCollection$1<T> extends IEnumerable$1<T> {
+                Count: number;
+            }
+
+            export interface IReadOnlyList$1<T> extends IReadOnlyCollection$1<T> {
+                getItem(index: number): T;
+            }
+
+            export interface IReadOnlyDictionary$2<TKey, TValue> extends IReadOnlyCollection$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>>, System.Collections.Generic.IEnumerable$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>> {
+                getItem(key: TKey): TValue;
+                Keys: System.Collections.Generic.IEnumerable$1<TKey> | null;
+                Values: System.Collections.Generic.IEnumerable$1<TValue> | null;
+                containsKey(key: TKey): boolean;
+                tryGetValue(key: TKey, value: { v: TValue }): boolean;
+            }
+
+            export interface ReadOnlyDictionary$2<TKey, TValue> extends System.Collections.Generic.IDictionary$2<TKey, TValue>, System.Collections.Generic.IReadOnlyDictionary$2<TKey, TValue> {
+                Keys: System.Collections.ObjectModel.ReadOnlyDictionary$2.KeyCollection<TKey, TValue> | null;
+                Values: System.Collections.ObjectModel.ReadOnlyDictionary$2.ValueCollection<TKey, TValue> | null;
+                getItem(key: TKey): TValue;
+                System$Collections$IDictionary$getItem(key: any): any;
+                System$Collections$IDictionary$setItem(key: any, value: any): void;
+                Count: number;
+                containsKey(key: TKey): boolean;
+                tryGetValue(key: TKey, value: { v: TValue }): boolean;
+                GetEnumerator(): System.Collections.Generic.IEnumerator$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>> | null;
+            }
+            interface ReadOnlyDictionary$2Func extends Function {
+                <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                    prototype: ReadOnlyDictionary$2<TKey, TValue>;
+                    KeyCollection: System.Collections.ObjectModel.ReadOnlyDictionary$2.KeyCollectionFunc;
+                    ValueCollection: System.Collections.ObjectModel.ReadOnlyDictionary$2.ValueCollectionFunc;
+                    DictionaryEnumerator: System.Collections.ObjectModel.ReadOnlyDictionary$2.DictionaryEnumeratorFunc;
+                    new(dictionary: System.Collections.Generic.IDictionary$2<TKey, TValue> | null): ReadOnlyDictionary$2<TKey, TValue>;
+                }
+            }
+            var ReadOnlyDictionary$2: ReadOnlyDictionary$2Func;
+
+            module ReadOnlyDictionary$2 {
+                interface KeyCollection<TKey, TValue> extends System.Collections.Generic.ICollection$1<TKey>, System.Collections.ICollection, System.Collections.Generic.IReadOnlyCollection$1<TKey> {
+                    Count: number;
+                    copyTo(array: TKey[] | null, arrayIndex: number): void;
+                    GetEnumerator(): System.Collections.Generic.IEnumerator$1<TKey> | null;
+                }
+                interface KeyCollectionFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: KeyCollection<TKey, TValue>;
+                    }
+                }
+
+                interface ValueCollection<TKey, TValue> extends System.Collections.Generic.ICollection$1<TValue>, System.Collections.ICollection, System.Collections.Generic.IReadOnlyCollection$1<TValue> {
+                    Count: number;
+                    copyTo(array: TValue[] | null, arrayIndex: number): void;
+                    GetEnumerator(): System.Collections.Generic.IEnumerator$1<TValue> | null;
+                }
+                interface ValueCollectionFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: ValueCollection<TKey, TValue>;
+                    }
+                }
+
+                interface DictionaryEnumerator<TKey, TValue> extends System.Collections.IDictionaryEnumerator {
+                    Entry: System.Collections.DictionaryEntry;
+                    Key: any | null;
+                    Value: any | null;
+                    Current: any | null;
+                    moveNext(): boolean;
+                    reset(): void;
+                    getHashCode(): number;
+                    equals(o: System.Collections.ObjectModel.ReadOnlyDictionary$2.DictionaryEnumerator<TKey, TValue>): boolean;
+                    $clone(to: System.Collections.ObjectModel.ReadOnlyDictionary$2.DictionaryEnumerator<TKey, TValue>): System.Collections.ObjectModel.ReadOnlyDictionary$2.DictionaryEnumerator<TKey, TValue>;
+                }
+                interface DictionaryEnumeratorFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: DictionaryEnumerator<TKey, TValue>;
+                        new(dictionary: System.Collections.Generic.IDictionary$2<TKey, TValue> | null): DictionaryEnumerator<TKey, TValue>;
+                    }
+                }
+            }
+
+            export interface IDictionary$2<TKey, TValue> extends IEnumerable$1<KeyValuePair$2<TKey, TValue>> {
+                get(key: TKey): TValue;
+                set(key: TKey, value: TValue): void;
+                getKeys(): ICollection$1<TKey>;
+                getValues(): ICollection$1<TValue>;
+                getCount(): number;
+                containsKey(key: TKey): boolean;
+                add(key: TKey, value: TValue): void;
+                remove(key: TKey): boolean;
+                tryGetValue(key: TKey, value: { v: TValue }): boolean;
+            }
+            export function IDictionary$2<TKey, TValue>(tKey: Bridge.TypeRef<TKey>, tValue: Bridge.TypeRef<TValue>): {
+                prototype: IDictionary$2<TKey, TValue>;
+            }
+
+            export interface IList$1<T> extends ICollection$1<T> {
+                getItem(index: number): T;
+                setItem(index: number, value: T): void;
+                indexOf(item: T): number;
+                insert(index: number, item: T): void;
+                removeAt(index: number): void;
+            }
+            export function IList$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: IList$1<T>;
+            }
+
+            export interface IComparer$1<T> {
+                compare(x: T, y: T): number;
+            }
+            export function IComparer$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: IComparer$1<T>;
+            }
+
+            export interface EqualityComparer$1<T> extends IEqualityComparer$1<T> {
+                equals(x: T, y: T): boolean;
+                getHashCode(obj: T): number;
+            }
+            export function EqualityComparer$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: EqualityComparer$1<T>;
+                new(): EqualityComparer$1<T>;
+            }
+
+            export interface Comparer$1<T> extends IComparer$1<T> {
+                compare(x: T, y: T): number;
+            }
+            export function Comparer$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: Comparer$1<T>;
+                new(fn: { (x: T, y: T): number }): Comparer$1<T>;
+            }
+
+            export interface KeyValuePair$2<TKey, TValue> {
+                key: TKey;
+                value: TValue;
+            }
+            export function KeyValuePair$2<TKey, TValue>(tKey: Bridge.TypeRef<TKey>, tValue: Bridge.TypeRef<TValue>): {
+                prototype: KeyValuePair$2<TKey, TValue>;
+                new(key: TKey, value: TValue): KeyValuePair$2<TKey, TValue>;
+            }
+
+            export interface Dictionary$2<TKey, TValue> extends IDictionary$2<TKey, TValue> {
+                getKeys(): ICollection$1<TKey>;
+                getValues(): ICollection$1<TValue>;
+                clear(): void;
+                containsKey(key: TKey): boolean;
+                containsValue(value: TValue): boolean;
+                get(key: TKey): TValue;
+                set(key: TKey, value: TValue, add?: boolean): void;
+                add(key: TKey, value: TValue): void;
+                remove(key: TKey): boolean;
+                getCount(): number;
+                getComparer(): IEqualityComparer$1<TKey>;
+                tryGetValue(key: TKey, value: { v: TValue }): boolean;
+                GetEnumerator(): IEnumerator$1<KeyValuePair$2<TKey, TValue>>;
+            }
+            export function Dictionary$2<TKey, TValue>(tKey: Bridge.TypeRef<TKey>, tValue: Bridge.TypeRef<TValue>): {
+                prototype: Dictionary$2<TKey, TValue>;
+                new(): Dictionary$2<TKey, TValue>;
+                new(obj: Dictionary$2<TKey, TValue>, comparer?: IEqualityComparer$1<TKey>): Dictionary$2<TKey, TValue>;
+                new(obj: any, comparer?: IEqualityComparer$1<TKey>): Dictionary$2<TKey, TValue>;
+            }
+
+            export interface List$1<T> extends System.Collections.Generic.IList$1<T> {
+                Capacity: number;
+                Count: number;
+                System$Collections$IList$IsReadOnly: boolean;
+                GetItem(index: number): T;
+                SetItem(index: number, value: T): void;
+                System$Collections$IList$GetItem(index: number): any;
+                System$Collections$IList$SetItem(index: number, value: any): void;
+                Add(item: T): void;
+                System$Collections$IList$Add(item: any): number;
+                AddRange(collection: System.Collections.Generic.IEnumerable$1<T>): void;
+                AsReadOnly(): System.Collections.ObjectModel.ReadOnlyCollection$1<T>;
+                BinarySearch$2(index: number, count: number, item: T, comparer: System.Collections.Generic.IComparer$1<T>): number;
+                BinarySearch(item: T): number;
+                BinarySearch$1(item: T, comparer: System.Collections.Generic.IComparer$1<T>): number;
+                Clear(): void;
+                Contains(item: T): boolean;
+                System$Collections$IList$Contains(item: any): boolean;
+                ConvertAll<TOutput>(TOutput: { prototype: TOutput }, converter: { (input: T): TOutput }): System.Collections.Generic.List$1<TOutput>;
+                CopyTo$1(array: T[]): void;
+                System$Collections$ICollection$CopyTo(array: any[], arrayIndex: number): void;
+                CopyTo$2(index: number, array: T[], arrayIndex: number, count: number): void;
+                CopyTo(array: T[], arrayIndex: number): void;
+                EnsureCapacity(min: number): void;
+                Exists(match: { (obj: T): boolean }): boolean;
+                Find(match: { (obj: T): boolean }): T;
+                FindAll(match: { (obj: T): boolean }): System.Collections.Generic.List$1<T>;
+                FindIndex$2(match: { (obj: T): boolean }): number;
+                FindIndex$1(startIndex: number, match: { (obj: T): boolean }): number;
+                FindIndex(startIndex: number, count: number, match: { (obj: T): boolean }): number;
+                FindLast(match: { (obj: T): boolean }): T;
+                FindLastIndex$2(match: { (obj: T): boolean }): number;
+                FindLastIndex$1(startIndex: number, match: { (obj: T): boolean }): number;
+                FindLastIndex(startIndex: number, count: number, match: { (obj: T): boolean }): number;
+                ForEach(action: { (arg: T): void }): void;
+                GetEnumerator(): IEnumerator$1<T>;
+                System$Collections$IEnumerable$GetEnumerator(): System.Collections.IEnumerator;
+                GetRange(index: number, count: number): System.Collections.Generic.List$1<T>;
+                IndexOf(item: T): number;
+                System$Collections$IList$IndexOf(item: any): number;
+                IndexOf$1(item: T, index: number): number;
+                IndexOf$2(item: T, index: number, count: number): number;
+                Insert(index: number, item: T): void;
+                System$Collections$IList$Insert(index: number, item: any): void;
+                InsertRange(index: number, collection: System.Collections.Generic.IEnumerable$1<T>): void;
+                LastIndexOf(item: T): number;
+                LastIndexOf$1(item: T, index: number): number;
+                LastIndexOf$2(item: T, index: number, count: number): number;
+                Remove(item: T): boolean;
+                System$Collections$IList$Remove(item: any): void;
+                RemoveAll(match: { (obj: T): boolean }): number;
+                RemoveAt(index: number): void;
+                RemoveRange(index: number, count: number): void;
+                Reverse(): void;
+                Reverse$1(index: number, count: number): void;
+                Sort(): void;
+                Sort$1(comparer: System.Collections.Generic.IComparer$1<T>): void;
+                Sort$3(index: number, count: number, comparer: System.Collections.Generic.IComparer$1<T>): void;
+                Sort$2(comparison: { (x: T, y: T): number }): void;
+                ToArray(): T[];
+                TrimExcess(): void;
+                TrueForAll(match: { (obj: T): boolean }): boolean;
+                toJSON(): any;
+            }
+            export interface List$1Func extends Function {
+                <T>($T: Bridge.TypeRef<T>): {
+                    prototype: List$1<T>;
+                    new(): List$1<T>;
+                    ctor: {
+                        new(): List$1<T>
+                    };
+                    $ctor2: {
+                        new(capacity: number): List$1<T>
+                    };
+                    $ctor1: {
+                        new(collection: System.Collections.Generic.IEnumerable$1<T>): List$1<T>
+                        new(collection: T[]): List$1<T>
+                    };
+                    IsCompatibleObject(value: any): boolean;
+                }
+            }
+            var List$1: List$1Func;
+
+            export interface LinkedListNode$1<T> {
+                List: System.Collections.Generic.LinkedList$1<T> | null;
+                Next: System.Collections.Generic.LinkedListNode$1<T> | null;
+                Previous: System.Collections.Generic.LinkedListNode$1<T> | null;
+                Value: T;
+            }
+
+            export interface LinkedListNode$1Func extends Function {
+                <T>($T: Bridge.TypeRef<T>): {
+                    prototype: LinkedListNode$1<T>;
+                    ctor: {
+                        new(value: T): LinkedListNode$1<T>
+                    };
+                }
+            }
+            var LinkedListNode$1: LinkedListNode$1Func;
+
+            export interface LinkedList$1<T> extends System.Collections.Generic.ICollection$1<T>, System.Collections.ICollection, System.Collections.Generic.IReadOnlyCollection$1<T> {
+                Count: number;
+                First: System.Collections.Generic.LinkedListNode$1<T> | null;
+                Last: System.Collections.Generic.LinkedListNode$1<T> | null;
+                AddAfter(node: System.Collections.Generic.LinkedListNode$1<T> | null, value: T): System.Collections.Generic.LinkedListNode$1<T> | null;
+                AddAfter$1(node: System.Collections.Generic.LinkedListNode$1<T> | null, newNode: System.Collections.Generic.LinkedListNode$1<T> | null): void;
+                AddBefore(node: System.Collections.Generic.LinkedListNode$1<T> | null, value: T): System.Collections.Generic.LinkedListNode$1<T> | null;
+                AddBefore$1(node: System.Collections.Generic.LinkedListNode$1<T> | null, newNode: System.Collections.Generic.LinkedListNode$1<T> | null): void;
+                AddFirst(value: T): System.Collections.Generic.LinkedListNode$1<T> | null;
+                AddFirst$1(node: System.Collections.Generic.LinkedListNode$1<T> | null): void;
+                AddLast(value: T): System.Collections.Generic.LinkedListNode$1<T> | null;
+                AddLast$1(node: System.Collections.Generic.LinkedListNode$1<T> | null): void;
+                clear(): void;
+                contains(value: T): boolean;
+                copyTo(array: T[] | null, index: number): void;
+                Find(value: T): System.Collections.Generic.LinkedListNode$1<T> | null;
+                FindLast(value: T): System.Collections.Generic.LinkedListNode$1<T> | null;
+                GetEnumerator(): IEnumerator$1<T>;
+                remove(value: T): boolean;
+                Remove(node: System.Collections.Generic.LinkedListNode$1<T> | null): void;
+                RemoveFirst(): void;
+                RemoveLast(): void;
+            }
+            export interface LinkedList$1Func extends Function {
+                <T>($T: Bridge.TypeRef<T>): {
+                    prototype: LinkedList$1<T>;
+                    Enumerator: IEnumerator$1<T>;
+                    new(): LinkedList$1<T>;
+                    ctor: {
+                        new(): LinkedList$1<T>
+                    };
+                    $ctor1: {
+                        new(collection: System.Collections.Generic.IEnumerable$1<T> | null): LinkedList$1<T>
+                    };
+                }
+            }
+            var LinkedList$1: LinkedList$1Func;
+
+            export interface SortedList$2<TKey, TValue> extends System.Collections.Generic.IDictionary$2<TKey, TValue>, System.Collections.Generic.IReadOnlyDictionary$2<TKey, TValue> {
+                Capacity: number;
+                Comparer: System.Collections.Generic.IComparer$1<TKey> | null;
+                Count: number;
+                Keys: System.Collections.Generic.IList$1<TKey> | null;
+                Values: System.Collections.Generic.IList$1<TValue> | null;
+                getItem(key: TKey): TValue;
+                setItem(key: TKey, value: TValue): void;
+                getItem$1(key: any): any;
+                setItem$1(key: any, value: any): void;
+                add(key: TKey, value: TValue): void;
+                remove(key: TKey): boolean;
+                clear(): void;
+                containsKey(key: TKey): boolean;
+                ContainsValue(value: TValue): boolean;
+                GetEnumerator(): System.Collections.Generic.IEnumerator$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>> | null;
+                IndexOfKey(key: TKey): number;
+                IndexOfValue(value: TValue): number;
+                tryGetValue(key: TKey, value: { v: TValue }): boolean;
+                RemoveAt(index: number): void;
+                TrimExcess(): void;
+            }
+            export interface SortedList$2Func extends Function {
+                <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                    prototype: SortedList$2<TKey, TValue>;
+                    ValueList: System.Collections.Generic.SortedList$2.ValueListFunc;
+                    KeyList: System.Collections.Generic.SortedList$2.KeyListFunc;
+                    SortedListValueEnumerator: System.Collections.Generic.SortedList$2.SortedListValueEnumeratorFunc;
+                    Enumerator: System.Collections.Generic.SortedList$2.EnumeratorFunc;
+                    SortedListKeyEnumerator: System.Collections.Generic.SortedList$2.SortedListKeyEnumeratorFunc;
+                    new(): SortedList$2<TKey, TValue>;
+                    ctor: {
+                        new(): SortedList$2<TKey, TValue>
+                    };
+                    $ctor4: {
+                        new(capacity: number): SortedList$2<TKey, TValue>
+                    };
+                    $ctor1: {
+                        new(comparer: System.Collections.Generic.IComparer$1<TKey> | null): SortedList$2<TKey, TValue>
+                    };
+                    $ctor5: {
+                        new(capacity: number, comparer: System.Collections.Generic.IComparer$1<TKey> | null): SortedList$2<TKey, TValue>
+                    };
+                    $ctor2: {
+                        new(dictionary: System.Collections.Generic.IDictionary$2<TKey, TValue> | null): SortedList$2<TKey, TValue>
+                    };
+                    $ctor3: {
+                        new(dictionary: System.Collections.Generic.IDictionary$2<TKey, TValue> | null, comparer: System.Collections.Generic.IComparer$1<TKey> | null): SortedList$2<TKey, TValue>
+                    };
+                }
+            }
+            var SortedList$2: SortedList$2Func;
+            module SortedList$2 {
+                export interface ValueList<TKey, TValue> extends System.Collections.Generic.IList$1<TValue>, System.Collections.ICollection {
+                    Count: number;
+                    IsReadOnly: boolean;
+                    getItem(index: number): TValue;
+                    setItem(index: number, value: TValue): void;
+                    add(key: TValue): void;
+                    clear(): void;
+                    contains(value: TValue): boolean;
+                    copyTo(array: TValue[] | null, arrayIndex: number): void;
+                    insert(index: number, value: TValue): void;
+                    GetEnumerator(): System.Collections.Generic.IEnumerator$1<TValue> | null;
+                    indexOf(value: TValue): number;
+                    remove(value: TValue): boolean;
+                    removeAt(index: number): void;
+                }
+                export interface ValueListFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: ValueList<TKey, TValue>;
+                    }
+                }
+
+                export interface KeyList<TKey, TValue> extends System.Collections.Generic.IList$1<TKey>, System.Collections.ICollection {
+                    Count: number;
+                    IsReadOnly: boolean;
+                    getItem(index: number): TKey;
+                    setItem(index: number, value: TKey): void;
+                    add(key: TKey): void;
+                    clear(): void;
+                    contains(key: TKey): boolean;
+                    copyTo(array: TKey[] | null, arrayIndex: number): void;
+                    insert(index: number, value: TKey): void;
+                    GetEnumerator(): System.Collections.Generic.IEnumerator$1<TKey> | null;
+                    indexOf(key: TKey): number;
+                    remove(key: TKey): boolean;
+                    removeAt(index: number): void;
+                }
+                export interface KeyListFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: KeyList<TKey, TValue>;
+                    }
+                }
+
+                export interface SortedListValueEnumerator<TKey, TValue> extends System.Collections.Generic.IEnumerator$1<TValue> {
+                    Current: TValue;
+                    Dispose(): void;
+                    moveNext(): boolean;
+                }
+                export interface SortedListValueEnumeratorFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: SortedListValueEnumerator<TKey, TValue>;
+                    }
+                }
+
+                export interface Enumerator<TKey, TValue> extends System.Collections.Generic.IEnumerator$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>> {
+                    Current: System.Collections.Generic.KeyValuePair$2<TKey, TValue>;
+                    Dispose(): void;
+                    moveNext(): boolean;
+                    getHashCode(): number;
+                    equals(o: System.Collections.Generic.SortedList$2.Enumerator<TKey, TValue>): boolean;
+                    $clone(to: System.Collections.Generic.SortedList$2.Enumerator<TKey, TValue>): System.Collections.Generic.SortedList$2.Enumerator<TKey, TValue>;
+                }
+                export interface EnumeratorFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: Enumerator<TKey, TValue>;
+                    }
+                }
+
+                export interface SortedListKeyEnumerator<TKey, TValue> extends System.Collections.Generic.IEnumerator$1<TKey> {
+                    Current: TKey;
+                    Dispose(): void;
+                    moveNext(): boolean;
+                }
+                export interface SortedListKeyEnumeratorFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: SortedListKeyEnumerator<TKey, TValue>;
+                    }
+                }
+            }
+
+            export interface SortedSet$1<T> extends System.Collections.Generic.ISet$1<T>, System.Collections.Generic.ICollection$1<T>, System.Collections.ICollection, System.Collections.Generic.IReadOnlyCollection$1<T> {
+                Count: number;
+                Comparer: System.Collections.Generic.IComparer$1<T> | null;
+                Min: T;
+                Max: T;
+                add(item: T): boolean;
+                remove(item: T): boolean;
+                clear(): void;
+                contains(item: T): boolean;
+                CopyTo(array: T[] | null): void;
+                copyTo(array: T[] | null, index: number): void;
+                CopyTo$1(array: T[] | null, index: number, count: number): void;
+                GetEnumerator(): System.Collections.Generic.SortedSet$1.Enumerator<T>;
+                unionWith(other: System.Collections.Generic.IEnumerable$1<T> | null): void;
+                intersectWith(other: System.Collections.Generic.IEnumerable$1<T> | null): void;
+                exceptWith(other: System.Collections.Generic.IEnumerable$1<T> | null): void;
+                symmetricExceptWith(other: System.Collections.Generic.IEnumerable$1<T> | null): void;
+                isSubsetOf(other: System.Collections.Generic.IEnumerable$1<T> | null): boolean;
+                isProperSubsetOf(other: System.Collections.Generic.IEnumerable$1<T> | null): boolean;
+                isSupersetOf(other: System.Collections.Generic.IEnumerable$1<T> | null): boolean;
+                isProperSupersetOf(other: System.Collections.Generic.IEnumerable$1<T> | null): boolean;
+                setEquals(other: System.Collections.Generic.IEnumerable$1<T> | null): boolean;
+                overlaps(other: System.Collections.Generic.IEnumerable$1<T> | null): boolean;
+                RemoveWhere(match: { (obj: T): boolean } | null): number;
+                Reverse(): System.Collections.Generic.IEnumerable$1<T> | null;
+                GetViewBetween(lowerValue: T, upperValue: T): System.Collections.Generic.SortedSet$1<T> | null;
+                TryGetValue(equalValue: T, actualValue: { v: T }): boolean;
+            }
+            export interface SortedSet$1Func extends Function {
+                <T>($T: Bridge.TypeRef<T>): {
+                    prototype: SortedSet$1<T>;
+                    TreeSubSet: System.Collections.Generic.SortedSet$1.TreeSubSetFunc;
+                    Node: System.Collections.Generic.SortedSet$1.NodeFunc;
+                    Enumerator: System.Collections.Generic.SortedSet$1.EnumeratorFunc;
+                    ElementCount: System.Collections.Generic.SortedSet$1.ElementCountFunc;
+                    new(): SortedSet$1<T>;
+                    ctor: {
+                        new(): SortedSet$1<T>
+                    };
+                    $ctor1: {
+                        new(comparer: System.Collections.Generic.IComparer$1<T> | null): SortedSet$1<T>
+                    };
+                    $ctor2: {
+                        new(collection: System.Collections.Generic.IEnumerable$1<T> | null): SortedSet$1<T>
+                    };
+                    $ctor3: {
+                        new(collection: System.Collections.Generic.IEnumerable$1<T> | null, comparer: System.Collections.Generic.IComparer$1<T> | null): SortedSet$1<T>
+                    };
+                    CreateSetComparer(): System.Collections.Generic.IEqualityComparer$1<System.Collections.Generic.SortedSet$1<T>> | null;
+                    CreateSetComparer$1(memberEqualityComparer: System.Collections.Generic.IEqualityComparer$1<T> | null): System.Collections.Generic.IEqualityComparer$1<System.Collections.Generic.SortedSet$1<T>> | null;
+                }
+            }
+            var SortedSet$1: SortedSet$1Func;
+            module SortedSet$1 {
+                export interface TreeSubSet<T> extends System.Collections.Generic.SortedSet$1<T> {
+                    contains(item: T): boolean;
+                    clear(): void;
+                    GetViewBetween(lowerValue: T, upperValue: T): System.Collections.Generic.SortedSet$1<T> | null;
+                }
+                export interface TreeSubSetFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: TreeSubSet<T>;
+                        $ctor1: {
+                            new(Underlying: System.Collections.Generic.SortedSet$1<T> | null, Min: T, Max: T, lowerBoundActive: boolean, upperBoundActive: boolean): TreeSubSet<T>
+                        };
+                    }
+                }
+
+                export interface Node<T> {
+                    IsRed: boolean;
+                    Item: T;
+                    Left: System.Collections.Generic.SortedSet$1.Node<T> | null;
+                    Right: System.Collections.Generic.SortedSet$1.Node<T> | null;
+                }
+                export interface NodeFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: Node<T>;
+                        ctor: {
+                            new(item: T): Node<T>
+                        };
+                        $ctor1: {
+                            new(item: T, isRed: boolean): Node<T>
+                        };
+                    }
+                }
+
+                export interface Enumerator<T> extends System.Collections.Generic.IEnumerator$1<T> {
+                    Current: T;
+                    moveNext(): boolean;
+                    Dispose(): void;
+                    getHashCode(): number;
+                    equals(o: System.Collections.Generic.SortedSet$1.Enumerator<T>): boolean;
+                    $clone(to: System.Collections.Generic.SortedSet$1.Enumerator<T>): System.Collections.Generic.SortedSet$1.Enumerator<T>;
+                }
+                export interface EnumeratorFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: Enumerator<T>;
+                    }
+                }
+
+                export interface ElementCount<T> {
+                    getHashCode(): number;
+                    equals(o: System.Collections.Generic.SortedSet$1.ElementCount<T>): boolean;
+                    $clone(to: System.Collections.Generic.SortedSet$1.ElementCount<T>): System.Collections.Generic.SortedSet$1.ElementCount<T>;
+                }
+                export interface ElementCountFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: ElementCount<T>;
+                        new(): ElementCount<T>;
+                    }
+                }
+            }
+
+            export interface BitHelper {
+                MarkBit(bitPosition: number): void;
+                IsMarked(bitPosition: number): boolean;
+            }
+            export interface BitHelperFunc extends Function {
+                prototype: BitHelper;
+                IoIntArrayLength(n: number): number;
+            }
+            var BitHelper: BitHelperFunc;
+
+            export interface ISet$1<T> extends System.Collections.Generic.ICollection$1<T> {
+                Add(item: T): boolean;
+                UnionWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                IntersectWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                ExceptWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                SymmetricExceptWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                IsSubsetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                IsSupersetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                IsProperSupersetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                IsProperSubsetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                Overlaps(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                SetEquals(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+            }
+
+            export interface HashSet$1<T> extends System.Collections.Generic.ICollection$1<T>, System.Collections.Generic.ISet$1<T> {
+                Count: number;
+                IsReadOnly: boolean;
+                Comparer: System.Collections.Generic.IEqualityComparer$1<T>;
+                //"System$Collections$Generic$ICollection$1$" + Bridge.getTypeAlias(T) + "$add"(item: T): void;
+                Add(item: T): boolean;
+                Clear(): void;
+                ArrayClear(array: Array<any>, index: number, length: number): void;
+                Contains(item: T): boolean;
+                CopyTo(array: T[], arrayIndex: number): void;
+                CopyTo$1(array: T[]): void;
+                CopyTo$2(array: T[], arrayIndex: number, count: number): void;
+                Remove(item: T): boolean;
+                GetEnumerator(): System.Collections.Generic.HashSet$1.Enumerator<T>;
+                System$Collections$IEnumerable$GetEnumerator(): System.Collections.IEnumerator;
+                UnionWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                IntersectWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                ExceptWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                SymmetricExceptWith(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                IsSubsetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                IsProperSubsetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                IsSupersetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                IsProperSupersetOf(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                Overlaps(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                SetEquals(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                RemoveWhere(match: { (arg: T): boolean }): number;
+                TrimExcess(): void;
+                Initialize(capacity: number): void;
+                IncreaseCapacity(): void;
+                SetCapacity(newSize: number, forceNewHashCodes: boolean): void;
+                AddIfNotPresent(value: T): boolean;
+                ContainsAllElements(other: System.Collections.Generic.IEnumerable$1<T>): boolean;
+                IsSubsetOfHashSetWithSameEC(other: System.Collections.Generic.HashSet$1<T>): boolean;
+                IntersectWithHashSetWithSameEC(other: System.Collections.Generic.HashSet$1<T>): void;
+                IntersectWithEnumerable(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                InternalIndexOf(item: T): number;
+                SymmetricExceptWithUniqueHashSet(other: System.Collections.Generic.HashSet$1<T>): void;
+                SymmetricExceptWithEnumerable(other: System.Collections.Generic.IEnumerable$1<T>): void;
+                AddOrGetLocation(value: T, location: { v: number }): boolean;
+                CheckUniqueAndUnfoundElements(other: System.Collections.Generic.IEnumerable$1<T>, returnIfUnfound: boolean): System.Collections.Generic.HashSet$1.ElementCount<T>;
+                ToArray(): T[];
+                InternalGetHashCode(item: T): number;
+            }
+            export interface HashSet$1Func extends Function {
+                <T>($T: Bridge.TypeRef<T>): {
+                    prototype: HashSet$1<T>;
+                    ElementCount: System.Collections.Generic.HashSet$1.ElementCountFunc;
+                    Enumerator: System.Collections.Generic.HashSet$1.EnumeratorFunc;
+                    Slot: System.Collections.Generic.HashSet$1.SlotFunc;
+                    new(): HashSet$1<T>;
+                    ctor: {
+                        new(): HashSet$1<T>
+                    };
+                    $ctor3: {
+                        new(comparer: System.Collections.Generic.IEqualityComparer$1<T>): HashSet$1<T>
+                    };
+                    $ctor1: {
+                        new(collection: System.Collections.Generic.IEnumerable$1<T>): HashSet$1<T>
+                    };
+                    $ctor2: {
+                        new(collection: System.Collections.Generic.IEnumerable$1<T>, comparer: System.Collections.Generic.IEqualityComparer$1<T>): HashSet$1<T>
+                    };
+                    HashSetEquals(set1: System.Collections.Generic.HashSet$1<T>, set2: System.Collections.Generic.HashSet$1<T>, comparer: System.Collections.Generic.IEqualityComparer$1<T>): boolean;
+                    AreEqualityComparersEqual(set1: System.Collections.Generic.HashSet$1<T>, set2: System.Collections.Generic.HashSet$1<T>): boolean;
+                }
+            }
+            var HashSet$1: HashSet$1Func;
+
+            module HashSet$1 {
+                export interface ElementCount<T> {
+                    getHashCode(): System.Collections.Generic.HashSet$1.ElementCount<T>;
+                    equals(o: System.Collections.Generic.HashSet$1.ElementCount<T>): Boolean;
+                    $clone(to: System.Collections.Generic.HashSet$1.ElementCount<T>): System.Collections.Generic.HashSet$1.ElementCount<T>;
+                }
+                export interface ElementCountFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: ElementCount<T>;
+                        new(): ElementCount<T>;
+                    }
+                }
+
+                export interface Enumerator<T> extends System.Collections.Generic.IEnumerator$1<T> {
+                    Current: T;
+                    System$Collections$IEnumerator$Current: any;
+                    Dispose(): void;
+                    moveNext(): boolean;
+                    System$Collections$IEnumerator$reset(): void;
+                    getHashCode(): System.Collections.Generic.HashSet$1.Enumerator<T>;
+                    equals(o: System.Collections.Generic.HashSet$1.Enumerator<T>): Boolean;
+                    $clone(to: System.Collections.Generic.HashSet$1.Enumerator<T>): System.Collections.Generic.HashSet$1.Enumerator<T>;
+                }
+                export interface EnumeratorFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: Enumerator<T>;
+                        new(): Enumerator<T>;
+                        ctor: {
+                            new(): Enumerator<T>
+                        };
+                    }
+                }
+
+                export interface Slot<T> {
+                    getHashCode(): System.Collections.Generic.HashSet$1.Slot<T>;
+                    equals(o: System.Collections.Generic.HashSet$1.Slot<T>): Boolean;
+                    $clone(to: System.Collections.Generic.HashSet$1.Slot<T>): System.Collections.Generic.HashSet$1.Slot<T>;
+                }
+                export interface SlotFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: Slot<T>;
+                        new(): Slot<T>;
+                    }
+                }
+            }
+
+            export interface Queue$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.ICollection {
+                Count: number;
+                IsReadOnly: boolean;
+
+                CopyTo(array: Array<any>, index: number): void;
+                CopyTo$1(array: T[], arrayIndex: number): void;
+                Clear(): void;
+                Enqueue(item: T): void;
+                GetEnumerator(): System.Collections.Generic.Queue$1.Enumerator<T>;
+                System$Collections$IEnumerable$GetEnumerator(): System.Collections.IEnumerator;
+                Dequeue(): T;
+                Peek(): T;
+                Contains(item: T): boolean;
+                GetElement(i: number): T;
+                ToArray(): T[];
+                SetCapacity(capacity: number): void;
+                MoveNext(index: number): number;
+                TrimExcess(): void;
+            }
+            export interface Queue$1Func extends Function {
+                <T>($T: Bridge.TypeRef<T>): {
+                    prototype: Queue$1<T>;
+                    Enumerator: System.Collections.Generic.Queue$1.EnumeratorFunc;
+                    new(): Queue$1<T>;
+                    ctor: {
+                        new(): Queue$1<T>
+                    };
+                    $ctor2: {
+                        new(capacity: number): Queue$1<T>
+                    };
+                    $ctor1: {
+                        new(collection: System.Collections.Generic.IEnumerable$1<T>): Queue$1<T>
+                    };
+                }
+            }
+            var Queue$1: Queue$1Func;
+
+            module Queue$1 {
+                export interface Enumerator<T> extends System.Collections.Generic.IEnumerator$1<T> {
+                    Current: T;
+                    System$Collections$IEnumerator$Current: any;
+                    Dispose(): void;
+                    moveNext(): boolean;
+                    System$Collections$IEnumerator$reset(): void;
+                    getHashCode(): System.Collections.Generic.Queue$1.Enumerator<T>;
+                    equals(o: System.Collections.Generic.Queue$1.Enumerator<T>): Boolean;
+                    $clone(to: System.Collections.Generic.Queue$1.Enumerator<T>): System.Collections.Generic.Queue$1.Enumerator<T>;
+                }
+                export interface EnumeratorFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: Enumerator<T>;
+                        new(): Enumerator<T>;
+                        ctor: {
+                            new(): Enumerator<T>
+                        };
+                    }
+                }
+            }
+
+            export interface Stack$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.ICollection {
+                Count: number;
+                IsReadOnly: boolean;
+                Clear(): void;
+                Contains(item: T): boolean;
+                CopyTo$1(array: T[], arrayIndex: number): void;
+                CopyTo(array: Array<any>, arrayIndex: number): void;
+                GetEnumerator(): System.Collections.Generic.Stack$1.Enumerator<T>;
+                System$Collections$IEnumerable$GetEnumerator(): System.Collections.IEnumerator;
+                TrimExcess(): void;
+                Peek(): T;
+                Pop(): T;
+                Push(item: T): void;
+                ToArray(): T[];
+            }
+            export interface Stack$1Func extends Function {
+                <T>($T: Bridge.TypeRef<T>): {
+                    prototype: Stack$1<T>;
+                    Enumerator: System.Collections.Generic.Stack$1.EnumeratorFunc;
+                    new(): Stack$1<T>;
+                    ctor: {
+                        new(): Stack$1<T>
+                    };
+                    $ctor2: {
+                        new(capacity: number): Stack$1<T>
+                    };
+                    $ctor1: {
+                        new(collection: System.Collections.Generic.IEnumerable$1<T>): Stack$1<T>
+                    };
+                }
+            }
+            var Stack$1: Stack$1Func;
+
+            module Stack$1 {
+                export interface Enumerator<T> extends System.Collections.Generic.IEnumerator$1<T> {
+                    Current: T;
+                    System$Collections$IEnumerator$Current: any;
+                    Dispose(): void;
+                    moveNext(): boolean;
+                    System$Collections$IEnumerator$reset(): void;
+                    getHashCode(): System.Collections.Generic.Stack$1.Enumerator<T>;
+                    equals(o: System.Collections.Generic.Stack$1.Enumerator<T>): Boolean;
+                    $clone(to: System.Collections.Generic.Stack$1.Enumerator<T>): System.Collections.Generic.Stack$1.Enumerator<T>;
+                }
+                export interface EnumeratorFunc extends Function {
+                    <T>($T: Bridge.TypeRef<T>): {
+                        prototype: Enumerator<T>;
+                        new(): Enumerator<T>;
+                        ctor: {
+                            new(): Enumerator<T>
+                        };
+                    }
+                }
+            }
+        }
+
+        module ObjectModel {
+            export interface ReadOnlyCollection$1<T> extends System.Collections.Generic.List$1<T> {
+            }
+            export function ReadOnlyCollection$1<T>(t: Bridge.TypeRef<T>): {
+                prototype: ReadOnlyCollection$1<T>;
+                new(obj: T[]): ReadOnlyCollection$1<T>;
+                new(obj: System.Collections.Generic.IEnumerable$1<T>): ReadOnlyCollection$1<T>;
+            }
+
+            export interface ReadOnlyDictionary$2<TKey, TValue> extends System.Collections.Generic.IDictionary$2<TKey, TValue>, System.Collections.Generic.IReadOnlyDictionary$2<TKey, TValue> {
+                Keys: System.Collections.ObjectModel.ReadOnlyDictionary$2.KeyCollection<TKey, TValue> | null;
+                Values: System.Collections.ObjectModel.ReadOnlyDictionary$2.ValueCollection<TKey, TValue> | null;
+                getItem(key: TKey): TValue;
+                System$Collections$IDictionary$getItem(key: any): any;
+                System$Collections$IDictionary$setItem(key: any, value: any): void;
+                Count: number;
+                containsKey(key: TKey): boolean;
+                tryGetValue(key: TKey, value: { v: TValue }): boolean;
+                GetEnumerator(): System.Collections.Generic.IEnumerator$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>> | null;
+            }
+            export interface ReadOnlyDictionary$2Func extends Function {
+                <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                    prototype: ReadOnlyDictionary$2<TKey, TValue>;
+                    KeyCollection: System.Collections.ObjectModel.ReadOnlyDictionary$2.KeyCollectionFunc;
+                    ValueCollection: System.Collections.ObjectModel.ReadOnlyDictionary$2.ValueCollectionFunc;
+                    DictionaryEnumerator: System.Collections.ObjectModel.ReadOnlyDictionary$2.DictionaryEnumeratorFunc;
+                    new(dictionary: System.Collections.Generic.IDictionary$2<TKey, TValue> | null): ReadOnlyDictionary$2<TKey, TValue>;
+                }
+            }
+            var ReadOnlyDictionary$2: ReadOnlyDictionary$2Func;
+            module ReadOnlyDictionary$2 {
+                export interface KeyCollection<TKey, TValue> extends System.Collections.Generic.ICollection$1<TKey>, System.Collections.ICollection, System.Collections.Generic.IReadOnlyCollection$1<TKey> {
+                    Count: number;
+                    copyTo(array: TKey[] | null, arrayIndex: number): void;
+                    GetEnumerator(): System.Collections.Generic.IEnumerator$1<TKey> | null;
+                }
+                export interface KeyCollectionFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: KeyCollection<TKey, TValue>;
+                    }
+                }
+
+                export interface ValueCollection<TKey, TValue> extends System.Collections.Generic.ICollection$1<TValue>, System.Collections.ICollection, System.Collections.Generic.IReadOnlyCollection$1<TValue> {
+                    Count: number;
+                    copyTo(array: TValue[] | null, arrayIndex: number): void;
+                    GetEnumerator(): System.Collections.Generic.IEnumerator$1<TValue> | null;
+                }
+                export interface ValueCollectionFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: ValueCollection<TKey, TValue>;
+                    }
+                }
+
+                export interface DictionaryEnumerator<TKey, TValue> extends System.Collections.IDictionaryEnumerator {
+                    Entry: System.Collections.DictionaryEntry;
+                    Key: any | null;
+                    Value: any | null;
+                    Current: any | null;
+                    moveNext(): boolean;
+                    reset(): void;
+                    getHashCode(): number;
+                    equals(o: System.Collections.ObjectModel.ReadOnlyDictionary$2.DictionaryEnumerator<TKey, TValue>): boolean;
+                    $clone(to: System.Collections.ObjectModel.ReadOnlyDictionary$2.DictionaryEnumerator<TKey, TValue>): System.Collections.ObjectModel.ReadOnlyDictionary$2.DictionaryEnumerator<TKey, TValue>;
+                }
+                export interface DictionaryEnumeratorFunc extends Function {
+                    <TKey, TValue>($TKey: Bridge.TypeRef<TKey>, $TValue: Bridge.TypeRef<TValue>): {
+                        prototype: DictionaryEnumerator<TKey, TValue>;
+                        new(dictionary: System.Collections.Generic.IDictionary$2<TKey, TValue> | null): DictionaryEnumerator<TKey, TValue>;
+                    }
+                }
+            }
+
+            interface ReadOnlyDictionaryHelpers {
+            }
+            interface ReadOnlyDictionaryHelpersFunc extends Function {
+                prototype: ReadOnlyDictionaryHelpers;
+                new(): ReadOnlyDictionaryHelpers;
+            }
+            var ReadOnlyDictionaryHelpers: ReadOnlyDictionaryHelpersFunc;
+        }
     }
 
-    export interface Stack$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.ICollection {
-        Count: number;
-        IsReadOnly: boolean;
-        Clear(): void;
-        Contains(item: T): boolean;
-        CopyTo$1(array: T[], arrayIndex: number): void;
-        CopyTo(array: Array<any>, arrayIndex: number): void;
-        GetEnumerator(): System.Collections.Generic.Stack$1.Enumerator<T>;
-        System$Collections$IEnumerable$GetEnumerator(): System.Collections.IEnumerator;
-        TrimExcess(): void;
-        Peek(): T;
-        Pop(): T;
-        Push(item: T): void;
-        ToArray(): T[];
+    module ComponentModel {
+        export interface INotifyPropertyChanged {
+            propertyChanged(sender: any, e: PropertyChangedEventArgs): void;
+        }
+        var INotifyPropertyChanged: Function;
+
+        export class PropertyChangedEventArgs {
+            constructor(propertyName: string);
+            propertyName: string;
+        }
     }
-    export interface Stack$1Func extends Function {
-        <T>($T: Bridge.TypeRef<T>): {
-            prototype: Stack$1<T>;
-            Enumerator: System.Collections.Generic.Stack$1.EnumeratorFunc;
-            new (): Stack$1<T>;
+
+    module Globalization {
+        export interface IFormatProvider {
+            getFormat(formatType: Function): any;
+        }
+
+        export class CultureNotFoundException extends ArgumentException {
+            constructor(paramName: string, invalidCultureName?: string, message?: string, innerException?: Exception);
+            getInvalidCultureName(): string;
+        }
+
+        export class DateTimeFormatInfo implements IFormatProvider, ICloneable {
+            invariantInfo: DateTimeFormatInfo;
+            clone(): any;
+            getFormat(type: any): any;
+            getAbbreviatedDayName(dayofweek: number): string;
+            getAbbreviatedMonthName(month: number): string;
+            getAllDateTimePatterns(format: string, returnNull?: boolean): string[];
+            getDayName(dayofweek: number): string;
+            getMonthName(month: number): string;
+            getShortestDayName(dayofweek: number): string;
+        }
+
+        export class NumberFormatInfo implements IFormatProvider, ICloneable {
+            invariantInfo: NumberFormatInfo;
+            clone(): any;
+            getFormat(type: any): any;
+        }
+
+        export class CultureInfo implements IFormatProvider, ICloneable {
+            constructor(name: string);
+            invariantCulture: CultureInfo;
+            clone(): any;
+            getFormat(type: any): any;
+            static getCurrentCulture(): CultureInfo;
+            static setCurrentCulture(culture: CultureInfo): void;
+            static getCultureInfo(name: string): CultureInfo;
+            static getCultures(): CultureInfo[];
+        }
+    }
+
+    module Text {
+        export class StringBuilder {
+            constructor();
+            constructor(value: string);
+            constructor(value: string, capacity: number);
+            constructor(value: string, startIndex: number, length: number);
+            getLength(): number;
+            getCapacity(): number;
+            setCapacity(value: number): void;
+            toString(startIndex?: number, length?: number): string;
+            append(value: string): StringBuilder;
+            append(value: string, count: number): StringBuilder;
+            append(value: string, startIndex: number, count: number): StringBuilder;
+            appendFormat(format: string, ...args: string[]): StringBuilder;
+            clear(): void;
+            appendLine(): StringBuilder;
+            equals(sb: StringBuilder): boolean;
+            remove(startIndex: number, length: number): StringBuilder;
+            insert(index: number, value: string, count?: number): StringBuilder;
+            replace(oldValue: string, newValue: string, startIndex?: number, count?: number): StringBuilder;
+        }
+
+        export interface UTF32Encoding extends System.Text.Encoding {
+            CodePage: number;
+            EncodingName: string;
+            ToCodePoints(str: string): number[];
+            Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: { v: number }): number[];
+            Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
+            GetMaxByteCount(charCount: number): number;
+            GetMaxCharCount(byteCount: number): number;
+        }
+        export interface UTF32EncodingFunc extends Function {
+            prototype: UTF32Encoding;
+            new(): UTF32Encoding;
             ctor: {
-                new (): Stack$1<T>
-            };
-            $ctor2: {
-                new (capacity: number): Stack$1<T>
+                new(): UTF32Encoding
             };
             $ctor1: {
-                new (collection: System.Collections.Generic.IEnumerable$1<T>): Stack$1<T>
+                new(bigEndian: boolean, byteOrderMark: boolean): UTF32Encoding
+            };
+            $ctor2: {
+                new(bigEndian: boolean, byteOrderMark: boolean, throwOnInvalidBytes: boolean): UTF32Encoding
             };
         }
-    }
-    var Stack$1: Stack$1Func;
+        var UTF32Encoding: UTF32EncodingFunc;
 
-    module Stack$1 {
-        export interface Enumerator<T> extends System.Collections.Generic.IEnumerator$1<T> {
-            Current: T;
-            System$Collections$IEnumerator$Current: any;
-            Dispose(): void;
-            moveNext(): boolean;
-            System$Collections$IEnumerator$reset(): void;
-            getHashCode(): System.Collections.Generic.Stack$1.Enumerator<T>;
-            equals(o: System.Collections.Generic.Stack$1.Enumerator<T>): Boolean;
-            $clone(to: System.Collections.Generic.Stack$1.Enumerator<T>): System.Collections.Generic.Stack$1.Enumerator<T>;
+        export interface UnicodeEncoding extends System.Text.Encoding {
+            CodePage: number;
+            EncodingName: string;
+            Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: { v: number }): number[];
+            Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
+            GetMaxByteCount(charCount: number): number;
+            GetMaxCharCount(byteCount: number): number;
         }
-        export interface EnumeratorFunc extends Function {
-            <T>($T: Bridge.TypeRef<T>): {
-                prototype: Enumerator<T>;
-                new (): Enumerator<T>;
-                ctor: {
-                    new (): Enumerator<T>
-                };
+        export interface UnicodeEncodingFunc extends Function {
+            prototype: UnicodeEncoding;
+            new(): UnicodeEncoding;
+            ctor: {
+                new(): UnicodeEncoding
+            };
+            $ctor1: {
+                new(bigEndian: boolean, byteOrderMark: boolean): UnicodeEncoding
+            };
+            $ctor2: {
+                new(bigEndian: boolean, byteOrderMark: boolean, throwOnInvalidBytes: boolean): UnicodeEncoding
+            };
+        }
+        var UnicodeEncoding: UnicodeEncodingFunc;
+
+        export interface ASCIIEncoding extends System.Text.Encoding {
+            CodePage: number;
+            EncodingName: string;
+            Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: { v: number }): number[];
+            Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
+            GetMaxByteCount(charCount: number): number;
+            GetMaxCharCount(byteCount: number): number;
+        }
+        export interface ASCIIEncodingFunc extends Function {
+            prototype: ASCIIEncoding;
+            new(): ASCIIEncoding;
+        }
+        var ASCIIEncoding: ASCIIEncodingFunc;
+
+        export interface Encoding {
+            CodePage: number;
+            EncodingName: string;
+            Encode$1(chars: number[], index: number, count: number): number[];
+            Encode$5(s: string, index: number, count: number, outputBytes: number[], outputIndex: number): number;
+            Encode$4(chars: number[], index: number, count: number, outputBytes: number[], outputIndex: number): number;
+            Encode(chars: number[]): number[];
+            Encode$2(str: string): number[];
+            Decode$1(bytes: number[], index: number, count: number): string;
+            Decode(bytes: number[]): string;
+            GetByteCount(chars: number[]): number;
+            GetByteCount$2(s: string): number;
+            GetByteCount$1(chars: number[], index: number, count: number): number;
+            GetBytes(chars: number[]): number[];
+            GetBytes$1(chars: number[], index: number, count: number): number[];
+            GetBytes$3(chars: number[], charIndex: number, charCount: number, bytes: number[], byteIndex: number): number;
+            GetBytes$2(s: string): number[];
+            GetBytes$4(s: string, charIndex: number, charCount: number, bytes: number[], byteIndex: number): number;
+            GetCharCount(bytes: number[]): number;
+            GetCharCount$1(bytes: number[], index: number, count: number): number;
+            GetChars(bytes: number[]): number[];
+            GetChars$1(bytes: number[], index: number, count: number): number[];
+            GetChars$2(bytes: number[], byteIndex: number, byteCount: number, chars: number[], charIndex: number): number;
+            GetString(bytes: number[]): string;
+            GetString$1(bytes: number[], index: number, count: number): string;
+        }
+        export interface EncodingFunc extends Function {
+            prototype: Encoding;
+            new(): Encoding;
+            Default: System.Text.Encoding;
+            Unicode: System.Text.Encoding;
+            ASCII: System.Text.Encoding;
+            BigEndianUnicode: System.Text.Encoding;
+            UTF7: System.Text.Encoding;
+            UTF8: System.Text.Encoding;
+            UTF32: System.Text.Encoding;
+            Convert(srcEncoding: System.Text.Encoding, dstEncoding: System.Text.Encoding, bytes: number[]): number[];
+            Convert$1(srcEncoding: System.Text.Encoding, dstEncoding: System.Text.Encoding, bytes: number[], index: number, count: number): number[];
+            GetEncoding(codepage: number): System.Text.Encoding;
+            GetEncoding$1(codepage: string): System.Text.Encoding;
+            GetEncodings(): System.Text.EncodingInfo[];
+        }
+        var Encoding: EncodingFunc;
+
+        export interface EncodingInfo {
+            CodePage: number;
+            Name: string;
+            DisplayName: string;
+            GetEncoding(): System.Text.Encoding;
+            GetHashCode(): number;
+            Equals(o: any): boolean;
+        }
+        export interface EncodingInfoFunc extends Function {
+            prototype: EncodingInfo;
+        }
+        var EncodingInfo: EncodingInfoFunc;
+
+        export interface UTF7Encoding extends System.Text.Encoding {
+            CodePage: number;
+            EncodingName: string;
+            Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: { v: number }): number[];
+            Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
+            GetMaxByteCount(charCount: number): number;
+            GetMaxCharCount(byteCount: number): number;
+        }
+        export interface UTF7EncodingFunc extends Function {
+            prototype: UTF7Encoding;
+            new(): UTF7Encoding;
+            ctor: {
+                new(): UTF7Encoding
+            };
+            $ctor1: {
+                new(allowOptionals: boolean): UTF7Encoding
+            };
+            Escape(chars: string): string;
+        }
+        var UTF7Encoding: UTF7EncodingFunc;
+
+        export interface UTF8Encoding extends System.Text.Encoding {
+            CodePage: number;
+            EncodingName: string;
+            Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: { v: number }): number[];
+            Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
+            GetMaxByteCount(charCount: number): number;
+            GetMaxCharCount(byteCount: number): number;
+        }
+        export interface UTF8EncodingFunc extends Function {
+            prototype: UTF8Encoding;
+            new(): UTF8Encoding;
+            ctor: {
+                new(): UTF8Encoding
+            };
+            $ctor1: {
+                new(encoderShouldEmitUTF8Identifier: boolean): UTF8Encoding
+            };
+            $ctor2: {
+                new(encoderShouldEmitUTF8Identifier: boolean, throwOnInvalidBytes: boolean): UTF8Encoding
+            };
+        }
+        var UTF8Encoding: UTF8EncodingFunc;
+    }
+
+    module Threading {
+        module Tasks {
+            export class Task {
+                constructor(action: Function, state?: any);
+                static delay(delay: number, state?: any): Task;
+                static fromResult(result: any): Task;
+                static run(fn: Function): Task;
+                static whenAll(tasks: Task[]): Task;
+                static whenAny(tasks: Task[]): Task;
+                static fromCallback(target: any, method: string, ...otherArguments: any[]): Task;
+                static fromCallbackResult(target: any, method: string, resultHandler: Function, ...otherArguments: any[]): Task;
+                static fromCallbackOptions(target: any, method: string, name: string, ...otherArguments: any[]): Task;
+                static fromPromise(promise: Bridge.IPromise, handler: Function): Task;
+                continueWith(continuationAction: Function): Task;
+                start(): void;
+                complete(result?: any): boolean;
+                isCanceled(): boolean;
+                isCompleted(): boolean;
+                isFaulted(): boolean;
+                setCanceled(): void;
+                setError(error: Exception): void;
+            }
+
+            export class Task$1<TResult> extends Task {
+                constructor(action: () => TResult);
+                constructor(action: (fn: any) => TResult, state: any);
+                getResult(): TResult;
+                continueWith(continuationAction: (arg: Task$1<TResult>) => void): Task;
+                continueWith<TNewResult>(continuationAction: (arg: Task$1<TResult>) => TNewResult): Task$1<TNewResult>;
+                setResult(result: TResult): void;
             }
         }
     }
-}
-
-module ObjectModel {
-    export interface ReadOnlyCollection$1<T> extends System.Collections.Generic.List$1<T> {
-    }
-    export function ReadOnlyCollection$1<T>(t: Bridge.TypeRef<T>): {
-        prototype: ReadOnlyCollection$1<T>;
-        new (obj: T[]): ReadOnlyCollection$1<T>;
-        new (obj: System.Collections.Generic.IEnumerable$1<T>): ReadOnlyCollection$1<T>;
-    }
-}
-    }
-
-module ComponentModel {
-    export interface INotifyPropertyChanged {
-        propertyChanged(sender: any, e: PropertyChangedEventArgs): void;
-    }
-    var INotifyPropertyChanged: Function;
-
-    export class PropertyChangedEventArgs {
-        constructor(propertyName: string);
-        propertyName: string;
-    }
-}
-
-module Globalization {
-    export interface IFormatProvider {
-        getFormat(formatType: Function): any;
-    }
-
-    export class CultureNotFoundException extends ArgumentException {
-        constructor(paramName: string, invalidCultureName?: string, message?: string, innerException?: Exception);
-        getInvalidCultureName(): string;
-    }
-
-    export class DateTimeFormatInfo implements IFormatProvider, ICloneable {
-        invariantInfo: DateTimeFormatInfo;
-        clone(): any;
-        getFormat(type: any): any;
-        getAbbreviatedDayName(dayofweek: number): string;
-        getAbbreviatedMonthName(month: number): string;
-        getAllDateTimePatterns(format: string, returnNull?: boolean): string[];
-        getDayName(dayofweek: number): string;
-        getMonthName(month: number): string;
-        getShortestDayName(dayofweek: number): string;
-    }
-
-    export class NumberFormatInfo implements IFormatProvider, ICloneable {
-        invariantInfo: NumberFormatInfo;
-        clone(): any;
-        getFormat(type: any): any;
-    }
-
-    export class CultureInfo implements IFormatProvider, ICloneable {
-        constructor(name: string);
-        invariantCulture: CultureInfo;
-        clone(): any;
-        getFormat(type: any): any;
-        static getCurrentCulture(): CultureInfo;
-        static setCurrentCulture(culture: CultureInfo): void;
-        static getCultureInfo(name: string): CultureInfo;
-        static getCultures(): CultureInfo[];
-    }
-}
-
-module Text {
-    export class StringBuilder {
-        constructor();
-        constructor(value: string);
-        constructor(value: string, capacity: number);
-        constructor(value: string, startIndex: number, length: number);
-        getLength(): number;
-        getCapacity(): number;
-        setCapacity(value: number): void;
-        toString(startIndex?: number, length?: number): string;
-        append(value: string): StringBuilder;
-        append(value: string, count: number): StringBuilder;
-        append(value: string, startIndex: number, count: number): StringBuilder;
-        appendFormat(format: string, ...args: string[]): StringBuilder;
-        clear(): void;
-        appendLine(): StringBuilder;
-        equals(sb: StringBuilder): boolean;
-        remove(startIndex: number, length: number): StringBuilder;
-        insert(index: number, value: string, count?: number): StringBuilder;
-        replace(oldValue: string, newValue: string, startIndex?: number, count?: number): StringBuilder;
-    }
-
-    export interface UTF32Encoding extends System.Text.Encoding {
-        CodePage: number;
-        EncodingName: string;
-        ToCodePoints(str: string): number[];
-        Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: {v: number}): number[];
-        Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
-        GetMaxByteCount(charCount: number): number;
-        GetMaxCharCount(byteCount: number): number;
-    }
-    export interface UTF32EncodingFunc extends Function {
-        prototype: UTF32Encoding;
-        new (): UTF32Encoding;
-        ctor: {
-            new (): UTF32Encoding
-        };
-        $ctor1: {
-            new (bigEndian: boolean, byteOrderMark: boolean): UTF32Encoding
-        };
-        $ctor2: {
-            new (bigEndian: boolean, byteOrderMark: boolean, throwOnInvalidBytes: boolean): UTF32Encoding
-        };
-    }
-    var UTF32Encoding: UTF32EncodingFunc;
-
-    export interface UnicodeEncoding extends System.Text.Encoding {
-        CodePage: number;
-        EncodingName: string;
-        Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: {v: number}): number[];
-        Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
-        GetMaxByteCount(charCount: number): number;
-        GetMaxCharCount(byteCount: number): number;
-    }
-    export interface UnicodeEncodingFunc extends Function {
-        prototype: UnicodeEncoding;
-        new (): UnicodeEncoding;
-        ctor: {
-            new (): UnicodeEncoding
-        };
-        $ctor1: {
-            new (bigEndian: boolean, byteOrderMark: boolean): UnicodeEncoding
-        };
-        $ctor2: {
-            new (bigEndian: boolean, byteOrderMark: boolean, throwOnInvalidBytes: boolean): UnicodeEncoding
-        };
-    }
-    var UnicodeEncoding: UnicodeEncodingFunc;
-
-    export interface ASCIIEncoding extends System.Text.Encoding {
-        CodePage: number;
-        EncodingName: string;
-        Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: {v: number}): number[];
-        Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
-        GetMaxByteCount(charCount: number): number;
-        GetMaxCharCount(byteCount: number): number;
-    }
-    export interface ASCIIEncodingFunc extends Function {
-        prototype: ASCIIEncoding;
-        new (): ASCIIEncoding;
-    }
-    var ASCIIEncoding: ASCIIEncodingFunc;
-
-    export interface Encoding {
-        CodePage: number;
-        EncodingName: string;
-        Encode$1(chars: number[], index: number, count: number): number[];
-        Encode$5(s: string, index: number, count: number, outputBytes: number[], outputIndex: number): number;
-        Encode$4(chars: number[], index: number, count: number, outputBytes: number[], outputIndex: number): number;
-        Encode(chars: number[]): number[];
-        Encode$2(str: string): number[];
-        Decode$1(bytes: number[], index: number, count: number): string;
-        Decode(bytes: number[]): string;
-        GetByteCount(chars: number[]): number;
-        GetByteCount$2(s: string): number;
-        GetByteCount$1(chars: number[], index: number, count: number): number;
-        GetBytes(chars: number[]): number[];
-        GetBytes$1(chars: number[], index: number, count: number): number[];
-        GetBytes$3(chars: number[], charIndex: number, charCount: number, bytes: number[], byteIndex: number): number;
-        GetBytes$2(s: string): number[];
-        GetBytes$4(s: string, charIndex: number, charCount: number, bytes: number[], byteIndex: number): number;
-        GetCharCount(bytes: number[]): number;
-        GetCharCount$1(bytes: number[], index: number, count: number): number;
-        GetChars(bytes: number[]): number[];
-        GetChars$1(bytes: number[], index: number, count: number): number[];
-        GetChars$2(bytes: number[], byteIndex: number, byteCount: number, chars: number[], charIndex: number): number;
-        GetString(bytes: number[]): string;
-        GetString$1(bytes: number[], index: number, count: number): string;
-    }
-    export interface EncodingFunc extends Function {
-        prototype: Encoding;
-        new (): Encoding;
-        Default: System.Text.Encoding;
-        Unicode: System.Text.Encoding;
-        ASCII: System.Text.Encoding;
-        BigEndianUnicode: System.Text.Encoding;
-        UTF7: System.Text.Encoding;
-        UTF8: System.Text.Encoding;
-        UTF32: System.Text.Encoding;
-        Convert(srcEncoding: System.Text.Encoding, dstEncoding: System.Text.Encoding, bytes: number[]): number[];
-        Convert$1(srcEncoding: System.Text.Encoding, dstEncoding: System.Text.Encoding, bytes: number[], index: number, count: number): number[];
-        GetEncoding(codepage: number): System.Text.Encoding;
-        GetEncoding$1(codepage: string): System.Text.Encoding;
-        GetEncodings(): System.Text.EncodingInfo[];
-    }
-    var Encoding: EncodingFunc;
-
-    export interface EncodingInfo {
-        CodePage: number;
-        Name: string;
-        DisplayName: string;
-        GetEncoding(): System.Text.Encoding;
-        GetHashCode(): number;
-        Equals(o: any): boolean;
-    }
-    export interface EncodingInfoFunc extends Function {
-        prototype: EncodingInfo;
-    }
-    var EncodingInfo: EncodingInfoFunc;
-
-    export interface UTF7Encoding extends System.Text.Encoding {
-        CodePage: number;
-        EncodingName: string;
-        Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: {v: number}): number[];
-        Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
-        GetMaxByteCount(charCount: number): number;
-        GetMaxCharCount(byteCount: number): number;
-    }
-    export interface UTF7EncodingFunc extends Function {
-        prototype: UTF7Encoding;
-        new (): UTF7Encoding;
-        ctor: {
-            new (): UTF7Encoding
-        };
-        $ctor1: {
-            new (allowOptionals: boolean): UTF7Encoding
-        };
-        Escape(chars: string): string;
-    }
-    var UTF7Encoding: UTF7EncodingFunc;
-
-    export interface UTF8Encoding extends System.Text.Encoding {
-        CodePage: number;
-        EncodingName: string;
-        Encode$3(s: string, outputBytes: number[], outputIndex: number, writtenBytes: {v: number}): number[];
-        Decode$2(bytes: number[], index: number, count: number, chars: number[], charIndex: number): string;
-        GetMaxByteCount(charCount: number): number;
-        GetMaxCharCount(byteCount: number): number;
-    }
-    export interface UTF8EncodingFunc extends Function {
-        prototype: UTF8Encoding;
-        new (): UTF8Encoding;
-        ctor: {
-            new (): UTF8Encoding
-        };
-        $ctor1: {
-            new (encoderShouldEmitUTF8Identifier: boolean): UTF8Encoding
-        };
-        $ctor2: {
-            new (encoderShouldEmitUTF8Identifier: boolean, throwOnInvalidBytes: boolean): UTF8Encoding
-        };
-    }
-    var UTF8Encoding: UTF8EncodingFunc;
-}
-
-module Threading {
-    module Tasks {
-        export class Task {
-            constructor(action: Function, state?: any);
-            static delay(delay: number, state?: any): Task;
-            static fromResult(result: any): Task;
-            static run(fn: Function): Task;
-            static whenAll(tasks: Task[]): Task;
-            static whenAny(tasks: Task[]): Task;
-            static fromCallback(target: any, method: string, ...otherArguments: any[]): Task;
-            static fromCallbackResult(target: any, method: string, resultHandler: Function, ...otherArguments: any[]): Task;
-            static fromCallbackOptions(target: any, method: string, name: string, ...otherArguments: any[]): Task;
-            static fromPromise(promise: Bridge.IPromise, handler: Function): Task;
-            continueWith(continuationAction: Function): Task;
-            start(): void;
-            complete(result?: any): boolean;
-            isCanceled(): boolean;
-            isCompleted(): boolean;
-            isFaulted(): boolean;
-            setCanceled(): void;
-            setError(error: Exception): void;
-        }
-
-        export class Task$1<TResult> extends Task {
-            constructor(action: () => TResult);
-            constructor(action: (fn: any) => TResult, state: any);
-            getResult(): TResult;
-            continueWith(continuationAction: (arg: Task$1<TResult>) => void): Task;
-            continueWith<TNewResult>(continuationAction: (arg: Task$1<TResult>) => TNewResult): Task$1<TNewResult>;
-            setResult(result: TResult): void;
-        }
-    }
-}
 }
 
 declare module Bridge.Linq {
