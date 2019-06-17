@@ -2040,6 +2040,38 @@ Bridge.assembly("Bridge.ClientTest.Batch3", function ($asm, globals) {
         }
     });
 
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge1148", {
+        statics: {
+            methods: {
+                TestDecimalOverflow: function () {
+                    var nan = Number.NaN;
+                    var p = Number.POSITIVE_INFINITY;
+                    var n = Number.NEGATIVE_INFINITY;
+                    var max = System.Double.max;
+                    var min = System.Double.min;
+
+                    // https://msdn.microsoft.com/en-us/library/aa691289(v=vs.71).aspx
+                    // If the source value is NaN, infinity, or too large to represent as a decimal, a System.OverflowException is thrown.
+                    Bridge.Test.NUnit.Assert.Throws$2(System.OverflowException, function () {
+                        var x = System.Decimal(nan, null, System.Double);
+                    }, "NaN -> decimal");
+                    Bridge.Test.NUnit.Assert.Throws$2(System.OverflowException, function () {
+                        var x = System.Decimal(p, null, System.Double);
+                    }, "PositiveInfinity -> decimal");
+                    Bridge.Test.NUnit.Assert.Throws$2(System.OverflowException, function () {
+                        var x = System.Decimal(n, null, System.Double);
+                    }, "NegativeInfinity -> decimal");
+                    Bridge.Test.NUnit.Assert.Throws$2(System.OverflowException, function () {
+                        var x = System.Decimal(max, null, System.Double);
+                    }, "MaxValue -> decimal");
+                    Bridge.Test.NUnit.Assert.Throws$2(System.OverflowException, function () {
+                        var x = System.Decimal(min, null, System.Double);
+                    }, "MinValue -> decimal");
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge1149", {
         statics: {
             fields: {
