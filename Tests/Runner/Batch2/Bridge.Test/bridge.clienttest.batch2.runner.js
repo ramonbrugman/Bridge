@@ -1,5 +1,5 @@
 /**
- * @compiler Bridge.NET 17.9.0
+ * @compiler Bridge.NET 17.9.1
  */
 Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch2", function ($asm, globals) {
     

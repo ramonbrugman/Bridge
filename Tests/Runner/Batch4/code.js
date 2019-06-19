@@ -1,9 +1,9 @@
 /**
  * Bridge Test library - general C# language tests for Portarelle
- * @version 17.9.0
+ * @version 17.9.1
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2019 Object.NET, Inc.
- * @compiler Bridge.NET 17.9.0
+ * @compiler Bridge.NET 17.9.1
  */
 Bridge.assembly("Bridge.ClientTest.Batch4", function ($asm, globals) {
     "use strict";
