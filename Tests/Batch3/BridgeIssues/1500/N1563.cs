@@ -1,27 +1,19 @@
 using Bridge.Test.NUnit;
-using Bridge.ClientTestHelper;
 using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Bridge.ClientTest.Batch3.BridgeIssues
 {
+    /// <summary>
+    /// The tests here ensures math involving delegates works.
+    /// </summary>
     [Category(Constants.MODULE_ISSUES)]
     [TestFixture(TestNameFormat = "#1563 - {0}")]
     public class Bridge1563
     {
+        /// <summary>
+        /// Tests the scenario provided in gitter.
+        /// </summary>
         [Test]
-        public static void Run()
-        {
-            CombineDoesNotAffectOriginal_SPI_1563();
-            RemoveDoesNotAffectOriginal_SPI_1563();
-            RemoveWorksWithMethodGroupConversion();
-            CloningDelegateToTheSameTypeCreatesANewClone();
-            EqualityAndInequalityOperatorsAndEqualsMethod();
-            TestRemove();
-        }
-
         public static void TestRemove()
         {
             var buffer = "";
@@ -34,18 +26,28 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
             a5 -= a3;
 
             a5();
+
+            Assert.AreEqual("a1a4a2", buffer, "The delegates' side effects were applied in the expected order.");
         }
 
+        /// <summary>
+        /// Checks combination
+        /// </summary>
+        [Test]
         public static void CombineDoesNotAffectOriginal_SPI_1563()
         {
             // #1563
             C c = new C();
             Action a = c.F1;
             Action a2 = a + c.F2;
-            Assert.AreEqual(a.GetInvocationList().Length, 1);
-            Assert.AreEqual(a2.GetInvocationList().Length, 2);
+            Assert.AreEqual(1, a.GetInvocationList().Length, "Invocation list in base delegate has 1 entry.");
+            Assert.AreEqual(2, a2.GetInvocationList().Length, "Invocation list in combined delegate has 2 entries.");
         }
 
+        /// <summary>
+        /// Checks combination and removal
+        /// </summary>
+        [Test]
         public static void RemoveDoesNotAffectOriginal_SPI_1563()
         {
             // #1563
@@ -53,11 +55,15 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
             Action a = c.F1;
             Action a2 = a + c.F2;
             Action a3 = a2 - a;
-            Assert.AreEqual(a.GetInvocationList().Length, 1);
-            Assert.AreEqual(a2.GetInvocationList().Length, 2);
-            Assert.AreEqual(a3.GetInvocationList().Length, 1);
+            Assert.AreEqual(a.GetInvocationList().Length, 1, "Invocation list in original delegate has 1 entry.");
+            Assert.AreEqual(a2.GetInvocationList().Length, 2, "Invocation list in combined delegate has 2 entries.");
+            Assert.AreEqual(a3.GetInvocationList().Length, 1, "Invocation list in differentiated delegate has 1 entry.");
         }
 
+        /// <summary>
+        /// Checks removal with method group.
+        /// </summary>
+        [Test]
         public static void RemoveWorksWithMethodGroupConversion()
         {
             Action a = () =>
@@ -65,10 +71,14 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
             };
             Action a2 = a + A;
             Action a3 = a2 - A;
-            Assert.False(a.Equals(a2));
-            Assert.True(a.Equals(a3));
+            Assert.False(a.Equals(a2), "Base delegate .Equals() against its aggregate delegate returns false.");
+            Assert.True(a.Equals(a3), "Base delegate .Equals() against a differentiate aggregate are equal (when all other aggregated delegates are removed).");
         }
 
+        /// <summary>
+        /// Checks cloning deleates
+        /// </summary>
+        [Test]
         public static void CloningDelegateToTheSameTypeCreatesANewClone()
         {
             int x = 0;
@@ -77,10 +87,14 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
             d1();
             d2();
 
-            Assert.False(d1 == d2);
-            Assert.AreEqual(x, 2);
+            Assert.False(d1 == d2, "A delegate is not equal to another delegate cloned from it.");
+            Assert.AreEqual(x, 2, "Both the original and cloned delegates' calls side effects works.");
         }
 
+        /// <summary>
+        /// Checks equality-related operators
+        /// </summary>
+        [Test]
         public static void EqualityAndInequalityOperatorsAndEqualsMethod()
         {
             C c1 = new C(), c2 = new C();
@@ -88,10 +102,12 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
 
             Action m1 = f11 + f21, m2 = f11 + f21, m3 = f21 + f11;
 
-            Assert.True(m1 == m2, "m1 == m2");
-            Assert.True(m1.Equals(m2), "m1.Equals(m2)");
-            Assert.False(m1 != m2, "m1 != m2");
+            Assert.True(m1 == m2, "Two delegates declared with the same aggregation expression are equal via the '==' operator.");
+            Assert.True(m1.Equals(m2), "Two delegates declared with the same aggregation expression are equal via the .Equals() call.");
+            Assert.False(m1 != m2, "Two delegates declared with the same aggregation expression are not different ('!=' operator works).");
         }
+
+        #region Auxiliary code used to explore the feature/issues in the tests.
 
         public delegate void D1();
 
@@ -109,5 +125,7 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
             {
             }
         }
+
+        #endregion Auxiliary code used to explore the feature/issues in the tests.
     }
 }
