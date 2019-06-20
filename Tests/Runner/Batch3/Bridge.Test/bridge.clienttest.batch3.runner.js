@@ -410,6 +410,12 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
             QUnit.test("#156 - TestArrayIndexOutOfRangeException", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge156.TestArrayIndexOutOfRangeException);
             QUnit.test("#156 - Test1DArrayIndexOutOfRangeExceptionIndexAsVariable", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge156.Test1DArrayIndexOutOfRangeExceptionIndexAsVariable);
             QUnit.test("#156 - Test2DArrayIndexOutOfRangeExceptionIndexAsVariable", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge156.Test2DArrayIndexOutOfRangeExceptionIndexAsVariable);
+            QUnit.test("#1563 - TestRemove", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563.TestRemove);
+            QUnit.test("#1563 - CombineDoesNotAffectOriginal_SPI_1563", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563.CombineDoesNotAffectOriginal_SPI_1563);
+            QUnit.test("#1563 - RemoveDoesNotAffectOriginal_SPI_1563", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563.RemoveDoesNotAffectOriginal_SPI_1563);
+            QUnit.test("#1563 - RemoveWorksWithMethodGroupConversion", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563.RemoveWorksWithMethodGroupConversion);
+            QUnit.test("#1563 - CloningDelegateToTheSameTypeCreatesANewClone", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563.CloningDelegateToTheSameTypeCreatesANewClone);
+            QUnit.test("#1563 - EqualityAndInequalityOperatorsAndEqualsMethod", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563.EqualityAndInequalityOperatorsAndEqualsMethod);
             QUnit.test("#1566 - TestMathLog10", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1566.TestMathLog10);
             QUnit.test("#1566 - TestMathLogWithBase", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1566.TestMathLogWithBase);
             QUnit.test("#1566 - TestMathLog", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1566.TestMathLog);
@@ -5560,6 +5566,57 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
                 var $t;
                 if (this.context == null) {
                     this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge156", $t.File = "Batch3\\BridgeIssues\\0100\\N156.cs", $t);
+                }
+                return this.context;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563", {
+        inherits: [Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563)],
+        $kind: "nested class",
+        statics: {
+            methods: {
+                TestRemove: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "TestRemove()", $t.Line = "16", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.TestRemove();
+                },
+                CombineDoesNotAffectOriginal_SPI_1563: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "CombineDoesNotAffectOriginal_SPI_1563()", $t.Line = "36", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.CombineDoesNotAffectOriginal_SPI_1563();
+                },
+                RemoveDoesNotAffectOriginal_SPI_1563: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "RemoveDoesNotAffectOriginal_SPI_1563()", $t.Line = "50", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.RemoveDoesNotAffectOriginal_SPI_1563();
+                },
+                RemoveWorksWithMethodGroupConversion: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "RemoveWorksWithMethodGroupConversion()", $t.Line = "66", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.RemoveWorksWithMethodGroupConversion();
+                },
+                CloningDelegateToTheSameTypeCreatesANewClone: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "CloningDelegateToTheSameTypeCreatesANewClone()", $t.Line = "81", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.CloningDelegateToTheSameTypeCreatesANewClone();
+                },
+                EqualityAndInequalityOperatorsAndEqualsMethod: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge1563, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "EqualityAndInequalityOperatorsAndEqualsMethod()", $t.Line = "97", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.EqualityAndInequalityOperatorsAndEqualsMethod();
+                }
+            }
+        },
+        fields: {
+            context: null
+        },
+        methods: {
+            GetContext: function () {
+                var $t;
+                if (this.context == null) {
+                    this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563", $t.File = "Batch3\\BridgeIssues\\1500\\N1563.cs", $t);
                 }
                 return this.context;
             }
