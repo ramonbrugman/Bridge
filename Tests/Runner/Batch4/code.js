@@ -118,7 +118,7 @@ Bridge.assembly("Bridge.ClientTest.Batch4", function ($asm, globals) {
                 var d1 = function () {
                     Bridge.identity(x, ((x = (x + 1) | 0)));
                 };
-                var d2 = d1;
+                var d2 = Bridge.fn.$build([d1]);
                 d1();
                 d2();
 

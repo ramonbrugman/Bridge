@@ -8451,6 +8451,101 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563", {
+        statics: {
+            methods: {
+                Run: function () {
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.CombineDoesNotAffectOriginal_SPI_1563();
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.RemoveDoesNotAffectOriginal_SPI_1563();
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.RemoveWorksWithMethodGroupConversion();
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.CloningDelegateToTheSameTypeCreatesANewClone();
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.EqualityAndInequalityOperatorsAndEqualsMethod();
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.TestRemove();
+                },
+                TestRemove: function () {
+                    var buffer = "";
+                    var a1 = function () {
+                        buffer = (buffer || "") + "a1";
+                    };
+                    var a2 = function () {
+                        buffer = (buffer || "") + "a2";
+                    };
+                    var a3 = Bridge.fn.combine(a1, a2);
+                    var a4 = function () {
+                        buffer = (buffer || "") + "a4";
+                    };
+                    var a5 = Bridge.fn.combine(Bridge.fn.combine(a1, a4), a2);
+
+                    a5 = Bridge.fn.remove(a5, a3);
+
+                    a5();
+                },
+                CombineDoesNotAffectOriginal_SPI_1563: function () {
+                    // #1563
+                    var c = new Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.C();
+                    var a = Bridge.fn.cacheBind(c, c.F1);
+                    var a2 = Bridge.fn.combine(a, Bridge.fn.cacheBind(c, c.F2));
+                    Bridge.Test.NUnit.Assert.AreEqual(Bridge.fn.getInvocationList(a).length, 1);
+                    Bridge.Test.NUnit.Assert.AreEqual(Bridge.fn.getInvocationList(a2).length, 2);
+                },
+                RemoveDoesNotAffectOriginal_SPI_1563: function () {
+                    // #1563
+                    var c = new Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.C();
+                    var a = Bridge.fn.cacheBind(c, c.F1);
+                    var a2 = Bridge.fn.combine(a, Bridge.fn.cacheBind(c, c.F2));
+                    var a3 = Bridge.fn.remove(a2, a);
+                    Bridge.Test.NUnit.Assert.AreEqual(Bridge.fn.getInvocationList(a).length, 1);
+                    Bridge.Test.NUnit.Assert.AreEqual(Bridge.fn.getInvocationList(a2).length, 2);
+                    Bridge.Test.NUnit.Assert.AreEqual(Bridge.fn.getInvocationList(a3).length, 1);
+                },
+                RemoveWorksWithMethodGroupConversion: function () {
+                    var a = $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.f1;
+                    var a2 = Bridge.fn.combine(a, Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.A);
+                    var a3 = Bridge.fn.remove(a2, Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.A);
+                    Bridge.Test.NUnit.Assert.False(Bridge.equals(a, a2));
+                    Bridge.Test.NUnit.Assert.True(Bridge.equals(a, a3));
+                },
+                CloningDelegateToTheSameTypeCreatesANewClone: function () {
+                    var x = 0;
+                    var d1 = function () {
+                        Bridge.identity(x, ((x = (x + 1) | 0)));
+                    };
+                    var d2 = Bridge.fn.$build([d1]);
+                    d1();
+                    d2();
+
+                    Bridge.Test.NUnit.Assert.False(Bridge.staticEquals(d1, d2));
+                    Bridge.Test.NUnit.Assert.AreEqual(x, 2);
+                },
+                EqualityAndInequalityOperatorsAndEqualsMethod: function () {
+                    var c1 = new Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.C(), c2 = new Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.C();
+                    var f11 = Bridge.fn.cacheBind(c1, c1.F1), f11_2 = Bridge.fn.cacheBind(c1, c1.F1), f12 = Bridge.fn.cacheBind(c1, c1.F2), f21 = Bridge.fn.cacheBind(c2, c2.F1);
+
+                    var m1 = Bridge.fn.combine(f11, f21), m2 = Bridge.fn.combine(f11, f21), m3 = Bridge.fn.combine(f21, f11);
+
+                    Bridge.Test.NUnit.Assert.True(Bridge.staticEquals(m1, m2), "m1 == m2");
+                    Bridge.Test.NUnit.Assert.True(Bridge.equals(m1, m2), "m1.Equals(m2)");
+                    Bridge.Test.NUnit.Assert.False(!Bridge.staticEquals(m1, m2), "m1 != m2");
+                },
+                A: function () { }
+            }
+        }
+    });
+
+    Bridge.ns("Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563", $asm.$);
+
+    Bridge.apply($asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563, {
+        f1: function () { }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge1563.C", {
+        $kind: "nested class",
+        methods: {
+            F1: function () { },
+            F2: function () { }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge1566", {
         methods: {
             TestMathLog10: function () {
@@ -8788,10 +8883,10 @@ Bridge.$N1391Result =                     r;
             },
             methods: {
                 M1: function () {
-                    ($asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge169.f1)();
+                    (Bridge.fn.$build([$asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge169.f1]))();
                 },
                 M2: function () {
-                    ($asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge169.f2)();
+                    (Bridge.fn.$build([$asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge169.f2]))();
                 }
             }
         }
@@ -9422,11 +9517,11 @@ Bridge.$N1391Result =                     r;
         },
         methods: {
             TestDelegateCreationOfGenericMethods: function () {
-                var foo = function () { return Bridge.ClientTest.Batch3.BridgeIssues.Bridge1722.Foo(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1722.ClassA); };
+                var foo = Bridge.fn.$build([function () { return Bridge.ClientTest.Batch3.BridgeIssues.Bridge1722.Foo(Bridge.ClientTest.Batch3.BridgeIssues.Bridge1722.ClassA); }]);
                 foo();
             },
             TestDelegateCreationOfGenericMethodsWithLambda: function () {
-                var foo = $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge1722.f1;
+                var foo = Bridge.fn.$build([$asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge1722.f1]);
                 foo();
             }
         }
@@ -25347,7 +25442,7 @@ Bridge.$N1391Result =                     r;
             },
             ctors: {
                 init: function () {
-                    Bridge.event(this, "Test", $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge2923.f1);
+                    Bridge.event(this, "Test", Bridge.fn.$build([$asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge2923.f1]));
                 }
             },
             methods: {
@@ -40680,7 +40775,7 @@ Bridge.$N1391Result =                     r;
         },
         methods: {
             Fire: function () {
-                var getEvt = $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge520.Source.f1;
+                var getEvt = Bridge.fn.$build([$asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge520.Source.f1]);
                 var evt = getEvt(this);
 
                 evt = Bridge.fn.combine(evt, Bridge.fn.bind(this, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge520.Source.f2));
@@ -45535,11 +45630,11 @@ Bridge.$N1391Result =                     r;
                     var $t;
                     var testA = ($t = new Bridge.ClientTest.Batch3.BridgeIssues.Bridge861A(), $t.MyId = 1, $t);
 
-                    testA.Delegates = Bridge.fn.combine(testA.Delegates, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge861.f1);
+                    testA.Delegates = Bridge.fn.combine(testA.Delegates, Bridge.fn.$build([$asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge861.f1]));
 
                     var testB = ($t = new Bridge.ClientTest.Batch3.BridgeIssues.Bridge861A(), $t.MyId = 2, $t.Delegates = testA.Delegates, $t);
 
-                    testB.Delegates = Bridge.fn.combine(testB.Delegates, $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge861.f2);
+                    testB.Delegates = Bridge.fn.combine(testB.Delegates, Bridge.fn.$build([$asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge861.f2]));
                     testB.InvokeDelegates();
 
                     Bridge.Test.NUnit.Assert.AreEqual(0, testB.MyId);

@@ -42,13 +42,13 @@
 
                     if (Bridge.isNode) {
                         var fs = require("fs");
-                        fs.readFile(path, function (err, data) {
+                        fs.readFile(path, Bridge.fn.$build([function (err, data) {
                             if (err != null) {
                                 throw new System.IO.IOException.ctor();
                             }
 
                             tcs.setResult(data);
-                        });
+                        }]));
                     } else {
                         var req = new XMLHttpRequest();
                         req.open("GET", path, true);

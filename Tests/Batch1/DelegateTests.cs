@@ -253,7 +253,7 @@ namespace Bridge.ClientTest
             {
             };
             D2 d2 = new D2(d1);
-            Assert.True((object)d1 == (object)d2);
+            Assert.False((object)d1 == (object)d2);
         }
 
         [Test]
