@@ -79,7 +79,9 @@ namespace Bridge.Translator
                     this.WriteOpenParentheses();
                 }
 
+                this.Write("Bridge.fn.$build([");
                 objectCreateExpression.Arguments.First().AcceptVisitor(this.Emitter);
+                this.Write("])");
 
                 if (wrap)
                 {
