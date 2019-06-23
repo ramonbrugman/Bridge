@@ -1992,12 +1992,11 @@
                     if (Bridge.fn.equalInvocationLists(list1, list2, i, list2.length)) {
                         if (list1.length - list2.length == 0) {
                             return null;
-                        }
-                        else if (list1.length - list2.length == 1) {
+                        } else if (list1.length - list2.length == 1) {
                             return list1[i != 0 ? 0 : list1.length - 1];
-                        }
-                        else {
+                        } else {
                             list1.splice(i, list2.length);
+
                             return Bridge.fn.$build(list1);
                         }
                     }
@@ -2012,9 +2011,10 @@
                         return false;
                     }
                 }
+
                 return true;
             },
-        },       
+        },
 
         sleep: function (ms, timeout) {
             if (Bridge.hasValue(timeout)) {
