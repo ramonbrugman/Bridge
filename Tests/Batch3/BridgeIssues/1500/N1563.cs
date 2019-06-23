@@ -30,6 +30,26 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
             Assert.AreEqual("a1a4a2", buffer, "The delegates' side effects were applied in the expected order.");
         }
 
+        // <summary>
+        /// Tests the scenario provided in gitter.
+        /// </summary>
+        [Test]
+        public static void TestRemove2()
+        {
+            var buffer = "";
+            Action a1 = () => buffer += "a1";
+            Action a2 = () => buffer += "a2";
+            Action a3 = a1 + a2;
+            Action a4 = () => buffer += "a4";
+            Action a41 = () => buffer += "a41";
+            Action a5 = a4 + a1 + a2 + a41 + a1 + a2 + a4;
+
+            a5 -= a3;
+
+            a5();
+            Assert.AreEqual("a4a1a2a41a4", buffer);
+        }
+
         /// <summary>
         /// Checks combination
         /// </summary>
