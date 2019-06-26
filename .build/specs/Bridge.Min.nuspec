@@ -65,7 +65,7 @@
     <file src="../../Compiler/Build/bin/Release/System.Text.Encoding.CodePages.dll" target="tools/System.Text.Encoding.CodePages.dll" />
     <file src="../../Compiler/Translator/bin/Release/System.Threading.Thread.dll" target="tools/System.Threading.Thread.dll" />
     <file src="../../Compiler/Build/bin/Release/System.ValueTuple.dll" target="tools/System.ValueTuple.dll" />
-    <file src="../../Compiler/Build/bin/Release/System.Xml.ReaderWriter.dll" target="tools/System.Xml.ReaderWriter.dll" />
+    <file src="../../Compiler/Translator/bin/Release/System.Xml.ReaderWriter.dll" target="tools/System.Xml.ReaderWriter.dll" />
     <file src="../../Compiler/Translator/bin/Release/System.Xml.XmlDocument.dll" target="tools/System.Xml.XmlDocument.dll" />
     <file src="../../Compiler/Translator/bin/Release/System.Xml.XPath.dll" target="tools/System.Xml.XPath.dll" />
     <file src="../../Compiler/Translator/bin/Release/System.Xml.XPath.XDocument.dll" target="tools/System.Xml.XPath.XDocument.dll" />
