@@ -27012,8 +27012,6 @@ Bridge.$N1391Result =                     r;
             isSet: false
         },
         methods: {
-            addOnChange: function (value) { },
-            removeOnChange: function (value) { },
             on: function (eventName, handler) {
                 this.isSet = true;
                 this.name = eventName;
@@ -30635,14 +30633,6 @@ Bridge.$N1391Result =                     r;
         }
     });
 
-    /** @namespace System */
-
-    /**
-     * @memberof System
-     * @callback System.Action
-     * @return  {void}
-     */
-
     /**
      * The test here consists in checking whether templates on events would
      replace the {value} placeholder even if the {this} placeholder is not
@@ -30682,24 +30672,6 @@ Bridge.$N1391Result =                     r;
         },
         props: {
             status: null
-        },
-        methods: {
-            /**
-             * @instance
-             * @public
-             * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3418
-             * @event Bridge.ClientTest.Batch3.BridgeIssues.Bridge3418#OnDragEnd
-             * @return  {System.Action}
-             */
-            addOnDragEnd: function (value) { },
-            /**
-             * @instance
-             * @public
-             * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3418
-             * @event Bridge.ClientTest.Batch3.BridgeIssues.Bridge3418#OnDragEnd
-             * @return  {System.Action}
-             */
-            removeOnDragEnd: function (value) { }
         }
     });
 
@@ -35847,6 +35819,8 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /** @namespace System */
+
     /**
      * @memberof System
      * @callback System.Func
@@ -40563,6 +40537,25 @@ Bridge.$N1391Result =                     r;
             fields: {
                 Test: 0,
                 Test01: 1
+            }
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4015", {
+        statics: {
+            methods: {
+                TestExternalIndexer: function () {
+                    Bridge.Test.NUnit.Assert.AreEqual(5, new Bridge.ClientTest.Batch3.BridgeIssues.Bridge4015.SomethingWithExternIndexer().Get(5));
+                }
+            }
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4015.SomethingWithExternIndexer", {
+        $kind: "nested class",
+        methods: {
+            Get: function (i) {
+                return i;
             }
         }
     });
