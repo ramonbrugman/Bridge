@@ -61,7 +61,7 @@
                     if (args === void 0) { args = []; }
                     if (args != null) {
                         if (System.SR.UsingResourceKeys()) {
-                            return (resourceFormat || "") + (args.join(", ") || "");
+                            return (resourceFormat || "") + ((args).join(", ") || "");
                         }
 
                         return System.String.format.apply(System.String, [resourceFormat].concat(args));
@@ -71,21 +71,21 @@
                 },
                 Format: function (resourceFormat, p1) {
                     if (System.SR.UsingResourceKeys()) {
-                        return [resourceFormat, p1].join(", ");
+                        return ([resourceFormat, p1]).join(", ");
                     }
 
                     return System.String.format(resourceFormat, [p1]);
                 },
                 Format$1: function (resourceFormat, p1, p2) {
                     if (System.SR.UsingResourceKeys()) {
-                        return [resourceFormat, p1, p2].join(", ");
+                        return ([resourceFormat, p1, p2]).join(", ");
                     }
 
                     return System.String.format(resourceFormat, p1, p2);
                 },
                 Format$2: function (resourceFormat, p1, p2, p3) {
                     if (System.SR.UsingResourceKeys()) {
-                        return [resourceFormat, p1, p2, p3].join(", ");
+                        return ([resourceFormat, p1, p2, p3]).join(", ");
                     }
                     return System.String.format(resourceFormat, p1, p2, p3);
                 }

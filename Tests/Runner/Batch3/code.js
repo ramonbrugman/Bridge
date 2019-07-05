@@ -2555,7 +2555,7 @@ Bridge.assembly("Bridge.ClientTest.Batch3", function ($asm, globals) {
 
                     var items = System.Array.init([new (Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.Item$1(System.Int32))(), new (Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.Item$1(System.Int32))()], Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.Item$1(System.Int32));
                     var values = Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.GetItemValues(System.Int32, items);
-                    Bridge.Test.NUnit.Assert.AreEqual("Item, Item", values.join(", "));
+                    Bridge.Test.NUnit.Assert.AreEqual("Item, Item", (values).join(", "));
                 },
                 GetItemValues: function (TValue, items) {
                     return System.Linq.Enumerable.from(items, Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.Item$1(TValue)).select(function (item) {
@@ -26126,7 +26126,7 @@ Bridge.$N1391Result =                     r;
         statics: {
             methods: {
                 TestReflectionBoxing: function () {
-                    var str = System.Array.convertAll(Bridge.Reflection.getMembers(Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.A, 4, 56), $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.f1).join(", ");
+                    var str = (System.Array.convertAll(Bridge.Reflection.getMembers(Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.A, 4, 56), $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.f1)).join(", ");
 
                     Bridge.Test.NUnit.Assert.AreEqual("A, B, C", str);
                     Bridge.Test.NUnit.Assert.AreEqual("B", Bridge.toString(Bridge.Reflection.midel(System.Linq.Enumerable.from(Bridge.Reflection.getMembers(Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.C, 16, 56), System.Reflection.PropertyInfo).first().g, null)()));
@@ -35833,7 +35833,7 @@ Bridge.$N1391Result =                     r;
                     var b = System.Array.init(["4", "5", "6"], System.String);
                     var fn = $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3678.f1;
                     var result = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3678Extensions.Zipper(System.String, System.String, System.String, a, b, fn);
-                    Bridge.Test.NUnit.Assert.AreEqual("14.25.36", ($t = System.String, System.Linq.Enumerable.from(result, $t).ToArray($t)).join("."), "Nested usings in a yield resumable method produces valid javascript code.");
+                    Bridge.Test.NUnit.Assert.AreEqual("14.25.36", (($t = System.String, System.Linq.Enumerable.from(result, $t).ToArray($t))).join("."), "Nested usings in a yield resumable method produces valid javascript code.");
                 }
             }
         }
@@ -37654,7 +37654,7 @@ Bridge.$N1391Result =                     r;
         statics: {
             methods: {
                 TestUseCase: function () {
-                    var s1 = System.Array.init(["a", "b"], System.String).join(",");
+                    var s1 = (System.Array.init(["a", "b"], System.String)).join(",");
                     Bridge.Test.NUnit.Assert.AreEqual("a,b", s1, "Join1");
 
                     var animals = new (System.Collections.Generic.List$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge381.Animal)).ctor();
@@ -37672,11 +37672,11 @@ Bridge.$N1391Result =                     r;
                         Bridge.box(11434, System.Int32), 
                         Bridge.box(0.366, System.Double, System.Double.format, System.Double.getHashCode)
                     ], System.Object);
-                    var s31 = values.join("|");
+                    var s31 = (values).join("|");
                     Bridge.Test.NUnit.Assert.AreEqual("|Cobb|4189|11434|0.366", s31, "Join31");
 
                     values[System.Array.index(0, values)] = "";
-                    var s32 = values.join("|");
+                    var s32 = (values).join("|");
                     Bridge.Test.NUnit.Assert.AreEqual("|Cobb|4189|11434|0.366", s32, "Join32");
 
                     var sArr = System.Array.init(10, null, System.String);
@@ -37684,11 +37684,11 @@ Bridge.$N1391Result =                     r;
                         sArr[System.Array.index(i, sArr)] = System.String.format("{0,-3}", [Bridge.box(Bridge.Int.mul(i, 5), System.Int32)]);
                     }
 
-                    var s4 = sArr.join(":");
+                    var s4 = (sArr).join(":");
                     Bridge.Test.NUnit.Assert.AreEqual("0  :5  :10 :15 :20 :25 :30 :35 :40 :45 ", s4, "Join4");
 
                     var val = System.Array.init(["apple", "orange", "grape", "pear"], System.String);
-                    var s5 = val.slice(1, 1 + 2).join(", ");
+                    var s5 = (val).slice(1, 1 + 2).join(", ");
                     Bridge.Test.NUnit.Assert.AreEqual("orange, grape", s5, "Join5");
                 }
             }
@@ -40563,6 +40563,17 @@ Bridge.$N1391Result =                     r;
             fields: {
                 Test: 0,
                 Test01: 1
+            }
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4023", {
+        statics: {
+            methods: {
+                TestStringJoinTemplate: function () {
+                    var ids = System.Array.init(["1", "2", "3"], System.String);
+                    Bridge.Test.NUnit.Assert.AreEqual("1;2;3", (ids || System.Array.init(0, null, System.String)).join(";"));
+                }
             }
         }
     });
@@ -49975,7 +49986,7 @@ Bridge.$N1391Result =                     r;
         },
         methods: {
             MyMethod: function () {
-                return System.Array.init([Bridge.toString(this.A.a), this.A.b.toString(), this.B.a.toString(), Bridge.toString(this.B.b)], System.String).join("|");
+                return (System.Array.init([Bridge.toString(this.A.a), this.A.b.toString(), this.B.a.toString(), Bridge.toString(this.B.b)], System.String)).join("|");
             }
         }
     }; });

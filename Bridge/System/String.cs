@@ -870,7 +870,7 @@ namespace System
         /// <param name="separator">The string to use as a separator. separator is included in the returned string only if values has more than one element.</param>
         /// <param name="values">An array that contains the elements to concatenate.</param>
         /// <returns>A string that consists of the elements of values delimited by the separator string. If values is an empty array, the method returns String.Empty.</returns>
-        [Bridge.Template("{values:array}.join({separator})")]
+        [Bridge.Template("({values:array}).join({separator})")]
         [Bridge.Unbox(false)]
         public static extern string Join(string separator, params object[] values);
 
@@ -880,7 +880,7 @@ namespace System
         /// <param name="separator">The string to use as a separator. separator is included in the returned string only if value has more than one element.</param>
         /// <param name="value">An array that contains the elements to concatenate.</param>
         /// <returns>A string that consists of the elements in value delimited by the separator string. If value is an empty array, the method returns String.Empty.</returns>
-        [Bridge.Template("{value:array}.join({separator})")]
+        [Bridge.Template("({value:array}).join({separator})")]
         public static extern string Join(string separator, params string[] value);
 
         /// <summary>
@@ -891,7 +891,7 @@ namespace System
         /// <param name="startIndex">The first element in value to use.</param>
         /// <param name="count">The number of elements of value to use.</param>
         /// <returns>A string that consists of the strings in value delimited by the separator string. -or- String.Empty if count is zero, value has no elements, or separator and all the elements of value are String.Empty.</returns>
-        [Bridge.Template("{value}.slice({startIndex}, {startIndex} + {count}).join({separator})")]
+        [Bridge.Template("({value}).slice({startIndex}, {startIndex} + {count}).join({separator})")]
         public static extern string Join(string separator, string[] value, int startIndex, int count);
 
         /// <summary>
