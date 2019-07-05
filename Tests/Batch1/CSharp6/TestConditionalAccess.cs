@@ -22,10 +22,10 @@ namespace Bridge.ClientTest.CSharp6
             Assert.Null(GetCustomers(customers2)[2]?.Method1(customers2?[0].Orders.Count())?.Length);
             Assert.AreEqual(1, GetCustomers(customers2)?[1].Method1(GetCustomers(customers2)?[1].Orders.Count())?.Length);
 
-            Assert.Null(customers1?[0].Orders?.Concat(null)?.Count());
-            Assert.Null(customers2[2]?.Orders?.Concat(null)?.Count());
-            Assert.Null(customers2[0]?.Orders?.Concat(null)?.Count());
-            Assert.AreEqual(2, customers2[1]?.Orders?.Concat(null)?.Count());
+            Assert.Null(customers1?[0].Orders?.Concat(new string[0])?.Count());
+            Assert.Null(customers2[2]?.Orders?.Concat(new string[0])?.Count());
+            Assert.Null(customers2[0]?.Orders?.Concat(new string[0])?.Count());
+            Assert.AreEqual(2, customers2[1]?.Orders?.Concat(new string[0])?.Count());
 
             Assert.Null(customers1?[0].Orders?.Length);
             Assert.Null(customers2[2]?.Orders?.Length);
@@ -37,10 +37,10 @@ namespace Bridge.ClientTest.CSharp6
             Assert.Null(customers2[0].Orders?.Count());
             Assert.AreEqual(2, customers2?[1].Orders?.Count());
 
-            Assert.Null(customers1?[0].Orders?.Concat(null).Concat(null)?.Count());
-            Assert.Null(customers2[2]?.Orders?.Concat(null).Concat(null)?.Count());
-            Assert.Null(customers2?[0].Orders?.Concat(null).Concat(null)?.Count());
-            Assert.AreEqual(2, customers2?[1].Orders?.Concat(null).Concat(null)?.Count());
+            Assert.Null(customers1?[0].Orders?.Concat(new string[0]).Concat(new string[0])?.Count());
+            Assert.Null(customers2[2]?.Orders?.Concat(new string[0]).Concat(new string[0])?.Count());
+            Assert.Null(customers2?[0].Orders?.Concat(new string[0]).Concat(new string[0])?.Count());
+            Assert.AreEqual(2, customers2?[1].Orders?.Concat(new string[0]).Concat(new string[0])?.Count());
 
             Assert.Null(customers1?[0].Method1(nameof(GetStrings)));
             Assert.Null(customers2[2]?.Method1(nameof(GetStrings)));

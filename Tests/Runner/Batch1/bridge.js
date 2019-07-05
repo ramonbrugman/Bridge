@@ -25983,7 +25983,8 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
 
     Enumerable.from = function (obj, T) {
         if (obj == null) {
-            return Enumerable.empty();
+            return null;
+            //return Enumerable.empty();
         }
         if (obj instanceof Enumerable) {
             return obj;
@@ -26658,6 +26659,10 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
         if (arguments.length == 2) {
             var second = arguments[0];
 
+            if (second == null) {
+                throw new System.ArgumentNullException();
+            }
+
             return new Enumerable(function () {
                 var firstEnumerator;
                 var secondEnumerator;
@@ -26761,6 +26766,10 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
         innerKeySelector = Utils.createLambda(innerKeySelector);
         resultSelector = Utils.createLambda(resultSelector);
 
+        if (inner == null) {
+            throw new System.ArgumentNullException();
+        }
+
         var source = this;
 
         return new Enumerable(function () {
@@ -26805,6 +26814,10 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
         innerKeySelector = Utils.createLambda(innerKeySelector);
         resultSelector = Utils.createLambda(resultSelector);
         var source = this;
+
+        if (inner == null) {
+            throw new System.ArgumentNullException();
+        }
 
         return new Enumerable(function () {
             var enumerator = source.GetEnumerator();
@@ -26871,6 +26884,10 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
 
         if (arguments.length == 1) {
             var second = arguments[0];
+
+            if (second == null) {
+                throw new System.ArgumentNullException();
+            }
 
             return new Enumerable(function () {
                 var firstEnumerator;
@@ -27113,6 +27130,10 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
     Enumerable.prototype.except = function (second, comparer) {
         var source = this;
 
+        if (second == null) {
+            throw new System.ArgumentNullException();
+        }
+
         return new Enumerable(function () {
             var enumerator,
                 keys,
@@ -27156,6 +27177,10 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
     // Overload:function (second, compareSelector)
     Enumerable.prototype.intersect = function (second, comparer) {
         var source = this;
+
+        if (second == null) {
+            throw new System.ArgumentNullException();
+        }
 
         return new Enumerable(function () {
             var enumerator;
@@ -27203,6 +27228,10 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
     Enumerable.prototype.sequenceEqual = function (second, comparer) {
         comparer = comparer || System.Collections.Generic.EqualityComparer$1.$default;
 
+        if (second == null) {
+            throw new System.ArgumentNullException();
+        }
+
         var firstEnumerator = this.GetEnumerator();
         try {
             var secondEnumerator = Enumerable.from(second).GetEnumerator();
@@ -27228,6 +27257,10 @@ if (typeof window !== 'undefined' && window.performance && window.performance.no
 
     Enumerable.prototype.union = function (second, comparer) {
         var source = this;
+
+        if (second == null) {
+            throw new System.ArgumentNullException();
+        }
 
         return new Enumerable(function () {
             var firstEnumerator;

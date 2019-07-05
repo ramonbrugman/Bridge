@@ -35502,7 +35502,8 @@ Bridge.$N1391Result =                     r;
                 TestConversion: function () {
                     var good = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3628.A.op_Implicit(System.Array.init([Bridge.box(1, System.Int32), Bridge.box(2, System.Int32), Bridge.box(3, System.Int32), Bridge.box(4, System.Int32), Bridge.box(5, System.Int32)], System.Object));
                     var bad = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3628.A.op_Implicit(System.Array.init([Bridge.box(1, System.Int32), Bridge.box(2, System.Int32), Bridge.box(3, System.Int32), Bridge.box(4, System.Int32), Bridge.box(5, System.Int32)], System.Object));
-                    Bridge.Test.NUnit.Assert.True(0 === System.Linq.Enumerable.from(good, System.Object).count() && System.Linq.Enumerable.from(good, System.Object).count() === System.Linq.Enumerable.from(bad, System.Object).count(), "Implicit casting works (original test case, array elements dropped).");
+                    Bridge.Test.NUnit.Assert.Null(good);
+                    Bridge.Test.NUnit.Assert.Null(bad);
 
                     var good_b = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3628.B.op_Implicit(System.Array.init([Bridge.box(1, System.Int32), Bridge.box(2, System.Int32), Bridge.box(3, System.Int32), Bridge.box(4, System.Int32), Bridge.box(5, System.Int32)], System.Object));
                     var bad_b = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3628.B.op_Implicit(System.Array.init([Bridge.box(1, System.Int32), Bridge.box(2, System.Int32), Bridge.box(3, System.Int32), Bridge.box(4, System.Int32), Bridge.box(5, System.Int32)], System.Object));
@@ -40563,6 +40564,19 @@ Bridge.$N1391Result =                     r;
             fields: {
                 Test: 0,
                 Test01: 1
+            }
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4019", {
+        statics: {
+            methods: {
+                TestLinqNull: function () {
+                    var values = null;
+                    Bridge.Test.NUnit.Assert.Throws$2(System.NullReferenceException, function () {
+                        var arr = System.Linq.Enumerable.from(values, System.Int32).take(2).ToArray(System.Int32);
+                    });
+                }
             }
         }
     });
