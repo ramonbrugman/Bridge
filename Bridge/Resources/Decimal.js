@@ -37,7 +37,7 @@
 
             v = v.replace(/\s/g, "");
 
-            // Move the postfixed - to front, or remove '+' so the underlying
+            // Move the postfixed - to front, or remove "+" so the underlying
             // decimal handler knows what to do with the string.
             if (/[+-]$/.test(v)) {
                 var vlastpos = v.length - 1;
@@ -50,7 +50,7 @@
                 v = v.substr(1);
             }
 
-            if (!this.$precision && (dot = v.indexOf('.')) >= 0) {
+            if (!this.$precision && (dot = v.indexOf(".")) >= 0) {
                 this.$precision = v.length - dot - 1;
             }
         }
