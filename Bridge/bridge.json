@@ -18,6 +18,9 @@
   "rules": {
     "inlineComment": "Plain"
   },
+  "reflection": {
+    "target": "Assembly"
+  },
   "resources": [
     {
       // File paths relative to project root

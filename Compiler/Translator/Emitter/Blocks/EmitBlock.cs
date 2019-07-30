@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using Object.Net.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -241,12 +242,26 @@ namespace Bridge.Translator
             return fullClassName;
         }
 
+        private string GetDefaultFileName()
+        {
+            var defaultFileName = this.Emitter.Translator.AssemblyInfo.FileName;
+
+            if (string.IsNullOrEmpty(defaultFileName))
+            {
+                return AssemblyInfo.DEFAULT_FILENAME;
+            }
+
+            return Path.GetFileNameWithoutExtension(defaultFileName);
+        }
+
         protected override void DoEmit()
         {
             this.Emitter.Tag = "JS";
             this.Emitter.Writers = new Stack<IWriter>();
             this.Emitter.Outputs = new EmitterOutputs();
             var metas = new Dictionary<IType, JObject>();
+            var metasOutput = new Dictionary<string, Dictionary<IType, JObject>>();
+            var nsCache = new Dictionary<string, Dictionary<string, int>>();
 
             this.Emitter.Translator.Plugins.BeforeTypesEmit(this.Emitter, this.Emitter.Types);
             this.Emitter.ReflectableTypes = this.GetReflectableTypes();
@@ -338,6 +353,8 @@ namespace Bridge.Translator
             this.Emitter.DisableDependencyTracking = true;
             this.EmitNamedBoxedFunctions();
 
+            var oldDependencies = this.Emitter.CurrentDependencies;
+            var oldEmitterOutput = this.Emitter.EmitterOutput;
             this.Emitter.NamespacesCache = new Dictionary<string, int>();
 
             if (!this.Emitter.HasModules && this.Emitter.AssemblyInfo.Reflection.Target != MetadataTarget.Type)
@@ -372,21 +389,68 @@ namespace Bridge.Translator
                     if (isGlobal || this.Emitter.TypeInfo.Module != null || reflectedTypes.Any(t => t == type.Type))
                     {
                         continue;
+                    }                    
+
+                    this.GetOutputForType(type, null);
+
+                    var fn = Path.GetFileNameWithoutExtension(this.Emitter.EmitterOutput.FileName);
+                    if (!metasOutput.ContainsKey(fn))
+                    {
+                        metasOutput.Add(fn, new Dictionary<IType, JObject>());
+                    }
+
+                    if (this.Emitter.AssemblyInfo.Reflection.Target == MetadataTarget.File)
+                    {
+                        if (!nsCache.ContainsKey(fn))
+                        {
+                            nsCache.Add(fn, new Dictionary<string, int>());
+                        }
+
+                        this.Emitter.NamespacesCache = nsCache[fn];
                     }
 
                     var meta = MetadataUtils.ConstructTypeMetadata(typeDef, this.Emitter, true, type.TypeDeclaration.GetParent<SyntaxTree>());
 
                     if (meta != null)
-                    {
+                    {                       
                         metas.Add(type.Type, meta);
+                        metasOutput[fn].Add(type.Type, meta);
                     }
                 }
             }
 
+            var defaultFileName = this.GetDefaultFileName();
             foreach (var reflectedType in reflectedTypes)
             {
                 var typeDef = reflectedType.GetDefinition();
                 JObject meta = null;
+
+                var bridgeType = this.Emitter.BridgeTypes.Get(reflectedType, true);
+                string fileName = defaultFileName;
+                if (bridgeType != null && bridgeType.TypeInfo != null)
+                {
+                    this.GetOutputForType(bridgeType.TypeInfo, null);
+                    fileName = this.Emitter.EmitterOutput.FileName;
+                }
+
+                fileName = Path.GetFileNameWithoutExtension(fileName);
+
+                if (!metasOutput.ContainsKey(fileName))
+                {
+                    metasOutput.Add(fileName, new Dictionary<IType, JObject>());
+                }
+
+                if (this.Emitter.AssemblyInfo.Reflection.Target == MetadataTarget.File)
+                {
+                    if (!nsCache.ContainsKey(fileName))
+                    {
+                        nsCache.Add(fileName, new Dictionary<string, int>());
+                    }
+
+                    this.Emitter.NamespacesCache = nsCache[fileName];
+                }
+
+
                 if (typeDef != null)
                 {
                     var tInfo = this.Emitter.Types.FirstOrDefault(t => t.Type == reflectedType);
@@ -412,13 +476,17 @@ namespace Bridge.Translator
                 if (meta != null)
                 {
                     metas.Add(reflectedType, meta);
+                    metasOutput[fileName].Add(reflectedType, meta);
                 }
             }
+
+            this.Emitter.CurrentDependencies = oldDependencies;
+            this.Emitter.EmitterOutput = oldEmitterOutput;
 
             var lastOutput = this.Emitter.Output;
             var output = this.Emitter.AssemblyInfo.Reflection.Output;
 
-            if (this.Emitter.AssemblyInfo.Reflection.Target == MetadataTarget.File && this.Emitter.AssemblyInfo.Module == null)
+            if ((this.Emitter.AssemblyInfo.Reflection.Target == MetadataTarget.File || this.Emitter.AssemblyInfo.Reflection.Target == MetadataTarget.Assembly) && this.Emitter.AssemblyInfo.Module == null)
             {
                 if (string.IsNullOrEmpty(output))
                 {
@@ -441,65 +509,97 @@ namespace Bridge.Translator
 
             if (hasMeta)
             {
-                this.WriteNewLine();
-                int pos = 0;
-                if (metas.Count > 0)
+                if (this.Emitter.AssemblyInfo.Reflection.Target == MetadataTarget.Assembly)
                 {
-                    this.Write("var $m = " + JS.Types.Bridge.SET_METADATA + ",");
-                    this.WriteNewLine();
-                    this.Write(Bridge.Translator.Emitter.INDENT + "$n = ");
-                    pos = this.Emitter.Output.Length;
-                    this.Write(";");
-                    this.WriteNewLine();
+                    metasOutput = new Dictionary<string, Dictionary<IType, JObject>>();
+                    metasOutput.Add(defaultFileName, metas);
                 }
 
-                foreach (var meta in metas)
+                foreach (var metaInfo in metasOutput)
                 {
-                    var metaData = meta.Value;
-                    string typeArgs = "";
-
-                    if (meta.Key.TypeArguments.Count > 0 && !Helpers.IsIgnoreGeneric(meta.Key, this.Emitter))
+                    if (this.Emitter.AssemblyInfo.Reflection.Target == MetadataTarget.File && this.Emitter.AssemblyInfo.Module == null)
                     {
-                        StringBuilder arr_sb = new StringBuilder();
-                        var comma = false;
-                        foreach (var typeArgument in meta.Key.TypeArguments)
+                        var outputName = Path.GetFileNameWithoutExtension(metaInfo.Key);
+                        if (outputName == defaultFileName)
                         {
-                            if (comma)
-                            {
-                                arr_sb.Append(", ");
-                            }
-
-                            arr_sb.Append(typeArgument.Name);
-                            comma = true;
+                            outputName = this.Emitter.MetaDataOutputName;
+                        }
+                        else
+                        {
+                            outputName = outputName + ".meta.js";
                         }
 
-                        typeArgs = arr_sb.ToString();
-                    }
+                        this.Emitter.Output = this.GetOutputForType(null, outputName, true);
 
-                    this.Write(string.Format("$m(\"{0}\", function ({2}) {{ return {1}; }}, $n);", MetadataUtils.GetTypeName(meta.Key, this.Emitter, false, true, false), metaData.ToString(Formatting.None), typeArgs));
+                        if (nsCache.ContainsKey(metaInfo.Key))
+                        {
+                            this.Emitter.NamespacesCache = nsCache[metaInfo.Key];
+                        } else
+                        {
+                            this.Emitter.NamespacesCache = null;
+                        }                        
+                    }                   
+
                     this.WriteNewLine();
-                }
-
-                if (pos > 0)
-                {
-                    this.Emitter.Output.Insert(pos, this.Emitter.ToJavaScript(this.Emitter.NamespacesCache.OrderBy(key => key.Value).Select(item => item.Key).ToArray()));
-                    this.Emitter.NamespacesCache = null;
-                }
-
-                if (scriptableAttributes.Count > 0)
-                {
-                    JArray attrArr = new JArray();
-                    foreach (var a in scriptableAttributes)
+                    int pos = 0;
+                    if (metaInfo.Value.Count > 0)
                     {
-                        attrArr.Add(MetadataUtils.ConstructAttribute(a, null, this.Emitter));
+                        this.Write("var $m = " + JS.Types.Bridge.SET_METADATA + ",");
+                        this.WriteNewLine();
+                        this.Write(Bridge.Translator.Emitter.INDENT + "$n = ");
+                        pos = this.Emitter.Output.Length;
+                        this.Write(";");
+                        this.WriteNewLine();
                     }
 
-                    this.Write(string.Format("$asm.attr= {0};", attrArr.ToString(Formatting.None)));
-                    this.WriteNewLine();
-                }
+                    foreach (var meta in metaInfo.Value)
+                    {
+                        var metaData = meta.Value;
+                        string typeArgs = "";
+
+                        if (meta.Key.TypeArguments.Count > 0 && !Helpers.IsIgnoreGeneric(meta.Key, this.Emitter))
+                        {
+                            StringBuilder arr_sb = new StringBuilder();
+                            var comma = false;
+                            foreach (var typeArgument in meta.Key.TypeArguments)
+                            {
+                                if (comma)
+                                {
+                                    arr_sb.Append(", ");
+                                }
+
+                                arr_sb.Append(typeArgument.Name);
+                                comma = true;
+                            }
+
+                            typeArgs = arr_sb.ToString();
+                        }
+
+                        this.Write(string.Format("$m(\"{0}\", function ({2}) {{ return {1}; }}, $n);", MetadataUtils.GetTypeName(meta.Key, this.Emitter, false, true, false), metaData.ToString(Formatting.None), typeArgs));
+                        this.WriteNewLine();
+                    }
+
+                    if (pos > 0)
+                    {
+                        var cache = this.Emitter.NamespacesCache ?? new Dictionary<string, int>();
+                        this.Emitter.Output.Insert(pos, this.Emitter.ToJavaScript(cache.OrderBy(key => key.Value).Select(item => item.Key).ToArray()));                        
+                    }                    
+                }                
             }
 
             this.Emitter.Output = lastOutput;
+
+            if (scriptableAttributes.Count > 0)
+            {
+                JArray attrArr = new JArray();
+                foreach (var a in scriptableAttributes)
+                {
+                    attrArr.Add(MetadataUtils.ConstructAttribute(a, null, this.Emitter));
+                }
+
+                this.Write(string.Format("$asm.attr= {0};", attrArr.ToString(Formatting.None)));
+                this.WriteNewLine();
+            }
 
             //this.RemovePenultimateEmptyLines(true);
 
