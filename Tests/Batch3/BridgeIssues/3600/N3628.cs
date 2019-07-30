@@ -66,7 +66,8 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
         {
             A good = (A)new object[] { 1, 2, 3, 4, 5 };
             A bad = new object[] { 1, 2, 3, 4, 5 };
-            Assert.True(0 == good.Count() && good.Count() == bad.Count(), "Implicit casting works (original test case, array elements dropped).");
+            Assert.Null(good);
+            Assert.Null(bad);
 
             B good_b = (B)new object[] { 1, 2, 3, 4, 5 };
             B bad_b = new object[] { 1, 2, 3, 4, 5 };

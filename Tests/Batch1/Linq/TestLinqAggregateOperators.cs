@@ -9,6 +9,13 @@ namespace Bridge.ClientTest.Linq
     [TestFixture(TestNameFormat = "Aggregate - {0}")]
     public class TestLinqAggregateOperators
     {
+        [Test]
+        public static void TestNullCount()
+        {
+            int[] numbers = new int[0];
+            Assert.Throws<System.ArgumentNullException>(() => numbers.Concat(null));
+        }
+
         [Test(ExpectedCount = 20)]
         public static void Test()
         {
