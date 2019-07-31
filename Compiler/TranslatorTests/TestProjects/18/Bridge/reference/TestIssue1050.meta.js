@@ -1,0 +1,4 @@
+
+    var $m = Bridge.setMetadata,
+        $n = ["System"];
+    $m("TestIssue1050.App", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"Main1","t":8,"sn":"Main1","rt":$n[0].Void},{"a":1,"n":"Method","is":true,"t":8,"sn":"Method","rt":$n[0].Void},{"a":1,"n":"Property","is":true,"t":16,"rt":$n[0].Int32,"g":{"a":1,"n":"get_Property","t":8,"rt":$n[0].Int32,"fg":"Property","is":true,"box":function ($v) { return Bridge.box($v, System.Int32);}},"s":{"a":1,"n":"set_Property","t":8,"p":[$n[0].Int32],"rt":$n[0].Void,"fs":"Property","is":true},"fn":"Property"},{"a":1,"n":"Field","is":true,"t":4,"rt":$n[0].Int32,"sn":"Field","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"backing":true,"n":"<Property>k__BackingField","is":true,"t":4,"rt":$n[0].Int32,"sn":"Property","box":function ($v) { return Bridge.box($v, System.Int32);}}]}; }, $n);

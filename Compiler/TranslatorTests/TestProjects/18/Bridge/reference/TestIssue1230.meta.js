@@ -1,0 +1,4 @@
+
+    var $m = Bridge.setMetadata,
+        $n = ["System"];
+    $m("TestIssue1230.Issue1230", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"MethodDecimal","is":true,"t":8,"pi":[{"n":"l","pt":$n[0].Decimal,"ps":0}],"sn":"MethodDecimal","rt":$n[0].Void,"p":[$n[0].Decimal]},{"a":2,"n":"MethodInt","is":true,"t":8,"pi":[{"n":"l","pt":$n[0].Int32,"ps":0}],"sn":"MethodInt","rt":$n[0].Void,"p":[$n[0].Int32]},{"a":2,"n":"MethodLong","is":true,"t":8,"pi":[{"n":"l","pt":$n[0].Int64,"ps":0}],"sn":"MethodLong","rt":$n[0].Void,"p":[$n[0].Int64]},{"a":2,"n":"TestDecimal","is":true,"t":8,"sn":"TestDecimal","rt":$n[0].Void},{"a":2,"n":"TestInt","is":true,"t":8,"sn":"TestInt","rt":$n[0].Void},{"a":2,"n":"TestLong","is":true,"t":8,"sn":"TestLong","rt":$n[0].Void}]}; }, $n);
