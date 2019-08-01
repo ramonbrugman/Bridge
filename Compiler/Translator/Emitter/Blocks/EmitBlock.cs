@@ -389,7 +389,7 @@ namespace Bridge.Translator
                     if (isGlobal || this.Emitter.TypeInfo.Module != null || reflectedTypes.Any(t => t == type.Type))
                     {
                         continue;
-                    }                    
+                    }
 
                     this.GetOutputForType(type, null);
 
@@ -412,7 +412,7 @@ namespace Bridge.Translator
                     var meta = MetadataUtils.ConstructTypeMetadata(typeDef, this.Emitter, true, type.TypeDeclaration.GetParent<SyntaxTree>());
 
                     if (meta != null)
-                    {                       
+                    {
                         metas.Add(type.Type, meta);
                         metasOutput[fn].Add(type.Type, meta);
                     }
@@ -537,8 +537,8 @@ namespace Bridge.Translator
                         } else
                         {
                             this.Emitter.NamespacesCache = null;
-                        }                        
-                    }                   
+                        }
+                    }
 
                     this.WriteNewLine();
                     int pos = 0;
@@ -582,9 +582,9 @@ namespace Bridge.Translator
                     if (pos > 0)
                     {
                         var cache = this.Emitter.NamespacesCache ?? new Dictionary<string, int>();
-                        this.Emitter.Output.Insert(pos, this.Emitter.ToJavaScript(cache.OrderBy(key => key.Value).Select(item => item.Key).ToArray()));                        
-                    }                    
-                }                
+                        this.Emitter.Output.Insert(pos, this.Emitter.ToJavaScript(cache.OrderBy(key => key.Value).Select(item => item.Key).ToArray()));
+                    }
+                }
             }
 
             this.Emitter.Output = lastOutput;
