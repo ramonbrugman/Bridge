@@ -1,8 +1,11 @@
 using Bridge.Test.NUnit;
-using System;
 
 namespace Bridge.ClientTest.Batch3.BridgeIssues
 {
+    /// <summary>
+    /// The test here ensures an extern-marked indexer works when it is subject
+    /// to a Bridge Template.
+    /// </summary>
     [TestFixture(TestNameFormat = "#4015 - {0}")]
     public class Bridge4015
     {
@@ -23,7 +26,7 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
         [Test]
         public static void TestExternalIndexer()
         {
-            Assert.AreEqual(5, new SomethingWithExternIndexer()[5]);
+            Assert.AreEqual(5, new SomethingWithExternIndexer()[5], "Extern Indexer with template attribute works.");
         }
     }
 }
