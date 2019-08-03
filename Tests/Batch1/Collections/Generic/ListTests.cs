@@ -499,7 +499,7 @@ namespace Bridge.ClientTest.Collections.Generic
         [Test]
         public void IndexOfWithoutStartIndexWorks()
         {
-            Assert.AreEqual(1, new[] { "a", "b", "c", "b" }.IndexOf("b"));
+            Assert.AreEqual(1, Array.IndexOf(new[] { "a", "b", "c", "b" },"b"));
         }
 
         [Test]

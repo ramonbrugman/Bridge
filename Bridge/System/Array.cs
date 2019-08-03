@@ -126,28 +126,6 @@ namespace System
         public static extern bool TrueForAll<T>(T[] array, Predicate<T> match);
 
         /// <summary>
-        /// The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
-        /// </summary>
-        /// <param name="searchElement"></param>
-        /// <returns></returns>
-        public extern int IndexOf(string searchElement);
-
-        /// <summary>
-        /// The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
-        /// </summary>
-        /// <param name="searchElement"></param>
-        /// <param name="fromIndex"></param>
-        /// <returns></returns>
-        public extern int IndexOf(string searchElement, int fromIndex);
-
-        /// <summary>
-        /// The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
-        /// </summary>
-        /// <param name="searchString"></param>
-        /// <returns></returns>
-        public extern int LastIndexOf(string searchString);
-
-        /// <summary>
         /// The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
         /// </summary>
         /// <param name="searchString"></param>
