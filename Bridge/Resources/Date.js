@@ -1281,6 +1281,7 @@
                 }
 
                 dt.ticks = this.getTicks(dt);
+                dt.kind = kind;
 
                 return dt;
             },

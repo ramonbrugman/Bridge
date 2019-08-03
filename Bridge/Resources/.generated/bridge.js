@@ -10958,6 +10958,7 @@ Bridge.define("System.Type", {
                 }
 
                 dt.ticks = this.getTicks(dt);
+                dt.kind = kind;
 
                 return dt;
             },
