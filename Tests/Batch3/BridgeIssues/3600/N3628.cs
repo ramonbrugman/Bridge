@@ -66,8 +66,8 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
         {
             A good = (A)new object[] { 1, 2, 3, 4, 5 };
             A bad = new object[] { 1, 2, 3, 4, 5 };
-            Assert.Null(good);
-            Assert.Null(bad);
+            Assert.Null(good, "Implicit casting works 1/2 (original test case, array elements dropped).");
+            Assert.Null(bad, "Implicit casting works 2/2 (original test case, array elements dropped).");
 
             B good_b = (B)new object[] { 1, 2, 3, 4, 5 };
             B bad_b = new object[] { 1, 2, 3, 4, 5 };

@@ -11,7 +11,7 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
         public static void TestLinqNull()
         {
             int[] values = null;
-            Assert.Throws<NullReferenceException>(() => { var arr = values.Take(2).ToArray(); });
+            Assert.Throws<NullReferenceException>(() => { var arr = values.Take(2).ToArray(); }, "Linq take() throws null reference exception when used against a null array.");
         }
     }
 }
