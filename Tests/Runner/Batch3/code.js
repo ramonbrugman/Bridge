@@ -2555,7 +2555,7 @@ Bridge.assembly("Bridge.ClientTest.Batch3", function ($asm, globals) {
 
                     var items = System.Array.init([new (Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.Item$1(System.Int32))(), new (Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.Item$1(System.Int32))()], Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.Item$1(System.Int32));
                     var values = Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.GetItemValues(System.Int32, items);
-                    Bridge.Test.NUnit.Assert.AreEqual("Item, Item", values.join(", "));
+                    Bridge.Test.NUnit.Assert.AreEqual("Item, Item", (values).join(", "));
                 },
                 GetItemValues: function (TValue, items) {
                     return System.Linq.Enumerable.from(items, Bridge.ClientTest.Batch3.BridgeIssues.Bridge1176.Item$1(TValue)).select(function (item) {
@@ -26126,7 +26126,7 @@ Bridge.$N1391Result =                     r;
         statics: {
             methods: {
                 TestReflectionBoxing: function () {
-                    var str = System.Array.convertAll(Bridge.Reflection.getMembers(Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.A, 4, 56), $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.f1).join(", ");
+                    var str = (System.Array.convertAll(Bridge.Reflection.getMembers(Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.A, 4, 56), $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.f1)).join(", ");
 
                     Bridge.Test.NUnit.Assert.AreEqual("A, B, C", str);
                     Bridge.Test.NUnit.Assert.AreEqual("B", Bridge.toString(Bridge.Reflection.midel(System.Linq.Enumerable.from(Bridge.Reflection.getMembers(Bridge.ClientTest.Batch3.BridgeIssues.Bridge2940.C, 16, 56), System.Reflection.PropertyInfo).first().g, null)()));
@@ -27012,8 +27012,6 @@ Bridge.$N1391Result =                     r;
             isSet: false
         },
         methods: {
-            addOnChange: function (value) { },
-            removeOnChange: function (value) { },
             on: function (eventName, handler) {
                 this.isSet = true;
                 this.name = eventName;
@@ -30635,14 +30633,6 @@ Bridge.$N1391Result =                     r;
         }
     });
 
-    /** @namespace System */
-
-    /**
-     * @memberof System
-     * @callback System.Action
-     * @return  {void}
-     */
-
     /**
      * The test here consists in checking whether templates on events would
      replace the {value} placeholder even if the {this} placeholder is not
@@ -30682,24 +30672,6 @@ Bridge.$N1391Result =                     r;
         },
         props: {
             status: null
-        },
-        methods: {
-            /**
-             * @instance
-             * @public
-             * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3418
-             * @event Bridge.ClientTest.Batch3.BridgeIssues.Bridge3418#OnDragEnd
-             * @return  {System.Action}
-             */
-            addOnDragEnd: function (value) { },
-            /**
-             * @instance
-             * @public
-             * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge3418
-             * @event Bridge.ClientTest.Batch3.BridgeIssues.Bridge3418#OnDragEnd
-             * @return  {System.Action}
-             */
-            removeOnDragEnd: function (value) { }
         }
     });
 
@@ -35502,7 +35474,8 @@ Bridge.$N1391Result =                     r;
                 TestConversion: function () {
                     var good = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3628.A.op_Implicit(System.Array.init([Bridge.box(1, System.Int32), Bridge.box(2, System.Int32), Bridge.box(3, System.Int32), Bridge.box(4, System.Int32), Bridge.box(5, System.Int32)], System.Object));
                     var bad = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3628.A.op_Implicit(System.Array.init([Bridge.box(1, System.Int32), Bridge.box(2, System.Int32), Bridge.box(3, System.Int32), Bridge.box(4, System.Int32), Bridge.box(5, System.Int32)], System.Object));
-                    Bridge.Test.NUnit.Assert.True(0 === System.Linq.Enumerable.from(good, System.Object).count() && System.Linq.Enumerable.from(good, System.Object).count() === System.Linq.Enumerable.from(bad, System.Object).count(), "Implicit casting works (original test case, array elements dropped).");
+                    Bridge.Test.NUnit.Assert.Null(good, "Implicit casting works 1/2 (original test case, array elements dropped).");
+                    Bridge.Test.NUnit.Assert.Null(bad, "Implicit casting works 2/2 (original test case, array elements dropped).");
 
                     var good_b = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3628.B.op_Implicit(System.Array.init([Bridge.box(1, System.Int32), Bridge.box(2, System.Int32), Bridge.box(3, System.Int32), Bridge.box(4, System.Int32), Bridge.box(5, System.Int32)], System.Object));
                     var bad_b = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3628.B.op_Implicit(System.Array.init([Bridge.box(1, System.Int32), Bridge.box(2, System.Int32), Bridge.box(3, System.Int32), Bridge.box(4, System.Int32), Bridge.box(5, System.Int32)], System.Object));
@@ -35833,7 +35806,7 @@ Bridge.$N1391Result =                     r;
                     var b = System.Array.init(["4", "5", "6"], System.String);
                     var fn = $asm.$.Bridge.ClientTest.Batch3.BridgeIssues.Bridge3678.f1;
                     var result = Bridge.ClientTest.Batch3.BridgeIssues.Bridge3678Extensions.Zipper(System.String, System.String, System.String, a, b, fn);
-                    Bridge.Test.NUnit.Assert.AreEqual("14.25.36", ($t = System.String, System.Linq.Enumerable.from(result, $t).ToArray($t)).join("."), "Nested usings in a yield resumable method produces valid javascript code.");
+                    Bridge.Test.NUnit.Assert.AreEqual("14.25.36", (($t = System.String, System.Linq.Enumerable.from(result, $t).ToArray($t))).join("."), "Nested usings in a yield resumable method produces valid javascript code.");
                 }
             }
         }
@@ -35846,6 +35819,8 @@ Bridge.$N1391Result =                     r;
             return (s1 || "") + (s2 || "");
         }
     });
+
+    /** @namespace System */
 
     /**
      * @memberof System
@@ -37654,7 +37629,7 @@ Bridge.$N1391Result =                     r;
         statics: {
             methods: {
                 TestUseCase: function () {
-                    var s1 = System.Array.init(["a", "b"], System.String).join(",");
+                    var s1 = (System.Array.init(["a", "b"], System.String)).join(",");
                     Bridge.Test.NUnit.Assert.AreEqual("a,b", s1, "Join1");
 
                     var animals = new (System.Collections.Generic.List$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge381.Animal)).ctor();
@@ -37672,11 +37647,11 @@ Bridge.$N1391Result =                     r;
                         Bridge.box(11434, System.Int32), 
                         Bridge.box(0.366, System.Double, System.Double.format, System.Double.getHashCode)
                     ], System.Object);
-                    var s31 = values.join("|");
+                    var s31 = (values).join("|");
                     Bridge.Test.NUnit.Assert.AreEqual("|Cobb|4189|11434|0.366", s31, "Join31");
 
                     values[System.Array.index(0, values)] = "";
-                    var s32 = values.join("|");
+                    var s32 = (values).join("|");
                     Bridge.Test.NUnit.Assert.AreEqual("|Cobb|4189|11434|0.366", s32, "Join32");
 
                     var sArr = System.Array.init(10, null, System.String);
@@ -37684,11 +37659,11 @@ Bridge.$N1391Result =                     r;
                         sArr[System.Array.index(i, sArr)] = System.String.format("{0,-3}", [Bridge.box(Bridge.Int.mul(i, 5), System.Int32)]);
                     }
 
-                    var s4 = sArr.join(":");
+                    var s4 = (sArr).join(":");
                     Bridge.Test.NUnit.Assert.AreEqual("0  :5  :10 :15 :20 :25 :30 :35 :40 :45 ", s4, "Join4");
 
                     var val = System.Array.init(["apple", "orange", "grape", "pear"], System.String);
-                    var s5 = val.slice(1, 1 + 2).join(", ");
+                    var s5 = (val).slice(1, 1 + 2).join(", ");
                     Bridge.Test.NUnit.Assert.AreEqual("orange, grape", s5, "Join5");
                 }
             }
@@ -40563,6 +40538,56 @@ Bridge.$N1391Result =                     r;
             fields: {
                 Test: 0,
                 Test01: 1
+            }
+        }
+    });
+
+    /**
+     * The test here ensures an extern-marked indexer works when it is subject
+     to a Bridge Template.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge4015
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4015", {
+        statics: {
+            methods: {
+                TestExternalIndexer: function () {
+                    Bridge.Test.NUnit.Assert.AreEqual(5, new Bridge.ClientTest.Batch3.BridgeIssues.Bridge4015.SomethingWithExternIndexer().Get(5), "Extern Indexer with template attribute works.");
+                }
+            }
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4015.SomethingWithExternIndexer", {
+        $kind: "nested class",
+        methods: {
+            Get: function (i) {
+                return i;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4019", {
+        statics: {
+            methods: {
+                TestLinqNull: function () {
+                    var values = null;
+                    Bridge.Test.NUnit.Assert.Throws$2(System.NullReferenceException, function () {
+                        var arr = System.Linq.Enumerable.from(values, System.Int32).take(2).ToArray(System.Int32);
+                    }, "Linq take() throws null reference exception when used against a null array.");
+                }
+            }
+        }
+    });
+
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4023", {
+        statics: {
+            methods: {
+                TestStringJoinTemplate: function () {
+                    var ids = System.Array.init(["1", "2", "3"], System.String);
+                    Bridge.Test.NUnit.Assert.AreEqual("1;2;3", (ids || System.Array.init(0, null, System.String)).join(";"), "Null-coalescing operator works as parameter expression to string.Join().");
+                }
             }
         }
     });
@@ -49975,7 +50000,7 @@ Bridge.$N1391Result =                     r;
         },
         methods: {
             MyMethod: function () {
-                return System.Array.init([Bridge.toString(this.A.a), this.A.b.toString(), this.B.a.toString(), Bridge.toString(this.B.b)], System.String).join("|");
+                return (System.Array.init([Bridge.toString(this.A.a), this.A.b.toString(), this.B.a.toString(), Bridge.toString(this.B.b)], System.String)).join("|");
             }
         }
     }; });

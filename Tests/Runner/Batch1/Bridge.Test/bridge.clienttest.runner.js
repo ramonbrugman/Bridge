@@ -1923,6 +1923,7 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest", function ($asm, globals) {
             QUnit.test("BufferedStream_StreamMethods - ReadByte_ThenRead_EndOfStreamCorrectlyFound", Bridge.Test.Runtime.BridgeClientTestRunner.BufferedStream_StreamMethods.ReadByte_ThenRead_EndOfStreamCorrectlyFound);
             QUnit.test("StreamWriterWithBufferedStream_FlushTests - WriteAfterRead_NonSeekableStream_Throws", Bridge.Test.Runtime.BridgeClientTestRunner.StreamWriterWithBufferedStream_FlushTests.WriteAfterRead_NonSeekableStream_Throws);
             QUnit.module("LINQ");
+            QUnit.test("Aggregate - TestNullCount", Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqAggregateOperators.TestNullCount);
             QUnit.test("Aggregate - Test", Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqAggregateOperators.Test);
             QUnit.test("Aggregate - Bridge315", Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqAggregateOperators.Bridge315);
             QUnit.test("Conversion - Test", Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqConversionOperators.Test);
@@ -25544,14 +25545,19 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest", function ($asm, globals) {
         $kind: "nested class",
         statics: {
             methods: {
+                TestNullCount: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Linq.TestLinqAggregateOperators).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqAggregateOperators, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "TestNullCount()", $t.Line = "12", $t));
+                    Bridge.ClientTest.Linq.TestLinqAggregateOperators.TestNullCount();
+                },
                 Test: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Linq.TestLinqAggregateOperators).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqAggregateOperators, 20, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "Test()", $t.Line = "12", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Linq.TestLinqAggregateOperators).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqAggregateOperators, 20, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "Test()", $t.Line = "19", $t));
                     Bridge.ClientTest.Linq.TestLinqAggregateOperators.Test();
                 },
                 Bridge315: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Linq.TestLinqAggregateOperators).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqAggregateOperators, 1, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "Bridge315()", $t.Line = "231", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Linq.TestLinqAggregateOperators).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestRunner.TestLinqAggregateOperators, 1, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "Bridge315()", $t.Line = "238", $t));
                     Bridge.ClientTest.Linq.TestLinqAggregateOperators.Bridge315();
                 }
             }

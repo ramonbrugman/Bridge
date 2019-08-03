@@ -17,7 +17,7 @@
                 },
                 CommandLine: {
                     get: function () {
-                        return System.Environment.GetCommandLineArgs().join(" ");
+                        return (System.Environment.GetCommandLineArgs()).join(" ");
                     }
                 },
                 CurrentDirectory: {
