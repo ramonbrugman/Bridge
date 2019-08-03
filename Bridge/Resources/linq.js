@@ -315,7 +315,6 @@
     Enumerable.from = function (obj, T) {
         if (obj == null) {
             return null;
-            //return Enumerable.empty();
         }
         if (obj instanceof Enumerable) {
             return obj;
