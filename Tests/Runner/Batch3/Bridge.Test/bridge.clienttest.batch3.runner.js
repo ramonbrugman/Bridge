@@ -162,6 +162,7 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
             QUnit.test("#3979 - TestFloatingPointParse", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3979.TestFloatingPointParse);
             QUnit.test("#3982 - TestFloatingPointParse", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3982.TestFloatingPointParse);
             QUnit.test("#3994 - TestEnumOptionalParam", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge3994.TestEnumOptionalParam);
+            QUnit.test("#4014 - TestDateTimeHasKindForDateProperty", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4014.TestDateTimeHasKindForDateProperty);
             QUnit.test("#4015 - TestExternalIndexer", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4015.TestExternalIndexer);
             QUnit.test("#4019 - TestLinqNull", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4019.TestLinqNull);
             QUnit.test("#4023 - TestStringJoinTemplate", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4023.TestStringJoinTemplate);
@@ -20075,6 +20076,32 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
                 var $t;
                 if (this.context == null) {
                     this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge3994", $t.File = "Batch3\\BridgeIssues\\3900\\N3994.cs", $t);
+                }
+                return this.context;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4014", {
+        inherits: [Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge4014)],
+        $kind: "nested class",
+        statics: {
+            methods: {
+                TestDateTimeHasKindForDateProperty: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge4014).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4014, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "TestDateTimeHasKindForDateProperty()", $t.Line = "15", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge4014.TestDateTimeHasKindForDateProperty();
+                }
+            }
+        },
+        fields: {
+            context: null
+        },
+        methods: {
+            GetContext: function () {
+                var $t;
+                if (this.context == null) {
+                    this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge4014", $t.File = "Batch3\\BridgeIssues\\4000\\N4014.cs", $t);
                 }
                 return this.context;
             }

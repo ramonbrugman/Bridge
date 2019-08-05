@@ -40543,6 +40543,36 @@ Bridge.$N1391Result =                     r;
     });
 
     /**
+     * Specify Kind on DateTime
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge4014
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4014", {
+        statics: {
+            methods: {
+                /**
+                 * Checks whether specifying Kind on DateTime then getting Date.Kind is the same
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4014
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4014
+                 * @return  {void}
+                 */
+                TestDateTimeHasKindForDateProperty: function () {
+                    var date1 = System.DateTime.specifyKind(System.DateTime.getToday(), 1);
+                    var date2 = System.DateTime.getDate(date1);
+
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getKind(date1), 1, "Kind is Utc");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getKind(date2), 1, "Kind is Utc");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getKind(date1), System.DateTime.getKind(date2), "Kind are the same");
+                }
+            }
+        }
+    });
+
+    /**
      * The test here ensures an extern-marked indexer works when it is subject
      to a Bridge Template.
      *
