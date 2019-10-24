@@ -660,6 +660,7 @@ namespace Bridge.Translator
         public override SyntaxNode VisitInvocationExpression(InvocationExpressionSyntax node)
         {
             var method = this.semanticModel.GetSymbolInfo(node).Symbol as IMethodSymbol;
+            
             var isRef = false;
             var toAwait = false;
 

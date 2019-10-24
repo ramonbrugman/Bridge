@@ -40605,6 +40605,29 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076", {
+        statics: {
+            methods: {
+                F: function (T, t) {
+                    return Bridge.Reflection.getTypeName(T);
+                },
+                /**
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076
+                 * @return  {void}
+                 */
+                TestTypeAlias: function () {
+                    var x = new (System.Collections.Generic.List$1(System.Int32)).ctor();
+                    Bridge.Test.NUnit.Assert.AreEqual("List`1", Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076.F(System.Collections.Generic.List$1(System.Int32), x));
+                    var y = new (System.Collections.Generic.Stack$1(System.Int32)).ctor();
+                    Bridge.Test.NUnit.Assert.AreEqual("Stack`1", Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076.F(System.Collections.Generic.Stack$1(System.Int32), y));
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge418", {
         props: {
             Delegate: null
