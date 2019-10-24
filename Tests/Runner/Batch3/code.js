@@ -40605,6 +40605,29 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072", {
+        statics: {
+            methods: {
+                TryGet: function (x) {
+                    x.v = new (System.Collections.Generic.List$1(System.Int32)).ctor();
+                    return true;
+                },
+                /**
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072
+                 * @return  {void}
+                 */
+                TestTypeAlias: function () {
+                    var x = { };
+                    var c = Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072.TryGet(x);
+                    Bridge.Test.NUnit.Assert.True(c);
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076", {
         statics: {
             methods: {
