@@ -1980,7 +1980,7 @@
                 }
 
                 var list1 = fn1.$invocationList ? fn1.$invocationList.slice(0) : [fn1],
-                    removeFn = fn2.$invocationList && fn2.$invocationList.length === 1 ? fn2.$invocationList[0] : fn2,
+                    list2 = fn2.$invocationList ? fn2.$invocationList : [fn2],
                     result = [],
                     exclude,
                     i,
@@ -1988,21 +1988,32 @@
 
                 exclude = -1;
 
-                for (i = list1.length - 1; i >= 0; i--) {
-                    if (list1[i] === removeFn ||
-                        ((list1[i].$method && (list1[i].$method === removeFn.$method)) && (list1[i].$scope && (list1[i].$scope === removeFn.$scope)))) {
-                        exclude = i;
+                for (i = list1.length - list2.length; i >= 0; i--) {
+                    if (Bridge.fn.equalInvocationLists(list1, list2, i, list2.length)) {
+                        if (list1.length - list2.length == 0) {
+                            return null;
+                        } else if (list1.length - list2.length == 1) {
+                            return list1[i != 0 ? 0 : list1.length - 1];
+                        } else {
+                            list1.splice(i, list2.length);
 
-                        break;
+                            return Bridge.fn.$build(list1);
+                        }
                     }
                 }
 
-                if (exclude > -1) {
-                    list1.splice(exclude, 1);
+                return fn1;
+            },
+
+            equalInvocationLists: function (a, b, start, count) {
+                for (var i = 0; i < count; i = (i + 1) | 0) {
+                    if (!(Bridge.equals(a[System.Array.index(((start + i) | 0), a)], b[System.Array.index(i, b)]))) {
+                        return false;
+                    }
                 }
 
-                return list1.length == 1 ? list1[0] : Bridge.fn.$build(list1);
-            }
+                return true;
+            },
         },
 
         sleep: function (ms, timeout) {
