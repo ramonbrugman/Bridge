@@ -861,6 +861,8 @@
     <Compile Include="BridgeIssues\4000\N4019.cs" />
     <Compile Include="BridgeIssues\4000\N4023.cs" />
     <Compile Include="BridgeIssues\4000\N4014.cs" />
+    <Compile Include="BridgeIssues\4000\N4072.cs" />
+    <Compile Include="BridgeIssues\4000\N4076.cs" />
     <Compile Include="BridgeIssues\TestBridgeIssues.cs" />
     <Compile Include="Utilities\BrowserHelper.cs" />
   </ItemGroup>

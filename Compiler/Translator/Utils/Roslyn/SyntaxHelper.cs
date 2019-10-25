@@ -403,6 +403,16 @@ namespace Bridge.Translator
                           );
                     }
 
+                    if (model != null)
+                    {
+                        var ai = model.GetSpeculativeAliasInfo(pos, SyntaxFactory.IdentifierName(gtypeName), SpeculativeBindingOption.BindAsTypeOrNamespace);
+
+                        if (ai != null && ai.Name == gtypeName)
+                        {
+                            return SyntaxFactory.ParseTypeName(gtypeName);
+                        }
+                    }                    
+
                     return SyntaxFactory.GenericName(
                         SyntaxFactory.Identifier(gtypeName),
                         SyntaxFactory.TypeArgumentList(
