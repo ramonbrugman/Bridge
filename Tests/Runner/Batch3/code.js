@@ -40660,6 +40660,97 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * The tests here consists in ensuring 'out Type variable' syntax is
+     supported on TryGet.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072", {
+        statics: {
+            methods: {
+                /**
+                 * TryGet() implementation using type 'Wrapper' as parameter.
+                 *
+                 * @static
+                 * @private
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072
+                 * @param   {System.Collections.Generic.List}    x
+                 * @return  {boolean}
+                 */
+                TryGet: function (x) {
+                    x.v = new (System.Collections.Generic.List$1(System.Int32)).ctor();
+                    return true;
+                },
+                /**
+                 * Tests by simply calling the TryGet() implementation in the
+                 required format. Notice if the x variable is declared somewhere
+                 else and used there (as just '(out x)'), the issue related to this
+                 test is not reproduced.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072
+                 * @return  {void}
+                 */
+                TestTypeAlias: function () {
+                    var x = { };
+                    var c = Bridge.ClientTest.Batch3.BridgeIssues.Bridge4072.TryGet(x);
+                    Bridge.Test.NUnit.Assert.True(c, "'out <type> <variable>' parameter syntax is supported.");
+                }
+            }
+        }
+    });
+
+    /**
+     * The tests here ensures generic types supports being "shorthand" by
+     the 'using [var] = [full_class_path]'.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076", {
+        statics: {
+            methods: {
+                /**
+                 * @static
+                 * @private
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076
+                 * @param   {Function}    T    
+                 * @param   {T}           t
+                 * @return  {string}
+                 */
+                F: function (T, t) {
+                    return Bridge.Reflection.getTypeName(T);
+                },
+                /**
+                 * Tests by instantiating the type that is shorthanded by 'using' and
+                 also another generic type that's not shorthanded.
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076
+                 * @return  {void}
+                 */
+                TestTypeAlias: function () {
+                    var x = new (System.Collections.Generic.List$1(System.Int32)).ctor();
+                    Bridge.Test.NUnit.Assert.AreEqual("List`1", Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076.F(System.Collections.Generic.List$1(System.Int32), x), "Type instantiation expanded from 'using <name> = <full class>' works.");
+
+                    var y = new (System.Collections.Generic.List$1(System.Int32)).ctor();
+                    Bridge.Test.NUnit.Assert.AreEqual("List`1", Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076.F(System.Collections.Generic.List$1(System.Int32), y), "Full class name type instantiation when same type is subject to 'using <name> = <full class>', works.");
+
+                    var z = new (System.Collections.Generic.Stack$1(System.Int32)).ctor();
+                    Bridge.Test.NUnit.Assert.AreEqual("Stack`1", Bridge.ClientTest.Batch3.BridgeIssues.Bridge4076.F(System.Collections.Generic.Stack$1(System.Int32), z), "Type instantiation from direct class name (not shorthanded by 'using') works.");
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge418", {
         props: {
             Delegate: null
