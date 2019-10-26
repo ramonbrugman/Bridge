@@ -31,7 +31,9 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
         }
 
         // <summary>
-        /// Tests the scenario provided in gitter.
+        /// Tests another scenario where actions' subtraction was not working.
+        /// This scenario triggered if there was anything between two matches
+        /// in the removal.
         /// </summary>
         [Test]
         public static void TestRemove2()
@@ -47,7 +49,7 @@ namespace Bridge.ClientTest.Batch3.BridgeIssues
             a5 -= a3;
 
             a5();
-            Assert.AreEqual("a4a1a2a41a4", buffer);
+            Assert.AreEqual("a4a1a2a41a4", buffer, "The delegates' Side effects were applied in the expected order.");
         }
 
         /// <summary>
