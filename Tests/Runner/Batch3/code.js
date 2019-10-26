@@ -8551,6 +8551,29 @@ Bridge.$N1391Result =                     r;
 
                     Bridge.Test.NUnit.Assert.AreEqual("a1a4a2", buffer, "The delegates' side effects were applied in the expected order.");
                 },
+                
+                TestRemove2: function () {
+                    var buffer = "";
+                    var a1 = function () {
+                        buffer = (buffer || "") + "a1";
+                    };
+                    var a2 = function () {
+                        buffer = (buffer || "") + "a2";
+                    };
+                    var a3 = Bridge.fn.combine(a1, a2);
+                    var a4 = function () {
+                        buffer = (buffer || "") + "a4";
+                    };
+                    var a41 = function () {
+                        buffer = (buffer || "") + "a41";
+                    };
+                    var a5 = Bridge.fn.combine(Bridge.fn.combine(Bridge.fn.combine(Bridge.fn.combine(Bridge.fn.combine(Bridge.fn.combine(a4, a1), a2), a41), a1), a2), a4);
+
+                    a5 = Bridge.fn.remove(a5, a3);
+
+                    a5();
+                    Bridge.Test.NUnit.Assert.AreEqual("a4a1a2a41a4", buffer, "The delegates' Side effects were applied in the expected order.");
+                },
                 /**
                  * Checks combination
                  *
