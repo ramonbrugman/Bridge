@@ -283,11 +283,17 @@ namespace Bridge.Translator
             this.Emitter.ReplaceAwaiterByVar = false;
 
             this.DetectReturnType();
+            this.FindAwaitNodes();
 
             this.Steps = new List<IAsyncStep>();
             this.TryInfos = new List<IAsyncTryInfo>();
             this.JumpLabels = new List<IAsyncJumpLabel>();
             this.WrittenAwaitExpressions = new List<AstNode>();
+        }
+
+        protected void FindAwaitNodes()
+        {
+            this.AwaitExpressions = this.GetAwaiters(this.Body);
         }
 
         protected void DetectReturnType()
