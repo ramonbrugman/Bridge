@@ -519,7 +519,7 @@ namespace Bridge.Translator
                 {
                     if (this.Emitter.AssemblyInfo.Reflection.Target == MetadataTarget.File && this.Emitter.AssemblyInfo.Module == null)
                     {
-                        var outputName = Path.GetFileNameWithoutExtension(metaInfo.Key);
+                        var outputName = metaInfo.Key;//Path.GetFileNameWithoutExtension(metaInfo.Key);
                         if (outputName == defaultFileName)
                         {
                             outputName = this.Emitter.MetaDataOutputName;
