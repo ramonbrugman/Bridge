@@ -1,8 +1,9 @@
 Resources:
-    Test.BridgeIssues.N3986.min.js   0.519 KB
-    Test.BridgeIssues.N697.min.js    3.367 KB
-    TestProject1.min.js              0.367 KB
-    TestProject2.min.js              0.367 KB
-    TestProject1.meta.min.js         0.566 KB
-    TestProject2.meta.min.js         0.566 KB
-    Test.BridgeIssues.meta.min.js    1.932 KB
+    Test.BridgeIssues.N3986.min.js        0.519 KB
+    Test.BridgeIssues.N697.min.js         3.367 KB
+    TestProject1.min.js                   0.367 KB
+    TestProject2.min.js                   0.367 KB
+    TestProject1.meta.min.js              0.566 KB
+    TestProject2.meta.min.js              0.566 KB
+    Test.BridgeIssues.N3986.meta.min.js   0.319 KB
+    Test.BridgeIssues.N697.meta.min.js    1.683 KB
