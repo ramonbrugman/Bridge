@@ -106,6 +106,7 @@ namespace Bridge.Translator.Tests
         [TestCase("19", false, true, TestName = "IntegrationTest 19 - Linked files feature #531 #562")]
 #endif
         [TestCase("20", false, true, TestName = "IntegrationTest 20 - Bridge.json autoProperty:plain")]
+        [TestCase("21", false, true, TestName = "IntegrationTest 21 - Issue #4082 - metadada file from projects with dot in name.")]
         [TestCase("22", false, true, TestName = "IntegrationTest 22 - Global Methods with nested classes")]
         [TestCase("23", false, true, TestName = "IntegrationTest 23 - Module in bridge.json")]
         [TestCase("24", false, true, TestName = "IntegrationTest 24 - Module as assembly attribute")]
@@ -190,6 +191,14 @@ namespace Bridge.Translator.Tests
                 if (folder == "11")
                 {
                     specialFiles.Add("TestProject.meta.js", CompareMode.Presence);
+                }
+
+                if (folder == "21")
+                {
+                    foreach (var filename in new string[] { "TestProject.Dot.js", "TestProject.Dot.min.js", "TestProject.Dot.meta.js", "TestProject.Dot.meta.min.js" })
+                    {
+                        specialFiles.Add(filename, CompareMode.Presence);
+                    }
                 }
 
                 if (folder == "26" || folder == "27" || folder == "28" || folder == "29" || folder == "30" || folder == "31")
