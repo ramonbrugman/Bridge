@@ -6505,7 +6505,7 @@ Bridge.assembly("Bridge.ClientTest.Batch3", function ($asm, globals) {
                         var $hasOwnProperty = 4;
 
                         var o = { };
-                        o.hasOwnProperty("v");
+                        Object.prototype.hasOwnProperty.call(o, "v");
 
                         Bridge.Test.NUnit.Assert.AreEqual(4, $hasOwnProperty, "hasOwnProperty");
                     } catch ($e3) {
@@ -48327,14 +48327,14 @@ Bridge.$N1391Result =                     r;
                 N377: function () {
                     var objectLiteralInstance = { field1: "field1 value", field3: 7 };
 
-                    Bridge.Test.NUnit.Assert.AreEqual(true, objectLiteralInstance.hasOwnProperty("field1"), "ObjectLiteral's field with an explicit value is emitted");
+                    Bridge.Test.NUnit.Assert.AreEqual(true, Object.prototype.hasOwnProperty.call(objectLiteralInstance, "field1"), "ObjectLiteral's field with an explicit value is emitted");
                     Bridge.Test.NUnit.Assert.AreEqual("field1 value", objectLiteralInstance.field1, "ObjectLiteral's field with an explicit value is emitted correctly");
 
-                    Bridge.Test.NUnit.Assert.AreEqual(true, objectLiteralInstance.hasOwnProperty("field3"), "ObjectLiteral's field with an explicit value is emitted");
+                    Bridge.Test.NUnit.Assert.AreEqual(true, Object.prototype.hasOwnProperty.call(objectLiteralInstance, "field3"), "ObjectLiteral's field with an explicit value is emitted");
                     Bridge.Test.NUnit.Assert.AreEqual(7, objectLiteralInstance.field3, "ObjectLiteral's field with an explicit value is emitted correctly");
 
-                    Bridge.Test.NUnit.Assert.AreEqual(false, objectLiteralInstance.hasOwnProperty("field2"), "ObjectLiteral's field without an explicit value is not emitted");
-                    Bridge.Test.NUnit.Assert.AreEqual(false, objectLiteralInstance.hasOwnProperty("field4"), "ObjectLiteral's field without an explicit value is not emitted");
+                    Bridge.Test.NUnit.Assert.AreEqual(false, Object.prototype.hasOwnProperty.call(objectLiteralInstance, "field2"), "ObjectLiteral's field without an explicit value is not emitted");
+                    Bridge.Test.NUnit.Assert.AreEqual(false, Object.prototype.hasOwnProperty.call(objectLiteralInstance, "field4"), "ObjectLiteral's field without an explicit value is not emitted");
                 },
                 N383: function () {
                     var $t;
