@@ -40645,6 +40645,38 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * The tests here ensures dictionaries can contain "hasOwnProperty" string
+     as keys.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069", {
+        statics: {
+            methods: {
+                /**
+                 * Tests by just assigning dictionary a key named "hasOwnProperty"
+                 (sets it up to break) then add another entry (name doesn't matter,
+                 triggers the issue).
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069
+                 * @return  {void}
+                 */
+                TestDictWithHasOwnPropertyKey: function () {
+                    var dict = new (System.Collections.Generic.Dictionary$2(System.String,System.Boolean)).ctor();
+                    dict.add("hasOwnProperty", true);
+                    dict.add("anything_else", true);
+
+                    Bridge.Test.NUnit.Assert.True(dict.getItem("hasOwnProperty"), "Dictionaries can have keys with the \"hasOwnProperty\" string.");
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge407", {
         $kind: "struct",
         statics: {

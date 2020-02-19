@@ -166,6 +166,7 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
             QUnit.test("#4015 - TestExternalIndexer", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4015.TestExternalIndexer);
             QUnit.test("#4019 - TestLinqNull", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4019.TestLinqNull);
             QUnit.test("#4023 - TestStringJoinTemplate", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4023.TestStringJoinTemplate);
+            QUnit.test("#4069 - TestDictWithHasOwnPropertyKey", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4069.TestDictWithHasOwnPropertyKey);
             QUnit.test("#4072 - TestTypeAlias", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4072.TestTypeAlias);
             QUnit.test("#4076 - TestTypeAlias", Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4076.TestTypeAlias);
             QUnit.module("Issues3");
@@ -20188,6 +20189,32 @@ Bridge.assembly("Bridge.Test.Bridge.ClientTest.Batch3", function ($asm, globals)
                 var $t;
                 if (this.context == null) {
                     this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge4023", $t.File = "Batch3\\BridgeIssues\\4000\\N4023.cs", $t);
+                }
+                return this.context;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4069", {
+        inherits: [Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069)],
+        $kind: "nested class",
+        statics: {
+            methods: {
+                TestDictWithHasOwnPropertyKey: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeClientTestBatch3Runner.Bridge4069, void 0, ($t = new Bridge.Test.Runtime.TestContext(), $t.Method = "TestDictWithHasOwnPropertyKey()", $t.Line = "26", $t));
+                    Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069.TestDictWithHasOwnPropertyKey();
+                }
+            }
+        },
+        fields: {
+            context: null
+        },
+        methods: {
+            GetContext: function () {
+                var $t;
+                if (this.context == null) {
+                    this.context = ($t = new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Batch3", $t.ClassName = "Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069", $t.File = "Batch3\\BridgeIssues\\4000\\N4069.cs", $t);
                 }
                 return this.context;
             }
