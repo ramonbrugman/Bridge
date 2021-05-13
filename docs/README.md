@@ -12,7 +12,7 @@ We have a plan sketched out for a complete ground up reimplementation of Bridge,
 
 ![](static/build-something.png)
 
-[Bridge.NET](https://bridge.net/) is an open source C#-to-JavaScript Compiler. Write your application in C# and run on billions of devices.
+**Bridge.NET** is an open source C#-to-JavaScript Compiler. Write your application in C# and run on billions of devices.
 
 ||| C#
 ```csharp Write C# and compile with Bridge.NET
@@ -44,20 +44,20 @@ Run the sample above at [Deck.NET](https://deck.net/helloworld).
 
 ## TL;DR
 
-* Read the [Getting Started](/introduction/Getting_Started.md) Knowledge Base article
+* Read the [Getting Started](introduction/Getting_Started.md) Knowledge Base article
 * Try [Deck.NET](https://deck.net/) if you want to play
 * Installation:
   * Add **Bridge.NET** Visual Studio extension, or
   * Use [NuGet](https://www.nuget.org/packages/bridge) to install into a C# Class Library project (`Install-Package Bridge`), or
-* The [Attribute Reference](/attributes/Attribute_Reference.md) documentation is important
-* The [Global Configuration](/introduction/Global_Configuration.md) documentation is important
+* The [Attribute Reference](attributes/Attribute_Reference.md) documentation is important
+* The [Global Configuration](introduction/Global_Configuration.md) documentation is important
 * Licensed under [Apache License, Version 2.0](https://github.com/bridgedotnet/Bridge/blob/master/LICENSE.md)
 * Need Help? Bridge.NET [Forums](https://forums.bridge.net/) or GitHub [Issues](https://github.com/bridgedotnet/Bridge/issues)
 * [@bridgedotnet](https://twitter.com/bridgedotnet) on Twitter
 
 ## Getting Started
 
-If you are new to Bridge, a great place to start is reviewing the [Getting Started](/introduction/Getting_Started.md) guide.
+If you are new to Bridge, a great place to start is reviewing the [Getting Started](introduction/Getting_Started.md) guide.
 
 The easiest place to see Bridge in action is [Deck.NET](https://deck.net/).
 
@@ -114,11 +114,11 @@ Bridge can also be installed using the NuGet Command Line tool by running the fo
 Install-Package Bridge
 ```
 
-More information regarding Nuget package installation for Bridge is available in the [Documentation](/introduction/NuGet_Installation.md).
+More information regarding Nuget package installation for Bridge is available in the [Documentation](introduction/NuGet_Installation.md).
 
 ## Contributing
 
-Interested in contributing to Bridge? Please see [CONTRIBUTING.md](/general/Contributing.md).
+Interested in contributing to Bridge? Please see [CONTRIBUTING.md](general/Contributing.md).
 
 We also flag some Issues as [up-for-grabs](https://github.com/bridgedotnet/Bridge/issues?q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs). These are generally easy introductions to the inner workings of Bridge, and are items we just haven't had time to implement. Your help is always appreciated.
 
