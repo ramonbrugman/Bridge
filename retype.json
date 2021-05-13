@@ -17,8 +17,9 @@
 
   "edit":
   {
-    "repo": "https://github.com/bridgedotnet/www.bridge.net",
-    "base": "src"
+    "repo": "https://github.com/bridgedotnet/Bridge",
+    "branch": "master",
+    "base": "docs"
   },
 
   "links": [
