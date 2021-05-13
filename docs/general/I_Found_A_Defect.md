@@ -9,7 +9,7 @@ Before you report a defect, please spend a few minutes to research if the bug ha
 Some things you can try before committing to post a bug are:
 
 1. Check the Bridge [Community Forums](https://forums.bridge.net/)
-1. Check the [GitHub Issues](https://github.com/bridgedotnet/Bridge.NET/issues)
+1. Check the [GitHub Issues](https://github.com/bridgedotnet/Bridge/issues)
 1. Google might be able to find something related
 1. Is this really a bug? Maybe it's a feature?
 1. Are you using latest version?
