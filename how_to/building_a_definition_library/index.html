@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60583944-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-60583944-1');</script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <title>Building A Definition Library | Write C#. Run in a web browser.</title>
+
+    <meta name="description" content="This article will guide you through creating a new Bridge.NET Definition Library." />
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/resources/js/config.js" defer></script>
+    <script type="text/javascript" src="/resources/js/prism.js" defer></script>
+    <script type="text/javascript" src="/resources/js/retype.js" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <span id="docs-site-logo" class="dark:text-white text-2xl leading-snug font-semibold line-clamp-1 md:line-clamp-2">
+                    <a href="/">
+                        <img class="dark:hidden" src="/static/bridge-logo.svg">
+                        <img class="hidden dark:block" src="/static/bridge-logo-dark.svg">
+                    </a>
+                </span>
+                <span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="/introduction/getting_started">Getting Started</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://deck.net/">Deck.NET</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/introduction/getting_started/">Getting Started</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://deck.net/">Deck.NET</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="building-a-definition-library" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#building-a-definition-library">#</doc-anchor-trigger>
+        <span>Building A Definition Library</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="introduction">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#introduction">#</doc-anchor-trigger>
+        <span>Introduction</span>
+    </h2>
+</doc-anchor-target>
+<p>This article will guide you through creating a new Bridge.NET Definition Library. This Definition library will enable use of a JavaScript library within a C# Bridge project. For example, the <strong>Bridge.jQuery</strong> library is an example of a Bridge Definition library. Once <strong>Bridge.jQuery</strong> has been added to your Project, all the Classes, Properties, Methods, and Events of the <strong>jQuery</strong> JavaScript library are now available in your Bridge C# project.</p>
+<p>The library being ported in this guide will be <a href="https://github.com/Ken-Lo/Reflection.js">Reflection.js</a>. This library was chosen for its simplicity and open source license availability.</p>
+<p>This guide will cover:</p>
+<ul>
+<li>Creating a Bridge Definition Library project from scratch</li>
+<li>Stubbing out the library&#x27;s functionality in C#</li>
+<li>Installing and using the library in a Bridge.NET project</li>
+</ul>
+<doc-anchor-target id="prerequisites">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#prerequisites">#</doc-anchor-trigger>
+        <span>Prerequisites</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li><a href="https://github.com/Ken-Lo/Reflection.js">Reflection.js</a></li>
+<li>Visual Studio 2013 or 2015</li>
+</ul>
+<p>For the setup procedure Visual Studio 2013 (Update 4) will be used. As a web browser, we&#x27;ll be using Internet Explorer 11, although any modern web browser could be used.</p>
+<p>The sections below will step thru the process of adding support for <a href="https://github.com/Ken-Lo/Reflection.js">Reflection.js</a> library to Bridge. The project will be named <code v-pre>MyCompany.ReflectionJS</code>.</p>
+<doc-anchor-target id="create-new-project">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#create-new-project">#</doc-anchor-trigger>
+        <span>Create New Project</span>
+    </h2>
+</doc-anchor-target>
+<p>Create a new project. Choose between creating from Bridge&#x27;s <a href="../../introduction/getting_started">VSIX installation</a> or <a href="../../introduction/nuget_installation">installing from NuGet</a>. For this guide, the latter method will be used, but both should work the same.</p>
+<p>After creating the project, the solution explorer should look like the image below:</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-01.png" alt="building-a-definition-library-img-01" />
+    <figcaption class="caption">building-a-definition-library-img-01</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="a-plan">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#a-plan">#</doc-anchor-trigger>
+        <span>A Plan</span>
+    </h2>
+</doc-anchor-target>
+<p>Before coding can start, we need to figure out what features of <code v-pre>Reflection.js</code> are to be mapped. The following members should be defined in order to have the <code v-pre>Reflection.js</code> JavaScript API fully mapped:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">Reflection.add(image, options);
+Reflection.remove(image);
+Reflection.defaultHeight = height;
+Reflection.defaultOpacity = opacity;</code></pre>
+</doc-codeblock></div>
+<p>All Methods and Fields are defined on the same <strong>Reflection</strong> object. This object can be represented in C# as a static class, which does not need to be instantiated with <code v-pre>new</code>. This class should have two static Methods and two static Fields.</p>
+<p>According to the <code v-pre>Reflection.js</code> documentation (accessible by opening <code v-pre>readme.html</code> inside the <code v-pre>Reflection.js</code> repository), the <code v-pre>image</code> parameter in the <code v-pre>add</code> and <code v-pre>remove</code> functions represent an HTML <code v-pre>&lt;img /&gt;</code> element. The Bridge types for HTML elements are defined in <strong>Bridge.Html5</strong>, so we need to reference that Assembly with a <code v-pre>using</code> statement within the <code v-pre>MyCompany.ReflectionJS</code> Class.</p>
+<p>An <code v-pre>options</code> argument can be passed to the <code v-pre>add</code> function, and is an object which can contain either (or both) <code v-pre>height</code> and <code v-pre>opacity</code> fields. The type of both fields can be a floating-point number comprised between 0 and 1. This indicates that a class or struct could be defined to govern this parameter&#x27;s settings.</p>
+<p>The two fields <code v-pre>defaultHeight</code> and <code v-pre>defaultOpacity</code> are both floating point numbers varying from 0 to 1 as well.</p>
+<doc-anchor-target id="main-class-file">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#main-class-file">#</doc-anchor-trigger>
+        <span>Main Class File</span>
+    </h2>
+</doc-anchor-target>
+<p>Instead of creating a new file, lets just rename the automatically created <code v-pre>Class1.cs</code> file. To do so, in the Solution Explorer, right-click on the file and select <strong>Rename</strong>.</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-02.png" alt="Renaming file" />
+    <figcaption class="caption">Renaming file</figcaption>
+</figure>
+</p>
+<p>Rename the file to <code v-pre>Reflection.cs</code>. Choose <strong>yes</strong> on the dialog that is shown when you finish renaming. The project should look like this afterwards:</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-03.png" alt="Project overview after renaming" />
+    <figcaption class="caption">Project overview after renaming</figcaption>
+</figure>
+</p>
+<p>The new <code v-pre>Reflection.cs</code> file will have contents similar to as shown below:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace MyCompany.ReflectionJS
+{
+    public class Reflection
+    {
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>Remove the <code v-pre>using</code> statements.</p>
+<p>As outlined in <doc-anchor-trigger to="#section4">step 3.2</doc-anchor-trigger> above, import the required Assembly by adding <code v-pre>using Bridge.Html5;</code> to the top of you .cs file. As a general rule, the <strong>Bridge</strong> Assembly should be added as well by adding <code v-pre>using Bridge;</code> to the other <strong>using</strong> statements. Your file should look like the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">using Bridge;
+using Bridge.Html5;
+
+namespace MyCompany.ReflectionJS
+{
+    public class Reflection
+    {
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p><strong>Notice:</strong> When creating new class files, <strong>do not</strong> create from an <em>Empty Class</em> template. Instead, create from a <em>Code File</em>. Otherwise, Visual Studio may add back references to the non-bridge <code v-pre>mscorlib.dll</code> libraries and break your build.</p>
+<doc-anchor-target id="setup-class">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup-class">#</doc-anchor-trigger>
+        <span>Setup Class</span>
+    </h2>
+</doc-anchor-target>
+<p>There are three initial requirements to consider while creating the <strong>Reflection</strong> class:</p>
+<ol>
+<li>It is already defined by the underlying library</li>
+<li>It is already instantiated by the underlying library</li>
+<li>It is defined in the global scope</li>
+</ol>
+<p>First, we want to instruct the Bridge compiler to treat the <code v-pre>Reflection.js</code> library as an <strong>External</strong> library. We are not defining the logic of the <strong>Reflection</strong> library in C#, just its API. For this, the <a href="attribute-reference#External">External</a> Attribute is added to the Class.</p>
+<p>Second, the Class, Methods and Field definitions should be <em>static</em>, so there&#x27;s no need to instantiate them from C#.</p>
+<p>Third, references to the class in JavaScript are required to be simply <code v-pre>Reflection</code> instead of <code v-pre>MyCompany.ReflectionJS.Reflection</code> -- namespace and class name path -- so the <a href="attribute-reference#Namespace">Namespace</a> attribute will be configured.</p>
+<p>For detailed information on all available Attributes, please refer to the <a href="attribute-reference">Bridge.NET attributes reference article</a>. Visual Studio&#x27;s IntelliSense also helps with discovering and completing the Attribute parameters.</p>
+<p>After applying both Attributes, the resulting <code v-pre>Reflection.cs</code> file will be:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">using Bridge;
+using Bridge.Html5;
+
+namespace MyCompany.ReflectionJS
+{
+    [External]
+    [Namespace(false)]
+    public static class Reflection
+    {
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="fields-and-methods">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fields-and-methods">#</doc-anchor-trigger>
+        <span>Fields and Methods</span>
+    </h2>
+</doc-anchor-target>
+<p>Now the Fields and Methods pertaining the <strong>Reflection</strong> class are to be configured. As noted in <doc-anchor-trigger to="#section6">step 6</doc-anchor-trigger>, they are declared as <code v-pre>static</code> because they are available without the need to instantiate the <code v-pre>Reflection</code> class (which, in turn, is also static).</p>
+<p>Reviewing the <code v-pre>Reflection.js</code> documentation (refer to <doc-anchor-trigger to="#section4">step 3.2&#x27;s planning</doc-anchor-trigger>), both Fields best fit a <strong>floating-point</strong> value, or an expression which result pertains to this type. We can then define as follows:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">public static float DefaultHeight;
+public static float DefaultOpacity;</code></pre>
+</doc-codeblock></div>
+<p>Notice the variables were defined using UpperCamelCase syntax (<code v-pre>DefaultHeight</code>, <code v-pre>DefaultOpacity</code>).</p>
+<p>Following C# and JavaScript naming conventions, Bridge.NET will automatically compile C# Method and Field names to their correct <strong>lowerCamelCase</strong> names. Using the sample above, <code v-pre>DefaultHeight</code> configured in C# will be automatically compiled into <code v-pre>defaultHeight</code> in JavaScript code.</p>
+<p>Moving forward to the Method definitions, looking again to the <code v-pre>Reflection.js</code> documentation (<doc-anchor-trigger to="#section4">step 3.2&#x27;s planning</doc-anchor-trigger>) both methods on the class do not have a return value. Their declaration will have a <code v-pre>void</code> return type. At first, the <code v-pre>options</code> parameter may be defined as <code v-pre>object</code> so one can use either an anonymous object or a strongly-typed class to provide the parameter&#x27;s value.</p>
+<p>Defining the Methods would then look like:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">public static void Add(ImageElement image, object options)
+{
+    return;
+}
+
+public static void Remove(ImageElement image)
+{
+    return;
+}</code></pre>
+</doc-codeblock></div>
+<p>Notice each method have is a <code v-pre>return;</code> call in its body. In fact, for the <code v-pre>void</code> methods, just an empty function would suffice. Remember in this Library, the <strong>Reflection</strong> class and all it&#x27;s Members, will not be compiled by Bridge into a <code v-pre>.js</code>. We&#x27;re only concerned that the <strong>Reflection</strong> Class and it&#x27;s Members are available in C# to be called from other C# Bridge projects. In this case, the body of the Member is not required. The logic is defined in JavaScript within <code v-pre>Reflection.js</code> and all we&#x27;re concerned with is the Member signature.</p>
+<p>If the Method has a return type, you can just return the type&#x27;s default value. The following sample demonstrates:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">public static MyType MyMethod()
+{
+    return default(MyType);
+}</code></pre>
+</doc-codeblock></div>
+<p>The resulting <code v-pre>Reflection.cs</code> file should have the following contents after the stubbed entities are configured:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">using Bridge;
+using Bridge.Html5;
+
+namespace MyCompany.ReflectionJS
+{
+    [External]
+    [Namespace(false)]
+    public static class Reflection
+    {
+        public static float DefaultHeight;
+        public static float DefaultOpacity;
+
+        public static void Add(ImageElement image, object options)
+        {
+            return;
+        }
+
+        public static void Remove(ImageElement image)
+        {
+            return;
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>When you are defining your library, do not refrain from using the <code v-pre>///</code> C# comment blocks. This documentation feeds IntelliSense data which assists users of your Bridge.NET Definition Library. For example, the <code v-pre>Reflection.Remove()</code> method could be enhanced by adding documentation:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">        /// &lt;summary&gt;
+        /// Removes the reflection effect from the specified Image Element.
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;image&quot;&gt;The image element to remove the effect from.&lt;/param&gt;
+        public static void Remove(ImageElement image)
+        {
+            return;
+        }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="parameter-types">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#parameter-types">#</doc-anchor-trigger>
+        <span>Parameter Types</span>
+    </h2>
+</doc-anchor-target>
+<p>The <code v-pre>Reflection.js</code> library support should now be fully functional.</p>
+<p>But, we should be able to improve the usability of this library. There are a couple refinements we can easily make to improve the developer experience.</p>
+<p>First, when using the <code v-pre>Add</code> Method, currently developers have to guess what <code v-pre>options</code> to pass. The <code v-pre>options</code> parameter is not a strongly typed object. To address this, the <code v-pre>options</code> parameter can be changed to reflect a well-defined class instead of a general purpose <code v-pre>object</code>.</p>
+<p>Second, unused class fields can still be omitted from the call if they are not assigned to values. For example, we may want to pass a <code v-pre>height</code> parameter, but not an <code v-pre>opacity</code>. This behaviour can be achieved with use of the <a href="attribute-reference#ObjectLiteral">ObjectLiteral</a> attribute to decorate the class.</p>
+<p>Lets define a new class called <strong>ReflectionOptions</strong>, and add this to a dedicated .cs file.</p>
+<p>Create the file and add to the solution. Do not create the class using the <code v-pre>Class</code> or <code v-pre>New Class</code> file template, but the empty <code v-pre>Code file</code>, otherwise undesired system references will be added to the project. The file will be named <code v-pre>ReflectionOptions.cs</code>.</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-04.png" alt="Add new item procedure" />
+    <figcaption class="caption">Add new item procedure</figcaption>
+</figure>
+</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-05.png" alt="Code file template selection" />
+    <figcaption class="caption">Code file template selection</figcaption>
+</figure>
+</p>
+<p>The newly created file will be empty, and three important sections must be written to it:</p>
+<ol>
+<li>The <code v-pre>using</code> statement(s)</li>
+<li>The <code v-pre>namespace</code> block</li>
+<li>The <code v-pre>class</code> block</li>
+</ol>
+<p>The resulting file should look like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">using Bridge;
+
+namespace MyCompany.ReflectionJS
+{
+    public class ReflectionOptions
+    {
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>Next we&#x27;ll add the Attributes as specified above. The resulting file should look like the following sample:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">using Bridge;
+
+namespace MyCompany.ReflectionJS
+{
+    [External]
+    [ObjectLiteral]
+    public class ReflectionOptions
+    {
+        public float Height;
+        public float Opacity;
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>Notice the <strong>ReflectionOptions</strong> class is not declared as <code v-pre>static</code> as this is a normal class that should be instantiated with <code v-pre>new</code> from C#.</p>
+<p>Back to the main class within <code v-pre>Reflection.cs</code>, we need to update the type of <code v-pre>options</code> to our new <strong>ReflectionOptions</strong> class.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">using Bridge;
+using Bridge.Html5;
+
+namespace MyCompany.ReflectionJS
+{
+    [External]
+    [Namespace(false)]
+    public static class Reflection
+    {
+        public static float DefaultHeight;
+        public static float DefaultOpacity;
+
+        public static void Add(ImageElement image, ReflectionOptions options)
+        {
+            return;
+        }
+
+        public static void Remove(ImageElement image)
+        {
+            return;
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>At this point the library support is ready to be compiled and deployed to Bridge.NET projects.</p>
+<p>There are several appendices to this guide, briefly covering side tasks related to the building, improving and finishing of the library framework support. <doc-anchor-trigger to="#section4">Section 4</doc-anchor-trigger> will be dedicated for the deployment of our new <strong>Reflection</strong> library and some usage examples.</p>
+<doc-anchor-target id="deploy-and-referencing">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#deploy-and-referencing">#</doc-anchor-trigger>
+        <span>Deploy And Referencing</span>
+    </h2>
+</doc-anchor-target>
+<p>After the library has compiled correctly on your IDE (may it be Visual Studio as used in this example, Visual Studio Code, Xamarin Studio or Mono Develop or even msbuild/xbuild directly), it is time to test it in action. For that, the library files must be referenced by a Bridge.NET client project.</p>
+<doc-anchor-target id="client-application">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#client-application">#</doc-anchor-trigger>
+        <span>Client Application</span>
+    </h2>
+</doc-anchor-target>
+<p>Consider a <em>Bridge client project</em> as a C# Class Library application where C# code is written with the purpose of being compiled into JavaScript. In other words, an application that references Bridge.NET, optional frameworks and uses Bridge.NET&#x27;s compiler during its own build process to output corresponding JavaScript files.</p>
+<p>To get a Bridge client application project working, the two easiest options are following either the <a href="getting-started">Getting Started</a> or the <a href="nuget-installation">NuGet Installation</a> knowledge base articles.</p>
+<p>After the project is set up, the <strong>MyCompany.ReflectionJS</strong> framework must be referenced. The client project will be called <strong>BridgeClient</strong>. It has been created as a separate solution in the same directory where the <strong>MyCompany.ReflectionJS</strong> solution were created, following the <a href="nuget-installation">NuGet Installation</a> knowledge base article setup procedure.</p>
+<p>To add the Reference, right-click the project&#x27;s <strong>References</strong> folder, then browse for the <code v-pre>MyCompany.ReflectionJS.dll</code> library inside the <strong>MyCompany.ReflectionJS</strong> project dir, or <strong>MyCompany.ReflectionJS/MyCompany.ReflectionJS/bin/Debug</strong>:</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-06.png" alt="Showing the reference manager" />
+    <figcaption class="caption">Showing the reference manager</figcaption>
+</figure>
+</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-07.png" alt="Browsing references" />
+    <figcaption class="caption">Browsing references</figcaption>
+</figure>
+</p>
+<p>If you don&#x27;t see the DLL file there, the framework project might have been built in the <strong>Release</strong> configuration. If so, just look for it inside <strong>MyCompany.ReflectionJS/MyCompany.ReflectionJS/bin/Release</strong>. If still not, the project was probably not built at all. Double check if the Build process was completed correctly.</p>
+<p>Once the DLL file is selected, it should show in the references dialog with a checked checkbox next, as depicted below:</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-08a.png" alt="Added reference" />
+    <figcaption class="caption">Added reference</figcaption>
+</figure>
+</p>
+<p>Click &#x27;Ok&#x27; and it should display the result below, in the Bridge.NET client solution:</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-09.png" alt="Framework reference in project" />
+    <figcaption class="caption">Framework reference in project</figcaption>
+</figure>
+</p>
+<p>From this point, the library can be used in code.</p>
+<doc-anchor-target id="application-example">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#application-example">#</doc-anchor-trigger>
+        <span>Application Example</span>
+    </h2>
+</doc-anchor-target>
+<p>First create a simple HTML page to. Create the file below inside the project&#x27;s <strong>Bridge/output/</strong> directory.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-markup"><code v-pre class="language-markup">&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+vhead&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Bridge.NET with Reflection.js&lt;/title&gt;
+    &lt;script src=&quot;bridge.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;BridgeClient.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;reflection.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;img src=&quot;https://speed.bridge.net/identity/bridgedotnet-liw.jpg&quot; /&gt;
+    &lt;img src=&quot;https://speed.bridge.net/identity/bridgedotnet-liw.jpg&quot; id=&quot;MyPic&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</doc-codeblock></div>
+<p>Copy the <strong>reflection.js,</strong> file to the same directory where the <code v-pre>index.html</code> file is located. The file can be downloaded directly from <a href="https://github.com/Ken-Lo/Reflection.js/raw/master/reflection.js">this link</a>.</p>
+<p>Remember to create the file below following the guidelines of <doc-anchor-trigger to="#section8">step 8</doc-anchor-trigger> (or renaming <code v-pre>Class1.cs</code> like <doc-anchor-trigger to="#section5">step 3</doc-anchor-trigger>).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">using Bridge.Html5;
+using MyCompany.ReflectionJS;
+
+namespace BridgeClient
+{
+    public class Driver
+    {
+        public static void Main()
+        {
+            var image = Document.GetElementById&lt;ImageElement&gt;(&quot;MyPic&quot;);
+            var options = new ReflectionOptions
+            {
+                Height = 1/4
+            };
+
+            Reflection.Add(image, options);
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>Build your Bridge.NET client project and view the <code v-pre>index.html</code> file in a browser. The result should look like this:</p>
+<p><figure class="content-center">
+    <img src="../../static/building-a-definition-library-img-10.png" alt="Page output" />
+    <figcaption class="caption">Page output</figcaption>
+</figure>
+</p>
+<p>The page will render with the original picture above and then the same image below with the reflection applied.</p>
+<doc-anchor-target id="summary">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#summary">#</doc-anchor-trigger>
+        <span>Summary</span>
+    </h2>
+</doc-anchor-target>
+<p>This article provides a simple understanding of the process required to build a Bridge Definition Library. In general, the main challenge while building a definition library would be deciding on an approach for mapping the JavaScript library API to an equivalent C# counterpart, but also leveraging the power of C# types.</p>
+<p>Whether it should be a class or a method, private or public, static, a type or an enumerator, it is up to the developer to infer what best matches in each case. The less dynamically-typed the library can be represented, the better usability in C#.</p>
+
+    
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            <div class="mt-14 flex flex-wrap items-center justify-between">
+    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/bridgedotnet/www.bridge.net/blob/main/src/how_to/Building_A_Definition_Library.md" target="_blank" rel="noopener">
+        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        <span>Edit this page</span>
+    </a>
+
+    <!--<p class="my-2.5 text-gray-500 dark:text-dark-350 text-sm">Last updated on <strong>2021-03-14</strong> by <strong>Geoffrey McGill</strong></p>-->
+</div>
+
+<nav class="flex mt-14">
+    <div class="w-1/2">
+        <a class="px-6 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/how_to/build_from_source">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+            <span>
+                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                <span class="block mt-1">Build from source</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="w-1/2">
+        <a class="px-6 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/how_to/calling_custom_javascript">
+            <span>
+                <span class="block text-right text-xs font-normal text-gray-400 dark:text-dark-400">Next</span>
+                <span class="block mt-1">Calling Custom JavaScript</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        </a>
+    </div>
+</nav>
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Copyright 2008-2021 <a href="https://object.net/">Object.NET</a>, Inc.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Building A Definition Library", icon: "file" }</script>
+    </body>
+</html>

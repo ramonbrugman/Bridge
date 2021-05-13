@@ -1,0 +1,2391 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60583944-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-60583944-1');</script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <title>Attribute Reference | Write C#. Run in a web browser.</title>
+
+    <meta name="description" content="This page contains the list of C# Attributes for Bridge.NET and their respective usage." />
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/resources/js/config.js" defer></script>
+    <script type="text/javascript" src="/resources/js/prism.js" defer></script>
+    <script type="text/javascript" src="/resources/js/retype.js" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <span id="docs-site-logo" class="dark:text-white text-2xl leading-snug font-semibold line-clamp-1 md:line-clamp-2">
+                    <a href="/">
+                        <img class="dark:hidden" src="/static/bridge-logo.svg">
+                        <img class="hidden dark:block" src="/static/bridge-logo-dark.svg">
+                    </a>
+                </span>
+                <span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="/introduction/getting_started">Getting Started</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://deck.net/">Deck.NET</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/introduction/getting_started/">Getting Started</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://deck.net/">Deck.NET</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="attribute-reference" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#attribute-reference">#</doc-anchor-trigger>
+        <span>Attribute Reference</span>
+    </h1>
+</doc-anchor-target>
+<p>This page contains the list of C# Attributes for Bridge.NET and their respective usage. The scope of each Attribute is listed, such as only being able to apply the attribute to a <code v-pre>Namespace</code>, <code v-pre>Class</code>, <code v-pre>Method</code>, <code v-pre>Property</code> or <code v-pre>Field</code>.</p>
+<doc-anchor-target id="constructor">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#constructor">#</doc-anchor-trigger>
+        <span>Constructor</span>
+    </h2>
+</doc-anchor-target>
+<p>Specifies a customer constructor value which will be emitted to the compiled JavaScript for this type.</p>
+<p><strong>Applies to:</strong> <code v-pre>Class</code> and <code v-pre>Struct</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Constructor(string value)]</code></td>
+<td>Specifies the JavaScript code that should be emitted when calling the type&#x27;s constructor</td>
+</tr>
+</tbody>
+</table>
+<p>The scenario below demonstrates how to replace the Constructor with a custom value. The value set in the <code v-pre>[Contructor]</code> Attribute will be directly emitted into the compiled JavaScript. No <code v-pre>new</code> keyword will be included, unless that is specified as the Attribute string value, such as <code v-pre>[Constructor(&quot;new $d&quot;)]</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/504d0d21b54557d4885df2de0fd61193">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        // This will throw a JavaScript
+        // error since $d does not exist
+        var data = new Data();
+    }
+}
+
+[Constructor(&quot;$d&quot;)]
+public class Data { }</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        var data = $d();
+    }
+});
+
+Bridge.define(&quot;Demo.Data&quot;);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="convention">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#convention">#</doc-anchor-trigger>
+        <span>Convention</span>
+    </h2>
+</doc-anchor-target>
+<p>The <code v-pre>[Convention]</code> attribute is used to configure the naming convention of entities within a Project.</p>
+<p>The default naming convention policy is <strong>What-You-See-Is-What-You-Get</strong> (WYSIWYG). If the member is configured as <code v-pre>PascalCase</code> in C#, the Bridge compiler will create the member as <code v-pre>PascalCase</code> in JavaScript.</p>
+<doc-alert variant="primary">
+<p>Please see Issue <a href="https://github.com/bridgedotnet/Bridge/issues/2477">#2477</a> for more information.</p>
+</doc-alert>
+<p>Convention attributes can be <em>stacked</em> with a <em>last in wins</em> policy.</p>
+<p><strong>Applies to:</strong> <code v-pre>Assembly</code>, <code v-pre>Class</code> <code v-pre>Struct</code>, <code v-pre>Enum</code>, <code v-pre>Interface</code>, <code v-pre>Property</code>, <code v-pre>Field</code>, <code v-pre>Method</code>, and all other entities</p>
+<doc-anchor-target id="constructors">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#constructors">#</doc-anchor-trigger>
+        <span>Constructors</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Convention(Notation notation)]
+[Convention(Notation notation, ConventionTarget target)]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="properties">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#properties">#</doc-anchor-trigger>
+        <span>Properties</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>Notation</code></td>
+<td><code v-pre>Notation</code></td>
+<td>Specifies notation to be applied by <a href="#convention">Convention</a> attribute.</td>
+</tr>
+<tr>
+<td><code v-pre>Target</code></td>
+<td><code v-pre>ConventionTarget</code></td>
+<td>Specifies target(s) to be filtered by <a href="#convention">Convention</a> attribute.</td>
+</tr>
+<tr>
+<td><code v-pre>Member</code></td>
+<td><code v-pre>ConventionMember</code></td>
+<td>Specifies type member(s) to be filtered by <a href="#convention">Convention</a> attribute.</td>
+</tr>
+<tr>
+<td><code v-pre>Accessibility</code></td>
+<td><code v-pre>ConventionAccessibility</code></td>
+<td>Specifies access modifiers to be filtered by <a href="#convention">Convention</a> attribute.</td>
+</tr>
+<tr>
+<td><code v-pre>Filter</code></td>
+<td><code v-pre>string</code></td>
+<td>Semicolon separated list of type paths (a type member&#x27;s full name, for example) to be applied by <a href="#convention">Convention</a> attribute.</td>
+</tr>
+<tr>
+<td><code v-pre>Priority</code></td>
+<td><code v-pre>int</code></td>
+<td>Applied to assembly attributes only.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">// Emit all members (Props, Methods, Fields) in CamelCase notation
+[Convention(Target = ConventionTarget.Member, Notation = Notation.CamelCase)]
+
+// Emit only Properties as CamelCase
+[Convention(Member = ConventionMember.Property, Notation = Notation.CamelCase)]
+
+// Emit all public Fields as lowercase
+[Convention(Accessibility = ConventionAccessibility.Public, Member = ConventionMember.Field, Notation = Notation.LowerCase)]</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>[Convention]</code> attribute can also be applied at the assembly level. The <code v-pre>[assembly: Convention]</code> can be added to any .cs within your project, such as the <code v-pre>/Properties/AssemblyInfo.cs</code> file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">[assembly: Convention(Target = ConventionTarget.Member, Notation = Notation.CamelCase)]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="notation-enum">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#notation-enum">#</doc-anchor-trigger>
+        <span>Notation Enum</span>
+    </h3>
+</doc-anchor-target>
+<p>The following table details all <strong>Notation</strong> enum values and provides a sample output given a property with the identifier of <code v-pre>FirstName</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Emit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>UpperCase</code></td>
+<td>FIRSTNAME</td>
+</tr>
+<tr>
+<td><code v-pre>LowerCase</code></td>
+<td>firstname</td>
+</tr>
+<tr>
+<td><code v-pre>CamelCase</code></td>
+<td>firstName</td>
+</tr>
+<tr>
+<td><code v-pre>PascalCase</code></td>
+<td>FirstName</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="conventiontarget-enum">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#conventiontarget-enum">#</doc-anchor-trigger>
+        <span>ConventionTarget Enum</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>All</code></td>
+</tr>
+<tr>
+<td><code v-pre>Class</code></td>
+</tr>
+<tr>
+<td><code v-pre>Struct</code></td>
+</tr>
+<tr>
+<td><code v-pre>Enum</code></td>
+</tr>
+<tr>
+<td><code v-pre>Interface</code></td>
+</tr>
+<tr>
+<td><code v-pre>ObjectLiteral</code></td>
+</tr>
+<tr>
+<td><code v-pre>Anonymous</code></td>
+</tr>
+<tr>
+<td><code v-pre>External</code></td>
+</tr>
+<tr>
+<td><code v-pre>Member</code></td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="conventionmember-enum">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#conventionmember-enum">#</doc-anchor-trigger>
+        <span>ConventionMember Enum</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>All</code></td>
+</tr>
+<tr>
+<td><code v-pre>Method</code></td>
+</tr>
+<tr>
+<td><code v-pre>Property</code></td>
+</tr>
+<tr>
+<td><code v-pre>Field</code></td>
+</tr>
+<tr>
+<td><code v-pre>Event</code></td>
+</tr>
+<tr>
+<td><code v-pre>Const</code></td>
+</tr>
+<tr>
+<td><code v-pre>EnumItem</code></td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="conventionaccessibility-enum">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#conventionaccessibility-enum">#</doc-anchor-trigger>
+        <span>ConventionAccessibility Enum</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>All</code></td>
+</tr>
+<tr>
+<td><code v-pre>Public</code></td>
+</tr>
+<tr>
+<td><code v-pre>Protected</code></td>
+</tr>
+<tr>
+<td><code v-pre>Private</code></td>
+</tr>
+<tr>
+<td><code v-pre>Internal</code></td>
+</tr>
+<tr>
+<td><code v-pre>ProtectedInternal</code></td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="enum">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#enum">#</doc-anchor-trigger>
+        <span>Enum</span>
+    </h2>
+</doc-anchor-target>
+<p>Specifies how Enum values should be compiled into JavaScript.</p>
+<p><strong>Applies to:</strong> <code v-pre>Enum</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Enum(Emit.Name)]</code></td>
+<td>Emits as its string representation.</td>
+</tr>
+<tr>
+<td><code v-pre>[Enum(Emit.StringName)]</code></td>
+<td>Emits as quoted string representation.</td>
+</tr>
+<tr>
+<td><code v-pre>[Enum(Emit.StringNamePreserveCase)]</code></td>
+<td>Emits as quoted string representation, preserving characters&#x27; case.</td>
+</tr>
+<tr>
+<td><code v-pre>[Enum(Emit.StringNameLowerCase)]</code></td>
+<td>Emits as quoted, lowercase string representation.</td>
+</tr>
+<tr>
+<td><code v-pre>[Enum(Emit.StringNameUpperCase)]</code></td>
+<td>Emits as quoted, uppercase string representation.</td>
+</tr>
+<tr>
+<td><code v-pre>[Enum(Emit.Value)]</code></td>
+<td>Emits as its ID value representation.</td>
+</tr>
+</tbody>
+</table>
+<p>The following sample demonstrates each of the <code v-pre>[Emit]</code> options for the <strong>Enum</strong> Attribute.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/29cfd916a5926a61e889a62e1a14a088">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        Console.WriteLine(&quot;One.First: &quot; + One.First);
+        Console.WriteLine(&quot;One.Second: &quot; + One.Second);
+        Console.WriteLine(&quot;Two.First: &quot; + Two.First);
+        Console.WriteLine(&quot;Two.Second: &quot; + Two.Second);
+        Console.WriteLine(&quot;Two.Second: &quot; + Two.Second);
+        Console.WriteLine(&quot;Three.First: &quot; + Three.First);
+        Console.WriteLine(&quot;Three.Second: &quot; + Three.Second);
+        Console.WriteLine(&quot;Four.First: &quot; + Four.First);
+        Console.WriteLine(&quot;Four.Second: &quot; + Four.Second);
+        Console.WriteLine(&quot;Five.First: &quot; + Five.First);
+        Console.WriteLine(&quot;Five.Second: &quot; + Five.Second);
+        Console.WriteLine(&quot;Six.First: &quot; + Six.First);
+        Console.WriteLine(&quot;Six.Second: &quot; + Six.Second);
+        Console.WriteLine(&quot;Seven.First: &quot; + Seven.First);
+        Console.WriteLine(&quot;Seven.Second: &quot; + Seven.Second);
+    }
+    
+    public enum One {
+        First,
+        Second
+    };
+
+    [Enum(Emit.Name)]
+    public enum Two {
+        First,
+        Second
+    };
+
+    [Enum(Emit.StringName)]
+    public enum Three {
+        First,
+        Second
+    };
+
+    [Enum(Emit.StringNameLowerCase)]
+    public enum Four {
+        First,
+        Second
+    };
+
+    [Enum(Emit.StringNamePreserveCase)]
+    public enum Five {
+        First,
+        Second
+    };
+
+    [Enum(Emit.StringNameUpperCase)]
+    public enum Six {
+        First,
+        Second
+    };
+
+    [Enum(Emit.Value)]
+    public enum Seven {
+        First,
+        Second
+    };
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="expandparams">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#expandparams">#</doc-anchor-trigger>
+        <span>ExpandParams</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Applies to:</strong> <code v-pre>Method</code>, <code v-pre>Constructor</code>, <code v-pre>Delegate</code></p>
+<p>The <code v-pre>[ExpandParams]</code> attribute can be applied to a method with a <code v-pre>params</code> parameter to emit the <code v-pre>params</code> as an array in JavaScript.</p>
+<p>Methods with this attribute can only be invoked in the expanded form.</p>
+<p>The following sample demonstrates defining two Methods; one with the <code v-pre>[ExpandParams]</code> attribute applied, and the other without. Each Method is called with the exact same parameters, and note the difference in the generated JavaScript.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/58361ec355f13019974d660596c5db07/vert">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main() =&gt; new App().Init();
+    
+    public void Init()
+    {
+        // With ExpandParams, the params will be expanded
+        this.WithExpandParams(1, 2, 3);
+        
+        // By default, params are emitted as an array
+        this.WithoutExpandParams(1, 2, 3);
+    }
+
+    [ExpandParams]
+    public void WithExpandParams(int a, params int[] b) { }
+    
+    public void WithoutExpandParams(int a, params int[] b) { }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output (JS)</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">init: function () {
+    // With ExpandParams, the params will be expanded
+    this.withExpandParams(1, 2, 3);
+
+    // By default, params are emitted as an array
+    this.withoutExpandParams(1, [2, 3]);
+},
+withExpandParams: function (a, b) {
+    b = Array.prototype.slice.call(arguments, 1);
+},
+withoutExpandParams: function (a, b) {
+    if (b === void 0) { b = []; }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="external">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#external">#</doc-anchor-trigger>
+        <span>External</span>
+    </h2>
+</doc-anchor-target>
+<p>Use of the <code v-pre>External</code> Attribute will instruct the Bridge Compiler to exclude this member or type definition from the compiled JavaScript file. Useful for stubbing out C# definition files to match an external JavaScript library. For example, if you have an existing JavaScript library and would like to create the Bridge C# definition files for that library, but not recreate the logic of the original library.</p>
+<p><strong>Applies to:</strong> <code v-pre>Class</code>, <code v-pre>Delegate</code>, <code v-pre>Enum</code>, <code v-pre>Interface</code> and <code v-pre>Method</code></p>
+<p>The following sample demonstrates how to define a <strong>Run</strong> Method for a library that implements within a <strong>MyLib</strong> class. We assume the JavaScript library is included in the same page and the library takes care of defining the method and class.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/e9bf16f44ed5598050b58324975075a8">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        // The following would have been defined 
+        // in an external JavaScript file.
+        Custom.Run1();
+        
+        Custom.Run2();
+    }
+}
+
+// Creation of the Custom Class is ignored by the Compiler. 
+// An assumption is made that the definition of this
+// code will be manually included as an external library.
+[External]
+public class Custom
+{
+    public static void Run1()
+    {
+        return;
+    }
+    
+    public extern static void Run2();
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        // The following would have been defined 
+        // in an external JavaScript file.
+        Demo.Custom.Run1();
+
+        Demo.Custom.Run2();
+    }
+});</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="field">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#field">#</doc-anchor-trigger>
+        <span>Field</span>
+    </h2>
+</doc-anchor-target>
+<p>Compiles a C# Property into a simple JavaScript field with no setter or getter, and also includes indexer access.</p>
+<p><strong>Applies to:</strong> <code v-pre>Assembly</code>, <code v-pre>Class</code>, <code v-pre>Interface</code>, <code v-pre>Property</code></p>
+<p>The following sample demonstrates how a Property with and without this attribute is compiled into JavaScript by Bridge.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/0ead4a5ca2b33cd677a8bd2661b2ab12">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        var sample = new Sample();
+
+        sample.One = 1;
+        sample.Two = 2;
+
+        Console.WriteLine(&quot;One&quot;, sample.One);
+        Console.WriteLine(&quot;Two&quot;, sample.Two);
+    }
+}
+
+public class Sample
+{
+    public int One { get; set; }
+
+    [Field]
+    public int Two { get; set; }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        var sample = new Demo.Sample();
+
+        sample.One = 1;
+        sample.Two = 2;
+
+        System.Console.WriteLine(System.String.format(&quot;One&quot;, Bridge.box(sample.One, System.Int32)));
+        System.Console.WriteLine(System.String.format(&quot;Two&quot;, Bridge.box(sample.Two, System.Int32)));
+    }
+});
+
+Bridge.define(&quot;Demo.Sample&quot;, {
+    fields: {
+        Two: 0
+    },
+    props: {
+        One: 0
+    }
+});</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="fieldproperty">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fieldproperty">#</doc-anchor-trigger>
+        <span>FieldProperty</span>
+    </h2>
+</doc-anchor-target>
+<p>Removed in Bridge 16.0. Please use <code v-pre>[Field]</code> attribute.</p>
+<p>Please see Issue <a href="https://github.com/bridgedotnet/Bridge/issues/2742">#2742</a> and <a href="https://github.com/bridgedotnet/Bridge/issues/2234">#2234</a> for more information.</p>
+<doc-anchor-target id="filename">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#filename">#</doc-anchor-trigger>
+        <span>FileName</span>
+    </h2>
+</doc-anchor-target>
+<p>Set a custom file name to which the compiled JavaScript will be output to.</p>
+<p><strong>Applies to:</strong> <code v-pre>Assembly</code>, <code v-pre>Class</code>, <code v-pre>Enum</code>, <code v-pre>Interface</code> and <code v-pre>Struct</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[FileName(string fileName)]</code></td>
+<td>The name or relative path of the desired output file. Appends <code v-pre>.js</code> extension if missing</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/475ffea5c5be786d9bde">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">[FileName(&quot;custom-name&quot;)]
+public class App
+{
+    public static void Main()
+    {
+        Console.WriteLine(&quot;Test&quot;);
+    }
+}</code></pre>
+</doc-codeblock></div>
+<p>Apply the <code v-pre>[FileName]</code> Attribute at the Class level to customize the output file name of generated JavaScript file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[FileName(&quot;Foo.js&quot;)]
+public class Foo() { }</code></pre>
+</doc-codeblock></div>
+<p>By default, the <code v-pre>.js</code> extension is automatically assumed. The following is equivalent to the example above:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[FileName(&quot;Foo&quot;)]</code></pre>
+</doc-codeblock></div>
+<p>Separate classes could configure the same <code v-pre>[FileName]</code> and be combined into the same file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[FileName(&quot;pets&quot;)]
+public class Dog { }
+
+[FileName(&quot;pets&quot;)]
+public class Cat { }</code></pre>
+</doc-codeblock></div>
+<p>You can also pass the destination folder:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[FileName(&quot;js/Foo&quot;)]</code></pre>
+</doc-codeblock></div>
+<p>The above sample will create a <code v-pre>Foo.js</code> file inside the <code v-pre>output\js</code> folder (where the <code v-pre>output</code> folder is configured in the <code v-pre>bridge.json</code> file.</p>
+<doc-anchor-target id="globaltarget">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#globaltarget">#</doc-anchor-trigger>
+        <span>GlobalTarget</span>
+    </h2>
+</doc-anchor-target>
+<p>Replaces any reference to the method or property whenever the static, global instance is used.</p>
+<p><strong>Applies to:</strong> <code v-pre>Method</code> and <code v-pre>Property</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[GlobalTarget(string name)]</code></td>
+<td>String to be output instead of the actual reference to the entity. An empty string can be set.</td>
+</tr>
+</tbody>
+</table>
+<p>The following sample demonstrates output of a <code v-pre>alert()</code> to JavaScript.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/df264302e21e9940cbe0b7c96c7052ff">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        // The following should compile to 
+        // just a simple alert(&quot;Canada&quot;),
+        // ignoring the call to DoSomething()
+        Test.DoSomething().alert(&quot;Canada&quot;);
+    }
+}
+
+public class Global
+{
+    public void alert(string message)
+    {
+        return;
+    }
+}
+
+public class Test
+{
+    [GlobalTarget(&quot;&quot;)]
+    public static Global DoSomething()
+    {
+        Console.WriteLine(&quot;Australia&quot;);
+
+        return null;
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">    Bridge.define(&quot;Demo.App&quot;, {
+        main: function Main() {
+            alert(&quot;Canada&quot;);
+        }
+    });
+
+    Bridge.define(&quot;Demo.Global&quot;, {
+        methods: {
+            alert: function (message) {
+                return;
+            }
+        }
+    });
+
+    Bridge.define(&quot;Demo.Test&quot;, {
+        statics: {
+            methods: {
+                DoSomething: function () {
+                    System.Console.WriteLine(&quot;Australia&quot;);
+
+                    return null;
+                }
+            }
+        }
+    });</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="ignore">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ignore">#</doc-anchor-trigger>
+        <span>Ignore</span>
+    </h2>
+</doc-anchor-target>
+<p>The <code v-pre>[Ignore]</code> Attribute is obsolete. Please use the <doc-anchor-trigger to="#External">External</doc-anchor-trigger> Attribute.</p>
+<doc-anchor-target id="ignorecast">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ignorecast">#</doc-anchor-trigger>
+        <span>IgnoreCast</span>
+    </h2>
+</doc-anchor-target>
+<p>Any casting operation with this type will not be compiled to JavaScript.</p>
+<p><strong>Applies to:</strong> <code v-pre>Class</code>, <code v-pre>Delegate</code>, <code v-pre>Enum</code>, <code v-pre>Interface</code> and <code v-pre>Struct</code></p>
+<p>This is useful when JavaScript code would not require casting as the C# equivalent code does. The example below shows class-level binding for inherited classes with and without this Attribute applied.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/56b5fe136b11259bcebc8f4b921b5763">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        var base1 = new Base();
+        var base2 = new Base();
+
+        // Casting will be ignored
+        var ignore = (Ignore)base1;
+
+        // Default casting operation
+        Console.WriteLine(&quot;throws Exception...&quot;);
+        var dontIgnore = (DontIgnore)base2;
+    }
+}
+
+public class Base { }
+
+[IgnoreCast]
+public class Ignore : Base { }
+
+public class DontIgnore : Base { }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="ignoregeneric">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ignoregeneric">#</doc-anchor-trigger>
+        <span>IgnoreGeneric</span>
+    </h2>
+</doc-anchor-target>
+<p>Prevents emitting generic arguments to instances of the class or invocation of Methods.</p>
+<p><strong>Applies to:</strong> <code v-pre>Class</code> and <code v-pre>Delegate</code></p>
+<p>The following sample demonstrates the difference in compiled JavaScript code when instantiating a Class with and without this Attribute.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/ec057a46fd6e3c6defc170225a53f520">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        // Default
+        var one = new Generic1&lt;int&gt;();
+
+        // Generic type is ignored
+        var second = new Generic2&lt;string&gt;();
+    }
+}
+
+public class Generic1&lt;T&gt; { }
+
+[IgnoreGeneric]
+public class Generic2&lt;T&gt; { }</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        // Default
+        var one = new (Demo.Generic1$1(System.Int32))();
+
+        // Generic type is ignored
+        var second = new Demo.Generic2$1();
+    }
+});
+
+Bridge.define(&quot;Demo.Generic1$1&quot;, function (T) { return {
+
+}; });
+
+Bridge.define(&quot;Demo.Generic2$1&quot;);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="immutable">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#immutable">#</doc-anchor-trigger>
+        <span>Immutable</span>
+    </h2>
+</doc-anchor-target>
+<p>Force a Struct to be Immutable. Can only apply to a Struct.</p>
+<p>If a Stuct contains only Private fields and/or read-only properties than Bridge will automatically assume <strong>Immutable</strong> behaviour.</p>
+<doc-anchor-target id="init">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#init">#</doc-anchor-trigger>
+        <span>Init</span>
+    </h2>
+</doc-anchor-target>
+<p>Specifies that the method should be run immediately when the script is loaded (not after page loading event is complete).</p>
+<p><strong>Applies to:</strong> <code v-pre>static Method</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Init]</code></td>
+<td>Specifies that the method must be run as JavaScript file is parsed.</td>
+</tr>
+<tr>
+<td><code v-pre>[Init(InitPosition position)]</code></td>
+<td>Specifies that the method must be run as the JavaScript file is parsed and position in the file that it should be emitted.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="initposition-enum">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#initposition-enum">#</doc-anchor-trigger>
+        <span>InitPosition Enum</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>Before</code></td>
+<td>Call this Method before this class definition.</td>
+</tr>
+<tr>
+<td><code v-pre>After</code></td>
+<td>Call this Method after this class definition. (default)</td>
+</tr>
+<tr>
+<td><code v-pre>Top</code></td>
+<td>Emit the contents of this Method body directly to the Top of the file.</td>
+</tr>
+<tr>
+<td><code v-pre>Bottom</code></td>
+<td>Emit the contents of this Method body directly to the Bottom of the file.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/f3d5ac5a0f2493f6c6b5a511688fd20f">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">using System;
+using Bridge;
+
+namespace Demo
+{
+    public class App
+    {
+        public static void Main()
+        {
+            Console.WriteLine(&quot;Startup&quot;);
+        }
+
+        [Init(InitPosition.Before)]
+        public static void Before()
+        {
+            Console.WriteLine(&quot;Before Class is defined&quot;);
+        }
+
+        [Init(InitPosition.After)]
+        public static void After()
+        {
+            Console.WriteLine(&quot;After Class is defined&quot;);
+        }
+
+        [Init(InitPosition.Top)]
+        public static void Top()
+        {
+            Console.WriteLine(&quot;Absolute Top&quot;);
+        }
+
+        [Init(InitPosition.Bottom)]
+        public static void Bottom()
+        {
+            Console.WriteLine(&quot;Absolute Bottom&quot;);
+        }
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">System.Console.WriteLine(&quot;Absolute Top&quot;);
+
+Bridge.assembly(&quot;Demo&quot;, function ($asm, globals) {
+    &quot;use strict&quot;;
+
+    Bridge.init(function () {
+        System.Console.WriteLine(&quot;Before Class is defined&quot;);
+    });
+
+    Bridge.define(&quot;Demo.App&quot;, {
+        main: function Main() {
+            System.Console.WriteLine(&quot;Startup&quot;);
+        },
+        statics: {
+            methods: {
+                After: function () {
+                    System.Console.WriteLine(&quot;After Class is defined&quot;);
+                }
+            }
+        }
+    });
+
+    Bridge.init(function () { Demo.App.After(); });
+});
+
+System.Console.WriteLine(&quot;Absolute Bottom&quot;);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="inlineconst">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inlineconst">#</doc-anchor-trigger>
+        <span>InlineConst</span>
+    </h2>
+</doc-anchor-target>
+<p>Specifies that the Field should emit its value and not a reference to the Field in the compiled JavaScript.</p>
+<p><strong>Applies to:</strong> <code v-pre>Field</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/cd40df37e3f3b53e68abfed7360e1c66">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public const int One = 1;
+
+    [InlineConst]
+    public const int Two = 2;
+
+    public static void Main()
+    {
+        Console.WriteLine(&quot;One: &quot; + One);
+        Console.WriteLine(&quot;Two: &quot; + Two);
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        System.Console.WriteLine(&quot;One: &quot; + Demo.App.One);
+        System.Console.WriteLine(&quot;Two: &quot; + 2);
+    },
+    statics: {
+        fields: {
+            One: 0
+        },
+        ctors: {
+            init: function () {
+                this.One = 1;
+            }
+        }
+    }
+});</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="mixin">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#mixin">#</doc-anchor-trigger>
+        <span>Mixin</span>
+    </h2>
+</doc-anchor-target>
+<p>Allows a prefix to be specified for the generated methods.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Mixin(&quot;$.fn&quot;)]
+public static class MyStaticMethods
+{
+    public static void MyMethod()
+    {
+    }
+} </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.apply(_$.fn, {
+    MyMethod: function () {
+    }
+});</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="module">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#module">#</doc-anchor-trigger>
+        <span>Module</span>
+    </h2>
+</doc-anchor-target>
+<p>Determines that the Class will be part of the Module with the specified name.</p>
+<p>If configured without parameters, the compiler will not bind a name to the Module.</p>
+<p>If set in <code v-pre>bridge.json</code>, the <code v-pre>OutputBy</code> is set to <code v-pre>Module</code>, the output filename will be the specified Module name.</p>
+<p><strong>Applies to:</strong> <code v-pre>Assembly</code>, <code v-pre>Class</code>, <code v-pre>Enum</code>, <code v-pre>Interface</code> and <code v-pre>Struct</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Module]</code></td>
+<td>Defines the attributed code to a default module.</td>
+</tr>
+<tr>
+<td><code v-pre>[Module(string name)]</code></td>
+<td>Uses the specified parameter as module name.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/c443eefb8e2ad5686486adf1b4fa19a6">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class One { }
+
+[Module]
+public class Two { }
+
+[Module(&quot;MyApp&quot;)]
+public class App { }</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.One&quot;);
+
+define(&quot;MyApp&quot;, function () {
+    var MyApp = { };
+    Bridge.define(&quot;Demo.App&quot;, {
+        $scope: MyApp
+    });
+    return MyApp;
+});
+
+define(function () {
+    var $module1 = { };
+    Bridge.define(&quot;Demo.Two&quot;, {
+        $scope: $module1
+    });
+    return $module1;
+});</code></pre>
+</doc-codeblock></div>
+<p>Module Attribute <a href="../module_attribute">samples</a> for AMD, CommonJS, UMD, and ES6.</p>
+<doc-anchor-target id="name">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#name">#</doc-anchor-trigger>
+        <span>Name</span>
+    </h2>
+</doc-anchor-target>
+<p>Allows specifying a custom full name for this entity. Takes precedence over the <doc-anchor-trigger to="#Namespace">Namespace</doc-anchor-trigger> attribute.</p>
+<p><strong>Applies to:</strong> <code v-pre>Class</code>, <code v-pre>Delegate</code>, <code v-pre>Enum</code>, <code v-pre>Field</code>, <code v-pre>Interface</code>, <code v-pre>Method</code>, <code v-pre>Parameter</code>, <code v-pre>Property</code> and <code v-pre>Struct</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Name(string value)]</code></td>
+<td>Specifies the desired full name of the entity.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/7dd4d3ff3eceea397fad87f08bfc121c">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class One 
+{
+    // Name Attribute configured on a Method.
+    // In C#, .DoSomething() is used, but the 
+    // Bridge Compiler will now emit .doThat()
+    [Name(&quot;doThat&quot;)]
+    public void DoSomething() { }
+}
+
+// Name Attribute configured on a Class
+[Name(&quot;ClassX&quot;)]
+public class Two 
+{ 
+    // Name Attribute configured on a Property.
+    // In C#, .Age is used, but the
+    // Bridge Compiler will now emit .DOB
+    [Name(&quot;DOB&quot;)]
+    public int Age {get; set;}    
+}
+
+public class App
+{
+    public static void Main()
+    {
+        var one = new One();
+
+        // Compiler will emit .doThat()
+        one.DoSomething();
+
+        // Compiler will emit new ClassX()
+        var two = new Two();
+
+        // compiler will emit .DOB
+        two.Age = 55;
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        var one = new Demo.One();
+
+        // Compiler will emit .doThat()
+        one.doThat();
+
+        // Compiler will emit new ClassX()
+        var two = new ClassX();
+
+        // compiler will emit .DOB
+        two.DOB = 55;
+    }
+});
+
+Bridge.define(&quot;Demo.One&quot;, {
+    methods: {
+        doThat: function () { }
+    }
+});
+
+Bridge.define(&quot;ClassX&quot;, {
+    props: {
+        DOB: 0
+    }
+});</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>{@}</code> token can be used within the <code v-pre>[Name]</code> value which will be replaced with the member name. For example, you would like to index a member without hard coding the member name in the value.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Name(&quot;{@}$1&quot;)]
+void DoSomething() { }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>{@}</code></td>
+<td>The name of the member.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="namespace">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#namespace">#</doc-anchor-trigger>
+        <span>Namespace</span>
+    </h2>
+</doc-anchor-target>
+<p>Specifies a custom name for the Namespace in the compiled JavaScript. If <code v-pre>false</code> is set, the namespace will be suppressed. The <doc-anchor-trigger to="#Name">Name</doc-anchor-trigger> attribute takes precedence over the Namespace attribute.</p>
+<p><strong>Applies to:</strong> <code v-pre>Class</code>, <code v-pre>Enum</code>, <code v-pre>Interface</code> and <code v-pre>Struct</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Namespace(string ns)]</code></td>
+<td>Specifies the namespace.</td>
+</tr>
+<tr>
+<td><code v-pre>[Namespace(bool includeNamespace)]</code></td>
+<td>If <code v-pre>false</code>, the namespace will not be prefixed to the member or type. Default is <code v-pre>true</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/6d5c7258a27ce582de91af3a94fe8d62">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">// No changes, just emit default Namespace
+public class One { }
+
+// Custom Namespace
+[Namespace(&quot;CustomX&quot;)]
+public class Two { }
+
+// Do not scope the class to a Namespace
+[Namespace(false)]
+public class Three { }
+
+public class App
+{
+    public static void Main()
+    {
+        // Default, will be:
+        // new Demo.One()
+        var one = new One();
+        
+        // Custom Namespace, will be:
+        // new CustomX.Two()
+        var two = new Two();
+        
+        // No Namespace, will be:
+        // new Three()
+        var three = new Three();
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        // Default, will be:
+        // new Demo.One()
+        var one = new Demo.One();
+
+        // Custom Namespace, will be:
+        // new CustomX.Two()
+        var two = new CustomX.Two();
+
+        // No Namespace, will be:
+        // new Three()
+        var three = new Three();
+    }
+});
+
+Bridge.define(&quot;Demo.One&quot;);
+
+Bridge.define(&quot;Three&quot;);
+
+Bridge.define(&quot;CustomX.Two&quot;);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="objectliteral">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#objectliteral">#</doc-anchor-trigger>
+        <span>ObjectLiteral</span>
+    </h2>
+</doc-anchor-target>
+<p>If <code v-pre>[ObjectLiteral]</code> is set on a Class, Bridge will emit the class as a simple JavaScript object literal, with no constructor defined. Applying this Attribute works well for defining configuration type objects in C# that do not require a <code v-pre>new</code> constructor in JavaScript.</p>
+<p><strong>Applies to:</strong> <code v-pre>Class</code>, <code v-pre>Enum</code>, <code v-pre>Interface</code> and <code v-pre>Struct</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[ObjectLiteral]</code></td>
+<td>Generate a plain JavaScript <code v-pre>{ }</code> object, instead of a full class definition. Only default class constructors are supported with this attribute configuration.</td>
+</tr>
+<tr>
+<td><code v-pre>[ObjectLiteral(ObjectInitializationMode initializationMode)]</code></td>
+<td>Determines how default values will be added to the plain object instance.</td>
+</tr>
+<tr>
+<td><code v-pre>[ObjectLiteral(ObjectCreateMode createMode)]</code></td>
+<td>Type information and Multiple class constructor definitions can be enabled in this mode.</td>
+</tr>
+<tr>
+<td><code v-pre>[ObjectLiteral(ObjectInitializationMode initializationMode, ObjectCreateMode createMode)]</code></td>
+<td>Configure both <strong>ObjectInitializationMode</strong> and <strong>ObjectInitializationMode</strong>.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/806198fcf60a6368dbc406209ea15295">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        // Compiles to the default 'new' constructor syntax
+        var one = new One 
+        {
+            Message = &quot;Default Functionality&quot;
+        };
+        
+        // Compiles to a plain { } object literal
+        var two = new Two 
+        { 
+            Message = &quot;Emit as an Object Literal&quot;
+        };
+    }
+}
+
+public class One
+{
+    public string Message { get; set; }
+}
+
+[ObjectLiteral]
+public class Two
+{
+    public string Message { get; set; }
+}</code></pre>
+</doc-codeblock></div>
+<p>Only default constructors are supported with the basic <code v-pre>[ObjectLiteral]</code> mode. The Bridge compiler will throw a compile time exception if a custom constructor is defined.</p>
+<p>By default, no Type information is included in the emitted object literal. To include Type info, please use <code v-pre>[ObjectLiteral(ObjectCreateMode.Constructor)]</code>.</p>
+<p>Setting <code v-pre>[ObjectLiteral(ObjectCreateMode.Constructor)]</code> can also be used to support constructor overloads.</p>
+<p>As of Brige 16, including the <code v-pre>[External]</code> attribute is no longer required.</p>
+<doc-anchor-target id="objectinitializationmode-enum">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#objectinitializationmode-enum">#</doc-anchor-trigger>
+        <span>ObjectInitializationMode Enum</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DefaultValue</td>
+<td>Emit default values for all.</td>
+</tr>
+<tr>
+<td>Initializer</td>
+<td>Emit only values that have been explicitly initialized.</td>
+</tr>
+<tr>
+<td>Ignore</td>
+<td>Ignore default value. Emits an empty object literal.</td>
+</tr>
+</tbody>
+</table>
+<p>The following example demonstrates the generated output of each <strong>ObjectInitializationMode</strong> enum value.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/c3d209c28b096b05bc81ea42480c48e5">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        var person = new Student();
+        
+        Console.WriteLine(person);
+    }
+}
+
+[ObjectLiteral]
+// [ObjectLiteral(ObjectInitializationMode.DefaultValue)]
+// [ObjectLiteral(ObjectInitializationMode.Initializer)]
+// [ObjectLiteral(ObjectInitializationMode.Ignore)]
+public class Student
+{
+    public int State = 444;
+    
+    public int Code { get; set; }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// [ObjectLiteral]
+var person = { };
+
+// [ObjectLiteral(ObjectInitializationMode.DefaultValue)]
+var person = { State: 444, Code: 0 };
+
+// [ObjectLiteral(ObjectInitializationMode.Initializer)]
+var person = { State: 444 };
+
+// [ObjectLiteral(ObjectInitializationMode.Ignore)]
+var person = { };</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="objectcreatemode-enum">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#objectcreatemode-enum">#</doc-anchor-trigger>
+        <span>ObjectCreateMode Enum</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constructor</td>
+<td>Create instance using constructor.</td>
+</tr>
+<tr>
+<td>Plain</td>
+<td>Create instance using plain object ({ } syntax). Default functionality is <code v-pre>Plain</code>.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="priority">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#priority">#</doc-anchor-trigger>
+        <span>Priority</span>
+    </h2>
+</doc-anchor-target>
+<p>Indicates the output priority order for the type. Defaults to zero, so any type with positive priority is output in JavaScript code before types with no <code v-pre>[Priority]</code> attribute, and negative ones are output after the default priority types.</p>
+<p><strong>Applies to:</strong> <code v-pre>Class</code>, <code v-pre>Delegate</code>, <code v-pre>Enum</code>, <code v-pre>Interface</code> and <code v-pre>Struct</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Priority(int priority)]</code></td>
+<td>Sets output priority level. An integer denoting the priority level of the type. The output is emitted in descending priority order.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/c6cb7fa73e49c75bba60991849aa664d">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Priority(-2)]
+public class MinusTwo { }
+
+[Priority(-1)]
+public class MinusOne { }
+
+// Default
+public class Zero { }
+
+[Priority(1)]
+public class One { }</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.One&quot;);
+
+Bridge.define(&quot;Demo.Zero&quot;);
+
+Bridge.define(&quot;Demo.MinusOne&quot;);
+
+Bridge.define(&quot;Demo.MinusTwo&quot;);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="ready">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ready">#</doc-anchor-trigger>
+        <span>Ready</span>
+    </h2>
+</doc-anchor-target>
+<p>Set a Method to be automatically called when all the JavaScript has been loaded and the Page is ready. If jQuery has been included in the Page, the jQuery <code v-pre>ready</code> handler is called, otherwise <code v-pre>DOMContentLoaded</code> is used.</p>
+<p><strong>Applies to:</strong> <code v-pre>Method</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/fda915c2ea5375b1df17b384d1852468">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    [Ready]
+    public static void AppStart()
+    {
+        // [Ready] is not required if
+        // AppStart is renamed to Main
+        
+        Console.WriteLine(&quot;Ready&quot;);
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    statics: {
+        ctors: {
+            init: function () {
+                Bridge.ready(this.AppStart);
+            }
+        },
+        methods: {
+            AppStart: function () {
+                System.Console.WriteLine(&quot;Ready&quot;);
+            }
+        }
+    },
+    $entryPoint: true
+});</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="reflectable">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reflectable">#</doc-anchor-trigger>
+        <span>Reflectable</span>
+    </h2>
+</doc-anchor-target>
+<p>By default, reflection is enabled on all classes, but a separate <code v-pre>[app].meta.js</code> file is created and must be included in your html page after the <code v-pre>[app].js</code> file.</p>
+<p>Reflection can be disabled for the whole project by configuring the <a href="../../introduction/global_configuration/#reflection">reflection</a> setting in your <code v-pre>bridge.json</code> file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">&quot;reflection&quot;: {
+    &quot;disabled&quot;: true
+}</code></pre>
+</doc-codeblock></div>
+<p>Once reflection has been disabled in a Project, you can re-enable reflection on specific Classes by adding the <code v-pre>[Reflectable]</code> attribute. Once marked with <code v-pre>[Reflectable]</code>, Bridge will output addition metadata into the JavaScript to enable reflection.</p>
+<p>The <code v-pre>[Reflectable]</code> attribute can be applied to a member to indicate that metadata for the member should (or should not) be included in the compiled script.</p>
+<p>The default reflectability can be changed with the <code v-pre>[DefaultMemberReflectability]</code> attribute.</p>
+<doc-anchor-target id="constructors-1">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#constructors-1">#</doc-anchor-trigger>
+        <span>Constructors</span>
+    </h4>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Reflectable(bool reflectable)]
+[Reflectable(string filter)]
+[Reflectable(params MemberAccessibility[] memberAccessibilities)]
+[Reflectable(TypeAccessibility typeAccessibility)]</code></pre>
+</doc-codeblock></div>
+<p>Setting <code v-pre>[Reflectable(Inherits = true)]</code> on a class instructs the Bridge compiler to include metadata for the class as well as all child classes (<a href="https://github.com/bridgedotnet/Bridge/issues/2489">more info</a>).</p>
+<p>Reflection metadata can also be generated from one Assembly for another external Assembly by including a filter string. The following sample demonstrates:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[assembly:Reflectable(&quot;System.*&quot;)]</code></pre>
+</doc-codeblock></div>
+<p>The filter string for <code v-pre>[assembly: Reflectable(string filter]</code> also support wildcard characters such as <code v-pre>*</code> and <code v-pre>?</code>.</p>
+<p>The full name of a type will be matched with filter string. Multiple conditions can be defined by <code v-pre>;</code> as a separator.</p>
+<p>If <code v-pre>!</code> is set for a condition then it means <em>not</em>. For example, <code v-pre>&quot;System.*;!System.CompilerService.*&quot;</code> instructs the Bridge compiler to render metadata for all types from the <code v-pre>System</code> namespace except for types from <code v-pre>System.CompilerService.*</code> namespaces.</p>
+<doc-anchor-target id="rules">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rules">#</doc-anchor-trigger>
+        <span>Rules</span>
+    </h2>
+</doc-anchor-target>
+<p>The <code v-pre>[Rules]</code> attribute allows for refinement of the generated JavaScript syntax created by the Bridge compiler.</p>
+<p><strong>Applies to:</strong> <code v-pre>Method</code>, <code v-pre>Property</code>, <code v-pre>Class</code>, <code v-pre>Struct</code>, <code v-pre>Constructor</code>, <code v-pre>Interface</code>, and <code v-pre>Assembly</code></p>
+<doc-alert variant="primary">
+<p>Rules can also be configured in the <a href="../../introduction/global_configuration/#rules"><code v-pre>bridge.json</code></a> file.</p>
+</doc-alert>
+<p>By default, Bridge will manage the generated JavaScript, which at runtime will reproduce the expected .NET runtime result. While this JavaScript will execute efficiently and correctly, the developer may want to adjust the style of the generated syntax to create more of a <em>JavaScript style</em> to the syntax.</p>
+<p>For example, creating an Anonymous Type in C# requires that additional meta data be available at runtime which would allow for proper reflection and type checking of results. When Bridge encounters an Anonymous Type, the compiler will generate a complete class definition in JavaScript.</p>
+<p>Applying a <code v-pre>[Rules]</code> attribute within your Projects C# source will instruct the Bridge compiler to generate a plain <code v-pre>{ }</code> JavaScript object when it encounters an Anonymous Type.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">A basic C# Anonymous Type:</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Rules(AnonymousType = AnonymousTypeRule.Plain)]
+public static void DoSomething()
+{
+    var config = new { Id = 123 };
+}</code></pre>
+</doc-codeblock></div>
+<p>The above C# sample will generate the following simplified JavaScript object literal instead of a fully defined anonymous type class.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">var config = { Id = 123 };</code></pre>
+</doc-codeblock></div>
+<p>Other <strong>Rules</strong> are supported, as outlined in the following options.</p>
+<doc-anchor-target id="options-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-1">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Options</th>
+<th>Description</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>AnonymousType</code></td>
+<td><code v-pre>Managed</code> or <code v-pre>Plain</code></td>
+<td>Set to <code v-pre>Plain</code> to generate an object literal when an anonymous type is defined. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#anonymoustype">Sample</doc-anchor-trigger>.</td>
+<td></td>
+</tr>
+<tr>
+<td><code v-pre>ArrayIndex</code></td>
+<td><code v-pre>Managed</code> or <code v-pre>Plain</code></td>
+<td>Set to <code v-pre>Plain</code> to avoid array index validation. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#arrayindex">Sample</doc-anchor-trigger>.</td>
+<td></td>
+</tr>
+<tr>
+<td><code v-pre>AutoProperty</code></td>
+<td><code v-pre>Managed</code> or <code v-pre>Plain</code></td>
+<td>Set to <code v-pre>Plain</code> to generate as simple field, or <code v-pre>Managed</code> to create as a JavaScript property with getter and setter. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#autoproperty">Sample</doc-anchor-trigger>.</td>
+<td></td>
+</tr>
+<tr>
+<td><code v-pre>Boxing</code></td>
+<td><code v-pre>Managed</code> or <code v-pre>Plain</code></td>
+<td>Set to <code v-pre>Plain</code> to disable boxing. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#boxing">Sample</doc-anchor-trigger>.</td>
+<td></td>
+</tr>
+<tr>
+<td><code v-pre>ExternalCast</code></td>
+<td><code v-pre>&quot;Managed&quot;</code> or <code v-pre>&quot;Plain&quot;</code></td>
+<td>Set to <code v-pre>Plain</code> to ignore casting external entities during run-time. See also <code v-pre>[IgnoreCast]</code> attribute. Compile-time type checking still occurs in both <code v-pre>Managed</code> and</td>
+<td><code v-pre>Plain</code> modes. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#externalcast">Sample</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>InlineComment</code></td>
+<td><code v-pre>Managed</code> or <code v-pre>Plain</code></td>
+<td>Set to Plain to remove inline comments from the output. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#inlinecomment">Sample</doc-anchor-trigger>.</td>
+<td></td>
+</tr>
+<tr>
+<td><code v-pre>Integer</code></td>
+<td><code v-pre>Managed</code> or <code v-pre>Plain</code></td>
+<td>Set to <code v-pre>Plain</code> to treat <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/integral-types-table">Integral</a> types as simple numbers. Avoid having Bridge manage clipping, overflow checking, casting, and arithmetic operators. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#integer">Sample</doc-anchor-trigger>.</td>
+<td></td>
+</tr>
+<tr>
+<td><code v-pre>Lambda</code></td>
+<td><code v-pre>Managed</code> or <code v-pre>Plain</code></td>
+<td>Set to <code v-pre>Plain</code> to avoid <em>lifting</em> functions created by lambda methods into a higher scope. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#lambda">Sample</doc-anchor-trigger>.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="anonymoustype">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#anonymoustype">#</doc-anchor-trigger>
+        <span>AnonymousType</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">// C#
+var config = new { Id = 123 };</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Ouput</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// AnonymousTypeRule.Managed
+var config = new $asm.$AnonymousType$1(123);
+
+// AnonymousTypeRule.Plain
+var config = { Id: 123 };</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="arrayindex">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#arrayindex">#</doc-anchor-trigger>
+        <span>ArrayIndex</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">// C#
+var arr = new int[1]; 
+arr[0] = 1;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Ouput</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// ArrayIndexRule.Managed
+var arr = System.Array.init(1, 0, System.Int32);
+arr[System.Array.index(0, arr)] = 1;
+
+// ArrayIndexRule.Plain
+var arr = System.Array.init(1, 0, System.Int32);
+arr[0] = 1;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="autoproperty">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#autoproperty">#</doc-anchor-trigger>
+        <span>AutoProperty</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">// AutoProperty | &quot;autoProperty&quot;
+var app = new Program();
+app.Name = &quot;My App&quot;;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// &quot;Managed&quot;
+// Real JavaScript getter &amp; setter are created
+app.Name = &quot;My App&quot;;
+
+// &quot;Plain&quot;
+// Just a plain JavaScript field
+app.Name = &quot;My App&quot;;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="externalcast">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#externalcast">#</doc-anchor-trigger>
+        <span>ExternalCast</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">var el = (HTMLButtonElement)document.createElement(&quot;button&quot;);</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// ExternalCast.Managed
+var el = Bridge.cast(document.createElement(&quot;button&quot;), HTMLButtonElement);
+
+// ExternalCast.Plain
+var el = document.createElement(&quot;button&quot;);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="boxing">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#boxing">#</doc-anchor-trigger>
+        <span>Boxing</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">Object o = 5;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// BoxingRule.Managed
+var o = Bridge.box(5, System.Int32);
+
+// BoxingRule.Plain
+var o = 5;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="inlinecomment">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inlinecomment">#</doc-anchor-trigger>
+        <span>InlineComment</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Rules(InlineComment = InlineCommentRule.Managed)]
+public static void InlineComment1()
+{
+    // Inline comments copied to .js
+    var msg = &quot;comment above&quot;;
+}
+
+[Rules(InlineComment = InlineCommentRule.Plain)]
+public static void InlineComment2()
+{
+    // Comments not copied to .js
+    var msg = &quot;no comment above&quot;;
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// InineComment.Managed
+InlineComment1: function () {
+    // Inline comments copied to .js
+    var msg = &quot;comment above&quot;;
+}
+
+// InlineComment.Plain
+InlineComment2: function () {
+    var msg = &quot;no comment above&quot;;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="integer">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#integer">#</doc-anchor-trigger>
+        <span>Integer</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">var val = 55;
+
+var v1 = (sbyte)val;
+var v2 = (byte)val;
+var v3 = (char)val;
+var v4 = (short)val;
+var v5 = (ushort)val;
+var v6 = (int)val;
+var v7 = (uint)val;
+var v8 = (long)val;
+var v9 = (ulong)val;
+
+int i = int.MaxValue; 
+byte b1 = (byte)i;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="javascript">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#javascript">#</doc-anchor-trigger>
+        <span>JavaScript</span>
+    </h4>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// IntegerRule.Managed
+var v1 = Bridge.Int.sxb(val &amp; 255);
+var v2 = val &amp; 255;
+var v3 = val &amp; 65535;
+var v4 = Bridge.Int.sxs(val &amp; 65535);
+var v5 = val &amp; 65535;
+var v6 = val;
+var v7 = val &gt;&gt;&gt; 0;
+var v8 = System.Int64(val);
+var v9 = Bridge.Int.clipu64(val);
+
+var max = 2147483647;
+var j = (max + 1) | 0;
+
+// IntegerRule.Plain
+var v1 = val;
+var v2 = val;
+var v3 = val;
+var v4 = val;
+var v5 = val;
+var v6 = val;
+var v7 = val;
+var v8 = val;
+var v9 = val;
+
+var max = 2147483647;
+var j = max + 1;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="lambda">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#lambda">#</doc-anchor-trigger>
+        <span>Lambda</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">Action a = () =&gt; Console.WriteLine(&quot;lambda!&quot;);</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// LambdaRule.Managed
+// A shared &quot;lifted&quot; function is generated.
+var a = $asm.$.Demo.Program.f1;
+...
+f1: function () {
+    System.Console.WriteLine(&quot;lambda!&quot;);
+}
+
+// LambdaRule.Plain
+// A plain JavaScript function is generated.
+var a = function () { 
+    System.Console.WriteLine(&quot;lambda!&quot;);
+};</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="script">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#script">#</doc-anchor-trigger>
+        <span>Script</span>
+    </h2>
+</doc-anchor-target>
+<p>Configure a custom Method body in JavaScript, ignoring the C# implementation.</p>
+<p>This Attribute can be handy when trying to express a concept in JavaScript that cannot be expressed in C#.</p>
+<p><strong>Applies to:</strong> <code v-pre>Constructor</code> and <code v-pre>Method</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Script(params string[] lines)]</code></td>
+<td>A comma-separated list of strings, each which will be emitted to the compiled JavaScript code unchanged.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/0cc381dbf7a86251a0632fb9bbaff8e1">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        var app = new App();
+        
+        app.DoSomething();
+    }
+    
+    [Script(&quot;alert('Working!');&quot;)]
+    public void DoSomething()
+    {
+        // This Method body will be ignored by
+        // the Bridge Compiler. The &quot;Working!&quot; message
+        // should be emitted to the compiled js.
+        Console.WriteLine(&quot;Hello World&quot;);
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        var app = new Demo.App();
+
+        app.DoSomething();
+    },
+    methods: {
+        DoSomething: function () {
+            alert('Working!');
+        }
+    }
+});</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="template">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#template">#</doc-anchor-trigger>
+        <span>Template</span>
+    </h2>
+</doc-anchor-target>
+<p>Specifies how a call to the Method should be translated into JavaScript.</p>
+<p><strong>Applies to:</strong> <code v-pre>Constructor</code>, <code v-pre>Field</code>, <code v-pre>Method</code></p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>[Template(string format)]</code></td>
+<td>The format string, supporting several optional placeholder tokens.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="options-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-2">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>{this}</code></td>
+<td>The instance of the caller, or class name if static.</td>
+</tr>
+<tr>
+<td><code v-pre>{this:type}</code></td>
+<td>The Type of the caller.</td>
+</tr>
+<tr>
+<td><code v-pre>{name}</code></td>
+<td>A parameter name in the call statement with it&#x27;s value emitted wrapped in quotes.</td>
+</tr>
+<tr>
+<td><code v-pre>{name:raw}</code></td>
+<td>The raw parameter value is emitted. No wrapping quotes.</td>
+</tr>
+<tr>
+<td><code v-pre>{name:plain}</code></td>
+<td>Convert the parameter to a plain object literal instance.</td>
+</tr>
+<tr>
+<td><code v-pre>{*name}</code></td>
+<td>Replaced by the list of parameters named <code v-pre>param</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>{0}</code></td>
+<td>The zero-based index of the parameter value in the call statement is emitted wrapped in quotes.</td>
+</tr>
+<tr>
+<td><code v-pre>{@}</code></td>
+<td>The name of the member.</td>
+</tr>
+<tr>
+<td><code v-pre>{$}</code></td>
+<td>The name of the member accessed by instance of <code v-pre>{this}</code>. Equivalent to <code v-pre>{this}.{@}</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>&lt;self&gt;</code></td>
+<td>Indicates whether an instance target is rendered.</td>
+</tr>
+</tbody>
+</table>
+<p>The following sample demonstrates how calling <code v-pre>ReplaceByNull()</code> in your C# application will trigger the compiler to emit<code v-pre>null</code> in the final JavaScript.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/82ed518ebab39efc2c250438d10921f0">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        var val = ReplaceByNull();
+    }
+
+    [Template(&quot;null&quot;)]
+    public extern static string ReplaceByNull();
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        var val = null;
+    }
+});</code></pre>
+</doc-codeblock></div>
+<p>Template formatting options are provided by using magic format tokens and flags.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/aaa1a9b83e8c8ff9a70ff1106a1c3528">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    public static void Main()
+    {
+        ParameterTokens(&quot;one&quot;);
+
+        RawFlag(&quot;55&quot;);
+
+        CommaSeparatedList(&quot;One&quot;, &quot;Two&quot;, &quot;Three&quot;);
+
+        IndexOfParameter(&quot;One&quot;, &quot;Two&quot;, true);
+    }
+
+    // Reference the parameter names as a template token
+    [Template(&quot;alert({message})&quot;)]
+    public static void ParameterTokens(string message) { }
+
+    // Force the parameter token to emitted as a raw value. 
+    // No quotations are added if the parameter is a sting type.
+    [Template(&quot;alert({message:raw})&quot;)]
+    public static void RawFlag(string message) { }
+
+    // 
+    [Template(&quot;alert({*msgs})&quot;)]
+    public static void CommaSeparatedList(params string[] msgs) { }
+
+    // Reference the parameters by their index location (zero based)
+    [Template(&quot;Bridge.Console.log({2:raw}, {1}, {0})&quot;)]
+    public static void IndexOfParameter(string one, string two, bool flag) { }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        alert(&quot;one&quot;);
+
+        alert(55);
+
+        alert(&quot;One&quot;, &quot;Two&quot;, &quot;Three&quot;);
+
+        Bridge.Console.log(true, &quot;Two&quot;, &quot;One&quot;);
+    }
+});</code></pre>
+</doc-codeblock></div>
+<p>The following sample demonstrates how <code v-pre>self</code> affects emitted JavaScript.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example <self> (<a href="https://deck.net/ca8ba34a57c8ff766e604e9539ba4d5d">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class App
+{
+    [Template(&quot;&lt;self&gt;Demo.App.DoSomething(\&quot;Calling instance method for static template with &lt;self&gt;\&quot;)&quot;)]
+    public extern int InstanceExtern();
+    
+    public static string DoSomething (string s) { return s; }
+
+    public static void Main()
+    {
+        /* Without &lt;self&gt; it would be the following code
+            var s = new Demo.App().Demo.App.DoSomething(&quot;Calling instance method for static template with &lt;self&gt;&quot;);  */
+        var s = new App().InstanceExtern();
+        Console.WriteLine(s);
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">Bridge.define(&quot;Demo.App&quot;, {
+    main: function Main() {
+        /* Without &lt;self&gt; it would be the following code
+           var s = new Demo.App().Demo.App.DoSomething(&quot;Calling instance method for static template with &lt;self&gt;&quot;);  */
+        var s = Demo.App.DoSomething(&quot;Calling instance method for static template with &lt;self&gt;&quot;);
+        System.Console.WriteLine(s);
+    },
+    statics: {
+        methods: {
+            DoSomething: function (s) {
+                return s;
+            }
+        }
+    }
+});</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Template(&quot;{this}.{@:CamelCase}({msg})&quot;)]
+public void DoSomething(string msg) { }
+
+// JavaScript output
+// obj.doSomething(&quot;test&quot;);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="unbox">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#unbox">#</doc-anchor-trigger>
+        <span>Unbox</span>
+    </h2>
+</doc-anchor-target>
+<p>If a class or method is marked as <code v-pre>[External]</code> then Bridge will automatically unbox an argument (if the parameter type is an object). Bridge assumes that external libraries cannot work with boxed arguments.</p>
+<p>If such behaviour is not required for external classes or methods; that is if your external method can handle boxed arguments correctly, then apply the <code v-pre>[Unbox(false)]</code> attribute.</p>
+<doc-anchor-target id="virtual">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#virtual">#</doc-anchor-trigger>
+        <span>Virtual</span>
+    </h2>
+</doc-anchor-target>
+<p>When a Class or Interface is marked with the <code v-pre>[Virtual]</code> attribute, the virtual type will be created during runtime if it does not already exist.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-csharp"><code v-pre class="language-csharp">[Virtual]
+public class Person
+{
+}
+
+public class Student : Person
+{
+}</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>[Virtual]</code> attribute is similar to the <doc-anchor-trigger to="#external"><code v-pre>[External]</code></doc-anchor-trigger> attribute, although they differ in one key feature; the <code v-pre>[Virtual]</code> attribute will first check if the type exists during runtime, and create if it does not exist.</p>
+<p>The <code v-pre>[External]</code> attribute always makes the assumption that the type exists.</p>
+<p>Additionally, a class marked with <code v-pre>[Virtual]</code> attribute does not allow nested classes, a compiler error will be thrown.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example (<a href="https://deck.net/082cbc16aed39e23f2646a018904cf14">Deck.NET</a>)</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class Program
+{
+    public static void Main()
+    {
+        object p = new Person();
+        var isPerson = p is Person;
+        
+        Console.WriteLine(&quot;Is Person: &quot; + isPerson);
+    }
+}
+
+// Using [External] will fail during runtime
+[Virtual]
+public class Person
+{
+}</code></pre>
+</doc-codeblock></div>
+
+    
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            <div class="mt-14 flex flex-wrap items-center justify-between">
+    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/bridgedotnet/www.bridge.net/blob/main/src/attributes/Attribute_Reference.md" target="_blank" rel="noopener">
+        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        <span>Edit this page</span>
+    </a>
+
+    <!--<p class="my-2.5 text-gray-500 dark:text-dark-350 text-sm">Last updated on <strong>2021-03-14</strong> by <strong>Geoffrey McGill</strong></p>-->
+</div>
+
+<nav class="flex mt-14">
+    <div class="w-1/2">
+        <a class="px-6 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/introduction/other_languages">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+            <span>
+                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                <span class="block mt-1">Other Languages</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="w-1/2">
+        <a class="px-6 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/attributes/module_attribute">
+            <span>
+                <span class="block text-right text-xs font-normal text-gray-400 dark:text-dark-400">Next</span>
+                <span class="block mt-1">Module Attribute</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        </a>
+    </div>
+</nav>
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Copyright 2008-2021 <a href="https://object.net/">Object.NET</a>, Inc.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Attribute Reference", icon: "file" }</script>
+    </body>
+</html>

@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60583944-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-60583944-1');</script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <title>Script | Write C#. Run in a web browser.</title>
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/resources/js/config.js" defer></script>
+    <script type="text/javascript" src="/resources/js/retype.js" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <span id="docs-site-logo" class="dark:text-white text-2xl leading-snug font-semibold line-clamp-1 md:line-clamp-2">
+                    <a href="/">
+                        <img class="dark:hidden" src="/static/bridge-logo.svg">
+                        <img class="hidden dark:block" src="/static/bridge-logo-dark.svg">
+                    </a>
+                </span>
+                <span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="/introduction/getting_started">Getting Started</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://deck.net/">Deck.NET</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/introduction/getting_started/">Getting Started</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://deck.net/">Deck.NET</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages -->            <!-- Toolbar Skeleton -->
+<div v-cloak class="sticky z-20 flex items-center justify-between h-16 px-6 bg-white border-b border-gray-200 md:h-20 md:pl-16 md:top-20 top-16 skeleton dark:bg-dark-850 dark:border-dark-650">
+    <div class="flex flex-grow">
+        <div class="w-24 h-8 mr-3 bg-gray-200 rounded loading dark:bg-dark-600"></div>
+        <div class="w-24 h-8 mr-3 bg-gray-200 rounded loading md:hidden lg:block dark:bg-dark-600"></div>
+        <div class="hidden w-24 h-8 mr-3 bg-gray-200 rounded loading sm:block md:hidden xl:block dark:bg-dark-600"></div>
+        <div class="hidden w-24 h-8 mr-3 bg-gray-200 rounded loading sm:block md:hidden xl:block dark:bg-dark-600"></div>
+    </div>
+    <div class="items-center hidden lg:flex">
+        <div class="w-24 h-4 ml-3 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+
+        <span class="relative ml-3 bg-white border border-gray-400 btn dark:bg-dark-600 dark:border-dark-650"><svg xmlns="http://www.w3.org/2000/svg" class="mr-1 -ml-1 icon-base" width="14" height="14" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M12 23c-.15 0-.31-.04-.45-.11C11.2 22.72 3 18.54 3 12V5c0-.42.26-.79.65-.94l8-3c.23-.08.48-.08.7 0l8 3c.39.15.65.52.65.94v7c0 6.54-8.2 10.72-8.55 10.89-.14.07-.3.11-.45.11zM5 5.69V12c0 4.55 5.39 7.95 7 8.86 1.61-.92 7-4.33 7-8.86V5.69l-7-2.63-7 2.63z"></path></g></svg><span>Access</span></span>
+
+        <div class="relative flex items-center ml-3" style="width: 12.4375rem;"><input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear border border-gray-400 rounded md:text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400" type="text" placeholder="Filter"></div>
+    </div>
+
+    <span class="relative inline-flex items-center justify-center w-8 h-8 p-0 text-sm font-medium leading-none text-gray-900 whitespace-no-wrap bg-white border border-gray-400 rounded cursor-pointer select-none lg:hidden sm:w-auto sm:px-3 dark:border-dark-650 dark:text-white dark:bg-dark-550 focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" class="mb-0 icon-base sm:mr-1" width="14" height="14" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"><g fill="currentColor"><path d="M14 22c-.15 0-.31-.04-.45-.11l-4-2A.988.988 0 019 19v-6.17L1.24 3.65a.995.995 0 01-.14-1.07c.16-.35.51-.58.9-.58h20c.39 0 .74.23.91.58s.11.77-.14 1.07L15 12.83V21a.999.999 0 01-1 1zm-3-3.62l2 1v-6.92c0-.24.08-.47.24-.65L19.84 4H4.16l6.61 7.81c.15.18.24.41.24.65v5.92z"></path></g></svg><span class="hidden sm:inline">Filters</span></span>
+</div>
+
+<doc-toolbar v-cloak></doc-toolbar>
+
+<!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="class-script" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#class-script">#</doc-anchor-trigger>
+        <span>Script Class</span>
+    </h1>
+</doc-anchor-target>
+
+<doc-member-group id="fields">
+    <template #title>Fields</template>
+
+    <doc-member id="field-discard" name="Discard" type="object" signature="public static object Discard">
+        <template #name><h3>Discard</h3></template>
+    </doc-member>
+
+    <doc-member id="field-infinity" name="Infinity" type="object" signature="public readonly static object Infinity">
+        <template #name><h3>Infinity</h3></template>
+
+<p>The global Infinity property is a numeric value representing infinity.</p>
+
+    </doc-member>
+
+    <doc-member id="field-isnode" name="IsNode" type="bool" signature="public readonly static bool IsNode">
+        <template #name><h3>IsNode</h3></template>
+    </doc-member>
+
+    <doc-member id="field-nan" name="NaN" type="object" signature="public readonly static object NaN">
+        <template #name><h3>NaN</h3></template>
+
+<p>The global NaN property is a value representing Not-A-Number.</p>
+
+    </doc-member>
+
+    <doc-member id="field-undefined" name="Undefined" type="object" signature="public readonly static object Undefined">
+        <template #name><h3>Undefined</h3></template>
+
+<p>The global undefined property represents the value undefined.</p>
+
+    </doc-member>
+</doc-member-group>
+
+<doc-member-group id="methods">
+    <template #title>Methods</template>
+
+    <doc-overload-group overload-id="group-apply">
+        <doc-member id="method-apply" overload-id="group-apply" name="Apply" returns="object" params="object, object" signature="public static object Apply(object obj, object values)">
+            <template #name><h3>Apply</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="values" type="object"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-apply-1" overload-id="group-apply" name="Apply" returns="T" params="T, object" signature="public static T Apply<T>(T obj, object values)">
+            <template #name><h3>Apply&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="T"></doc-parameter>
+                    <doc-parameter name="values" type="object"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-asynccallfor" name="AsyncCallFor" returns="Task<T>" params="T, Func<T, Task<T>>" signature="public static Task<T> AsyncCallFor<T>(T t, Func<T, Task<T>> init)">
+        <template #name><h3>AsyncCallFor&lt;T&gt;</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="t" type="T"></doc-parameter>
+                <doc-parameter name="init" type="System.Func<T, System.Threading.Tasks.Task<T>>"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-boolean" name="Boolean" returns="bool" params="object" signature="public static bool Boolean(object obj)">
+        <template #name><h3>Boolean</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Converts an object into a boolean.</p>
+
+    </doc-member>
+
+    <doc-overload-group overload-id="group-call">
+        <doc-member id="method-call" overload-id="group-call" name="Call" returns="void" params="string" signature="public static void Call(string name)">
+            <template #name><h3>Call</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-call-1" overload-id="group-call" name="Call" returns="T" params="string" signature="public static T Call<T>(string name)">
+            <template #name><h3>Call&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-call-2" overload-id="group-call" name="Call" returns="void" params="string, object[]" signature="public static void Call(string name, params object[] args)">
+            <template #name><h3>Call</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                    <doc-parameter name="args" type="object[]"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-call-3" overload-id="group-call" name="Call" returns="T" params="string, object[]" signature="public static T Call<T>(string name, params object[] args)">
+            <template #name><h3>Call&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                    <doc-parameter name="args" type="object[]"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-caller" name="Caller" returns="T" signature="public static T Caller<T>()">
+        <template #name><h3>Caller&lt;T&gt;</h3></template>
+    </doc-member>
+
+    <doc-member id="method-callfor" name="CallFor" returns="T" params="T, Func<T, T>" signature="public static T CallFor<T>(T t, Func<T, T> init)">
+        <template #name><h3>CallFor&lt;T&gt;</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="t" type="T"></doc-parameter>
+                <doc-parameter name="init" type="System.Func<T, T>"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-overload-group overload-id="group-copy">
+        <doc-member id="method-copy" overload-id="group-copy" name="Copy" returns="object" params="object, object, string[]" signature="public static object Copy(object to, object from, string[] keys)">
+            <template #name><h3>Copy</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="to" type="object"></doc-parameter>
+                    <doc-parameter name="from" type="object"></doc-parameter>
+                    <doc-parameter name="keys" type="string[]"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-copy-1" overload-id="group-copy" name="Copy" returns="object" params="object, object, string" signature="public static object Copy(object to, object from, string keys)">
+            <template #name><h3>Copy</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="to" type="object"></doc-parameter>
+                    <doc-parameter name="from" type="object"></doc-parameter>
+                    <doc-parameter name="keys" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-copy-2" overload-id="group-copy" name="Copy" returns="object" params="object, object, string[], bool" signature="public static object Copy(object to, object from, string[] keys, bool toIf)">
+            <template #name><h3>Copy</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="to" type="object"></doc-parameter>
+                    <doc-parameter name="from" type="object"></doc-parameter>
+                    <doc-parameter name="keys" type="string[]"></doc-parameter>
+                    <doc-parameter name="toIf" type="bool"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-copy-3" overload-id="group-copy" name="Copy" returns="object" params="object, object, string, bool" signature="public static object Copy(object to, object from, string keys, bool toIf)">
+            <template #name><h3>Copy</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="to" type="object"></doc-parameter>
+                    <doc-parameter name="from" type="object"></doc-parameter>
+                    <doc-parameter name="keys" type="string"></doc-parameter>
+                    <doc-parameter name="toIf" type="bool"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-debugger" name="Debugger" returns="void" signature="public static void Debugger()">
+        <template #name><h3>Debugger</h3></template>
+    </doc-member>
+
+    <doc-member id="method-decodeuri" name="DecodeURI" returns="string" params="string" signature="public static string DecodeURI(string encodedURI)">
+        <template #name><h3>DecodeURI</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="encodedURI" type="string"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>The decodeURI() function decodes a Uniform Resource Identifier (URI) previously created by encodeURI or by a similar routine.</p>
+
+    </doc-member>
+
+    <doc-member id="method-decodeuricomponent" name="DecodeURIComponent" returns="string" params="string" signature="public static string DecodeURIComponent(string encodedURI)">
+        <template #name><h3>DecodeURIComponent</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="encodedURI" type="string"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>The decodeURIComponent() method decodes a Uniform Resource Identifier (URI) component previously created by encodeURIComponent or by a similar routine.</p>
+
+    </doc-member>
+
+    <doc-overload-group overload-id="group-deconstruct">
+        <doc-member id="method-deconstruct" overload-id="group-deconstruct" name="Deconstruct" returns="void" params="object, T1" signature="public static void Deconstruct<T1>(object obj, out T1 t1)">
+            <template #name><h3>Deconstruct&lt;T1&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="t1" type="T1"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-deconstruct-1" overload-id="group-deconstruct" name="Deconstruct" returns="void" params="object, T1, T2" signature="public static void Deconstruct<T1, T2>(object obj, out T1 t1, out T2 t2)">
+            <template #name><h3>Deconstruct&lt;T1, T2&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="t1" type="T1"></doc-parameter>
+                    <doc-parameter name="t2" type="T2"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-deconstruct-2" overload-id="group-deconstruct" name="Deconstruct" returns="void" params="object, T1, T2, T3" signature="public static void Deconstruct<T1, T2, T3>(object obj, out T1 t1, out T2 t2, out T3 t3)">
+            <template #name><h3>Deconstruct&lt;T1, T2, T3&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="t1" type="T1"></doc-parameter>
+                    <doc-parameter name="t2" type="T2"></doc-parameter>
+                    <doc-parameter name="t3" type="T3"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-deconstruct-3" overload-id="group-deconstruct" name="Deconstruct" returns="void" params="object, T1, T2, T3, T4" signature="public static void Deconstruct<T1, T2, T3, T4>(object obj, out T1 t1, out T2 t2, out T3 t3, out T4 t4)">
+            <template #name><h3>Deconstruct&lt;T1, T2, T3, T4&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="t1" type="T1"></doc-parameter>
+                    <doc-parameter name="t2" type="T2"></doc-parameter>
+                    <doc-parameter name="t3" type="T3"></doc-parameter>
+                    <doc-parameter name="t4" type="T4"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-deconstruct-4" overload-id="group-deconstruct" name="Deconstruct" returns="void" params="object, T1, T2, T3, T4, T5" signature="public static void Deconstruct<T1, T2, T3, T4, T5>(object obj, out T1 t1, out T2 t2, out T3 t3, out T4 t4, out T5 t5)">
+            <template #name><h3>Deconstruct&lt;T1, T2, T3, T4, T5&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="t1" type="T1"></doc-parameter>
+                    <doc-parameter name="t2" type="T2"></doc-parameter>
+                    <doc-parameter name="t3" type="T3"></doc-parameter>
+                    <doc-parameter name="t4" type="T4"></doc-parameter>
+                    <doc-parameter name="t5" type="T5"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-deconstruct-5" overload-id="group-deconstruct" name="Deconstruct" returns="void" params="object, T1, T2, T3, T4, T5, T6" signature="public static void Deconstruct<T1, T2, T3, T4, T5, T6>(object obj, out T1 t1, out T2 t2, out T3 t3, out T4 t4, out T5 t5, out T6 t6)">
+            <template #name><h3>Deconstruct&lt;T1, T2, T3, T4, T5, T6&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="t1" type="T1"></doc-parameter>
+                    <doc-parameter name="t2" type="T2"></doc-parameter>
+                    <doc-parameter name="t3" type="T3"></doc-parameter>
+                    <doc-parameter name="t4" type="T4"></doc-parameter>
+                    <doc-parameter name="t5" type="T5"></doc-parameter>
+                    <doc-parameter name="t6" type="T6"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-deconstruct-6" overload-id="group-deconstruct" name="Deconstruct" returns="void" params="object, T1, T2, T3, T4, T5, T6, T7" signature="public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7>(object obj, out T1 t1, out T2 t2, out T3 t3, out T4 t4, out T5 t5, out T6 t6, out T7 t7)">
+            <template #name><h3>Deconstruct&lt;T1, T2, T3, T4, T5, T6, T7&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="t1" type="T1"></doc-parameter>
+                    <doc-parameter name="t2" type="T2"></doc-parameter>
+                    <doc-parameter name="t3" type="T3"></doc-parameter>
+                    <doc-parameter name="t4" type="T4"></doc-parameter>
+                    <doc-parameter name="t5" type="T5"></doc-parameter>
+                    <doc-parameter name="t6" type="T6"></doc-parameter>
+                    <doc-parameter name="t7" type="T7"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-deconstruct-7" overload-id="group-deconstruct" name="Deconstruct" returns="void" params="object, T1, T2, T3, T4, T5, T6, T7, TRest" signature="public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, TRest>(object obj, out T1 t1, out T2 t2, out T3 t3, out T4 t4, out T5 t5, out T6 t6, out T7 t7, out TRest rest)">
+            <template #name><h3>Deconstruct&lt;T1, T2, T3, T4, T5, T6, T7, TRest&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="t1" type="T1"></doc-parameter>
+                    <doc-parameter name="t2" type="T2"></doc-parameter>
+                    <doc-parameter name="t3" type="T3"></doc-parameter>
+                    <doc-parameter name="t4" type="T4"></doc-parameter>
+                    <doc-parameter name="t5" type="T5"></doc-parameter>
+                    <doc-parameter name="t6" type="T6"></doc-parameter>
+                    <doc-parameter name="t7" type="T7"></doc-parameter>
+                    <doc-parameter name="rest" type="TRest"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-overload-group overload-id="group-delete">
+        <doc-member id="method-delete" overload-id="group-delete" name="Delete" returns="bool" params="object" signature="public static bool Delete(object obj)">
+            <template #name><h3>Delete</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                </doc-parameters>
+            </template>
+
+<p>The delete operator removes a property from an object.</p>
+
+        </doc-member>
+
+        <doc-member id="method-delete-1" overload-id="group-delete" name="Delete" returns="bool" params="object, string" signature="public static bool Delete(object obj, string prop)">
+            <template #name><h3>Delete</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="obj" type="object"></doc-parameter>
+                    <doc-parameter name="prop" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+
+<p>The delete operator removes a property from an object.</p>
+
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-encodeuri" name="EncodeURI" returns="string" params="string" signature="public static string EncodeURI(string uri)">
+        <template #name><h3>EncodeURI</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="uri" type="string"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>The encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters).</p>
+
+    </doc-member>
+
+    <doc-member id="method-encodeuricomponent" name="EncodeURIComponent" returns="string" params="string" signature="public static string EncodeURIComponent(string component)">
+        <template #name><h3>EncodeURIComponent</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="component" type="string"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>The encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters).</p>
+
+    </doc-member>
+
+    <doc-overload-group overload-id="group-eval">
+        <doc-member id="method-eval" overload-id="group-eval" name="Eval" returns="T" params="string" signature="public static T Eval<T>(string expression)">
+            <template #name><h3>Eval&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="expression" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+
+<p>The eval() method evaluates JavaScript code represented as a string.</p>
+
+        </doc-member>
+
+        <doc-member id="method-eval-1" overload-id="group-eval" name="Eval" returns="void" params="string" signature="public static void Eval(string expression)">
+            <template #name><h3>Eval</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="expression" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+
+<p>The eval() method evaluates JavaScript code represented as a string.</p>
+
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-fromlambda" name="FromLambda" returns="object" params="Action" signature="public static object FromLambda(Action action)">
+        <template #name><h3>FromLambda</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="action" type="System.Action"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-overload-group overload-id="group-fromtemp">
+        <doc-member id="method-fromtemp" overload-id="group-fromtemp" name="FromTemp" returns="T" params="string" signature="public static T FromTemp<T>(string name)">
+            <template #name><h3>FromTemp&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-fromtemp-1" overload-id="group-fromtemp" name="FromTemp" returns="T" params="string, T" signature="public static T FromTemp<T>(string name, T t)">
+            <template #name><h3>FromTemp&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                    <doc-parameter name="t" type="T"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-overload-group overload-id="group-get">
+        <doc-member id="method-get" overload-id="group-get" name="Get" returns="object" params="string" signature="public static object Get(string name)">
+            <template #name><h3>Get</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-get-1" overload-id="group-get" name="Get" returns="T" params="string" signature="public static T Get<T>(string name)">
+            <template #name><h3>Get&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-get-2" overload-id="group-get" name="Get" returns="object" params="object, string" signature="public static object Get(object scope, string name)">
+            <template #name><h3>Get</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="scope" type="object"></doc-parameter>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-get-3" overload-id="group-get" name="Get" returns="T" params="object, string" signature="public static T Get<T>(object scope, string name)">
+            <template #name><h3>Get&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="scope" type="object"></doc-parameter>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-overload-group overload-id="group-getdefaultvalue">
+        <doc-member id="method-getdefaultvalue" overload-id="group-getdefaultvalue" name="GetDefaultValue" returns="T" params="Type" signature="public static T GetDefaultValue<T>(Type type)">
+            <template #name><h3>GetDefaultValue&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="type" type="System.Type"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-getdefaultvalue-1" overload-id="group-getdefaultvalue" name="GetDefaultValue" returns="object" params="Type" signature="public static object GetDefaultValue(Type type)">
+            <template #name><h3>GetDefaultValue</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="type" type="System.Type"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-gethashcode" name="GetHashCode" returns="int" params="object" signature="public static int GetHashCode(object obj)">
+        <template #name><h3>GetHashCode</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-hasvalue" name="HasValue" returns="bool" params="object" signature="public static bool HasValue(object obj)">
+        <template #name><h3>HasValue</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Checks if the object has a value.</p>
+
+    </doc-member>
+
+    <doc-member id="method-identity" name="Identity" returns="T" params="T, object[]" signature="public static T Identity<T>(T arg, params object[] args)">
+        <template #name><h3>Identity&lt;T&gt;</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="arg" type="T"></doc-parameter>
+                <doc-parameter name="args" type="object[]"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-in" name="In" returns="bool" params="object, string" signature="public static bool In(object obj, string member)">
+        <template #name><h3>In</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+                <doc-parameter name="member" type="string"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Generate <c>member in obj</c>.</p>
+
+    </doc-member>
+
+    <doc-member id="method-instanceof" name="InstanceOf" returns="bool" params="object, Type" signature="public static bool InstanceOf(object obj, Type type)">
+        <template #name><h3>InstanceOf</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+                <doc-parameter name="type" type="System.Type"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-invokemethod" name="InvokeMethod" returns="object" params="object, string, object[]" signature="public static object InvokeMethod(object obj, string name, params object[] args)">
+        <template #name><h3>InvokeMethod</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+                <doc-parameter name="name" type="string"></doc-parameter>
+                <doc-parameter name="args" type="object[]"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Invoke a method on an object</p>
+
+    </doc-member>
+
+    <doc-member id="method-is" name="Is" returns="bool" params="object, string" signature="public static bool Is(object type, string typeName)">
+        <template #name><h3>Is</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="type" type="object"></doc-parameter>
+                <doc-parameter name="typeName" type="string"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-isarray" name="IsArray" returns="bool" params="object" signature="public static bool IsArray(object obj)">
+        <template #name><h3>IsArray</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-isdefined" name="IsDefined" returns="bool" params="object" signature="public static bool IsDefined(object obj)">
+        <template #name><h3>IsDefined</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-isfinite" name="IsFinite" returns="bool" params="object" signature="public static bool IsFinite(object testValue)">
+        <template #name><h3>IsFinite</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="testValue" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>The global isFinite() function determines whether the passed value is a finite number. If needed, the parameter is first converted to a number.</p>
+
+    </doc-member>
+
+    <doc-member id="method-isnan" name="IsNaN" returns="bool" params="object" signature="public static bool IsNaN(object testValue)">
+        <template #name><h3>IsNaN</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="testValue" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>The isNaN() function determines whether a value is NaN or not. Be careful, this function is broken. You may be interested in Number.isNaN() as defined in ECMAScript 6 or you can use typeof to determine if the value is Not-A-Number.</p>
+
+    </doc-member>
+
+    <doc-member id="method-isnull" name="IsNull" returns="bool" params="object" signature="public static bool IsNull(object obj)">
+        <template #name><h3>IsNull</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Checks if the specified object is null.</p>
+
+    </doc-member>
+
+    <doc-member id="method-isundefined" name="IsUndefined" returns="bool" params="object" signature="public static bool IsUndefined(object obj)">
+        <template #name><h3>IsUndefined</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Checks if the specified object is undefined. The object passed in should be a local variable, and not a member of a class (to avoid potential script warnings).</p>
+
+    </doc-member>
+
+    <doc-overload-group overload-id="group-ns">
+        <doc-member id="method-ns" overload-id="group-ns" name="NS" returns="object" params="string" signature="public static object NS(string ns)">
+            <template #name><h3>NS</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="ns" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-ns-1" overload-id="group-ns" name="NS" returns="object" params="string, object" signature="public static object NS(string ns, object scope)">
+            <template #name><h3>NS</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="ns" type="string"></doc-parameter>
+                    <doc-parameter name="scope" type="object"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-parsefloat" name="ParseFloat" returns="double" params="string" signature="public static double ParseFloat(string value)">
+        <template #name><h3>ParseFloat</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="value" type="string"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Parses a string argument and returns a floating point number corresponding to double .Net type.</p>
+
+    </doc-member>
+
+    <doc-overload-group overload-id="group-parseint">
+        <doc-member id="method-parseint" overload-id="group-parseint" name="ParseInt" returns="int" params="string" signature="public static int ParseInt(string value)">
+            <template #name><h3>ParseInt</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="value" type="string"></doc-parameter>
+                </doc-parameters>
+            </template>
+
+<p>The parseInt() function parses a string argument and returns an integer of the specified radix or base.</p>
+
+        </doc-member>
+
+        <doc-member id="method-parseint-1" overload-id="group-parseint" name="ParseInt" returns="int" params="string, int" signature="public static int ParseInt(string value, int radix)">
+            <template #name><h3>ParseInt</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="value" type="string"></doc-parameter>
+                    <doc-parameter name="radix" type="int"></doc-parameter>
+                </doc-parameters>
+            </template>
+
+<p>The parseInt() function parses a string argument and returns an integer of the specified radix or base.</p>
+
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-return" name="Return" returns="void" params="object" signature="public static void Return(object obj)">
+        <template #name><h3>Return</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Emit a return statement</p>
+
+    </doc-member>
+
+    <doc-member id="method-safefunc" name="SafeFunc" returns="bool" params="Func<bool>" signature="public static bool SafeFunc(Func<bool> fn)">
+        <template #name><h3>SafeFunc</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="fn" type="System.Func<bool>"></doc-parameter>
+            </doc-parameters>
+        </template>
+
+<p>Runs the function in a try/catch statement</p>
+
+    </doc-member>
+
+    <doc-overload-group overload-id="group-set">
+        <doc-member id="method-set" overload-id="group-set" name="Set" returns="void" params="string, object" signature="public static void Set(string name, object value)">
+            <template #name><h3>Set</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                    <doc-parameter name="value" type="object"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+
+        <doc-member id="method-set-1" overload-id="group-set" name="Set" returns="void" params="object, string, object" signature="public static void Set(object scope, string name, object value)">
+            <template #name><h3>Set</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="scope" type="object"></doc-parameter>
+                    <doc-parameter name="name" type="string"></doc-parameter>
+                    <doc-parameter name="value" type="object"></doc-parameter>
+                </doc-parameters>
+            </template>
+        </doc-member>
+    </doc-overload-group>
+
+    <doc-member id="method-strictequals" name="StrictEquals" returns="bool" params="object, object" signature="public static bool StrictEquals(object a, object b)">
+        <template #name><h3>StrictEquals</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="a" type="object"></doc-parameter>
+                <doc-parameter name="b" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-this" name="This" returns="T" signature="public static T This<T>()">
+        <template #name><h3>This&lt;T&gt;</h3></template>
+    </doc-member>
+
+    <doc-member id="method-toarray" name="ToArray" returns="T[]" params="IEnumerable<T>" signature="public static T[] ToArray<T>(IEnumerable<T> items)">
+        <template #name><h3>ToArray&lt;T&gt;</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="items" type="System.Collections.Generic.IEnumerable<T>"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-todynamic" name="ToDynamic" returns="dynamic" signature="public static dynamic ToDynamic()">
+        <template #name><h3>ToDynamic</h3></template>
+    </doc-member>
+
+    <doc-member id="method-toobjectliteral" name="ToObjectLiteral" returns="T" params="T" signature="public static T ToObjectLiteral<T>(T o)">
+        <template #name><h3>ToObjectLiteral&lt;T&gt;</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="o" type="T"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-toplainobject" name="ToPlainObject" returns="T" params="T" signature="public static T ToPlainObject<T>(T o)">
+        <template #name><h3>ToPlainObject&lt;T&gt;</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="o" type="T"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-totemp" name="ToTemp" returns="T" params="string, T" signature="public static T ToTemp<T>(string name, T t)">
+        <template #name><h3>ToTemp&lt;T&gt;</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="name" type="string"></doc-parameter>
+                <doc-parameter name="t" type="T"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-member id="method-typeof" name="TypeOf" returns="string" params="object" signature="public static string TypeOf(object obj)">
+        <template #name><h3>TypeOf</h3></template>
+
+        <template #parameters>
+            <doc-parameters>
+                <doc-parameter name="obj" type="object"></doc-parameter>
+            </doc-parameters>
+        </template>
+    </doc-member>
+
+    <doc-overload-group overload-id="group-write">
+        <doc-member id="method-write" overload-id="group-write" name="Write" returns="T" params="string, object[]" signature="public static T Write<T>(string code, params object[] args)">
+            <template #name><h3>Write&lt;T&gt;</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="code" type="string"></doc-parameter>
+                    <doc-parameter name="args" type="object[]"></doc-parameter>
+                </doc-parameters>
+            </template>
+
+<p>Inject javascript code</p>
+
+        </doc-member>
+
+        <doc-member id="method-write-1" overload-id="group-write" name="Write" returns="void" params="string, object[]" signature="public static void Write(string code, params object[] args)">
+            <template #name><h3>Write</h3></template>
+
+            <template #parameters>
+                <doc-parameters>
+                    <doc-parameter name="code" type="string"></doc-parameter>
+                    <doc-parameter name="args" type="object[]"></doc-parameter>
+                </doc-parameters>
+            </template>
+
+<p>Inject javascript code</p>
+
+        </doc-member>
+    </doc-overload-group>
+</doc-member-group>
+
+
+    
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Copyright 2008-2021 <a href="https://object.net/">Object.NET</a>, Inc.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Script", icon: "file", relatedClasses: [{"title":"Hierarchy","isGroup":true,"children":[{"label":"Script"}]}] }</script>
+    </body>
+</html>

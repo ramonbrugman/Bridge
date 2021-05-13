@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60583944-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-60583944-1');</script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <title>Global Configuration | Write C#. Run in a web browser.</title>
+
+    <meta name="description" content="The `bridge.json` file is a global configuration file for a Bridge project and by default is added to the root of your Project." />
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/resources/js/config.js" defer></script>
+    <script type="text/javascript" src="/resources/js/prism.js" defer></script>
+    <script type="text/javascript" src="/resources/js/retype.js" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <span id="docs-site-logo" class="dark:text-white text-2xl leading-snug font-semibold line-clamp-1 md:line-clamp-2">
+                    <a href="/">
+                        <img class="dark:hidden" src="/static/bridge-logo.svg">
+                        <img class="hidden dark:block" src="/static/bridge-logo-dark.svg">
+                    </a>
+                </span>
+                <span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="/introduction/getting_started">Getting Started</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://deck.net/">Deck.NET</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/introduction/getting_started/">Getting Started</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://deck.net/">Deck.NET</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="global-configuration" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#global-configuration">#</doc-anchor-trigger>
+        <span>Global Configuration</span>
+    </h1>
+</doc-anchor-target>
+<p>The <code v-pre>bridge.json</code> file is a global configuration file for a Bridge project and by default is added to the root of your Project.</p>
+<p>A very basic <code v-pre>bridge.json</code> configuration file would look as follows:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;output&quot;: &quot;$(OutDir)/bridge/&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>bridge.json</code> file is mapped to the <strong>AssemblyInfo</strong> class. All settings of the <strong>AssemblyInfo</strong> class are available to configure within <code v-pre>bridge.json</code>.</p>
+<p>Including a <code v-pre>bridge.json</code> file in your project is not a requirement for the Bridge compiler. If a <code v-pre>bridge.json</code> is missing, the compiler will just assume the default values.</p>
+<doc-anchor-target id="custom-bridge-json-files">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#custom-bridge-json-files">#</doc-anchor-trigger>
+        <span>Custom bridge.json files</span>
+    </h2>
+</doc-anchor-target>
+<p>If your project has the default <strong>Release</strong> and <strong>Debug</strong> build modes, you can define separate <code v-pre>bridge.json</code> files for each build mode, as well as a default <code v-pre>bridge.json</code> file for common configs of all build modes.</p>
+<table>
+<thead>
+<tr>
+<th>File Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>bridge.json</code></td>
+<td>Common configurations applied to all build modes.</td>
+</tr>
+<tr>
+<td><code v-pre>bridge.Debug.json</code></td>
+<td>Configuration only applied during Debug mode compilation. Takes precedence over the same settings if configured in bridge.json.</td>
+</tr>
+<tr>
+<td><code v-pre>bridge.Release.json</code></td>
+<td>Configuration only applied during Release mode compilation. Takes precedence over the same settings if configured in bridge.json.</td>
+</tr>
+</tbody>
+</table>
+<p>The config file name is case-sensitive. For example, if the build mode name is <strong>Release</strong>, the file name must be <code v-pre>bridge.Release.json</code>, and not bridge.release.json.</p>
+<p>Custom bridge.json files are not limited to <strong>Debug</strong> and <strong>Release</strong> build modes. If you have a custom build mode, for example, <strong>Staging</strong>, just add a <code v-pre>bridge.Staging.json</code> file.</p>
+<doc-anchor-target id="afterbuild">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#afterbuild">#</doc-anchor-trigger>
+        <span><code v-pre>afterBuild</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>The executable file to be launched after building. You can use absolute or relative paths. A relative path starts with the project&#x27;s root. An example of usage could be configuring afterBuild to trigger a <code v-pre>.bat</code> file to copy the generated JavaScript files to another folder location, such as another web project.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;afterBuild&quot;: &quot;Bridge/build/deploy.bat&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>Sample <a href="https://gist.github.com/geoffreymcgill/d4963a38647c442c7a43">deploy.bat</a> file.</p>
+<doc-anchor-target id="beforebuild">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#beforebuild">#</doc-anchor-trigger>
+        <span><code v-pre>beforeBuild</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>The executable file to be launched before building. You can use absolute or relative paths. A relative path starts with the project&#x27;s root. An example of usage could be configuring beforeBuild to trigger a <code v-pre>.bat</code> file to remove all files from a directory before compiling.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;beforeBuild&quot;: &quot;Bridge/build/clean.bat&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>Sample <a href="https://gist.github.com/geoffreymcgill/5ed82fcbfc5414e19c93">clean.bat</a> file.</p>
+<doc-anchor-target id="cleanoutputfolderbeforebuild">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanoutputfolderbeforebuild">#</doc-anchor-trigger>
+        <span><code v-pre>cleanOutputFolderBeforeBuild</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>boolean</code></p>
+<p>Cleans up Bridge&#x27;s output folder before starting to dump built JavaScript files. Defaults to <code v-pre>false</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;cleanOutputFolderBeforeBuild&quot;: false
+}</code></pre>
+</doc-codeblock></div>
+<doc-alert variant="danger">
+<template #title>Use with great care.</template>
+<p>This will <em>recursively</em> erase all files and directories in the output directory!</p>
+<p>We do not recommend using this feature.</p>
+</doc-alert>
+<doc-anchor-target id="cleanoutputfolderbeforebuildpattern">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanoutputfolderbeforebuildpattern">#</doc-anchor-trigger>
+        <span><code v-pre>cleanOutputFolderBeforeBuildPattern</code></span>
+    </h2>
+</doc-anchor-target>
+<p>By default, the <code v-pre>cleanOutputFolderBeforeBuild</code> config will use the search pattern <code v-pre>*.js|*.d.ts</code> to remove files.</p>
+<p>The following sample demonstrates how to override the default pattern.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;cleanOutputFolderBeforeBuildPattern&quot;: &quot;*myApp*.js|bridge.js|*myApp*.d.ts&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-alert variant="danger">
+<template #title>SERIOUSLY!!</template>
+<p>Use with great care. This will <em>recursively</em> erase all files and directories in the output directory!</p>
+<p>DO NOT USE</p>
+</doc-alert>
+<doc-anchor-target id="buildarguments">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#buildarguments">#</doc-anchor-trigger>
+        <span><code v-pre>buildArguments</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>Passes extra arguments to the builder (msbuild or xbuild) process.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;buildArguments&quot;: &quot;/nologo&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="combinelocales">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#combinelocales">#</doc-anchor-trigger>
+        <span><code v-pre>combineLocales</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>boolean</code></p>
+<p>Merges all locale files into a single file instead of individual locale name files (<code v-pre>en-US.js</code> for instance). Defaults to <code v-pre>false</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;combineLocales&quot;: true
+}</code></pre>
+</doc-codeblock></div>
+<doc-alert variant="primary">
+<p>If <doc-anchor-trigger to="#combinescripts">combineScripts</doc-anchor-trigger> is used in conjunction with this (<code v-pre>combineScripts: true</code>), all the code will be emitted in a single file: locales, Bridge base and Bridge user code. Additionally on this case, the <doc-anchor-trigger to="#localesfilename">localesFileName</doc-anchor-trigger> setting will be ignored from <code v-pre>bridge.json</code>.</p>
+</doc-alert>
+<doc-anchor-target id="combinescripts">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#combinescripts">#</doc-anchor-trigger>
+        <span><code v-pre>combineScripts</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>boolean</code></p>
+<p>Combines <code v-pre>bridge.js</code> and user code in a same file instead of following rules determined by <doc-anchor-trigger to="#fileNameCasing">fileNameCasing</doc-anchor-trigger> and <doc-anchor-trigger to="#outputby">outputBy</doc-anchor-trigger> to determine file names. The output file name then will be the project name.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;combineScripts&quot;: true
+}</code></pre>
+</doc-codeblock></div>
+<doc-alert variant="primary">
+<p>This option implies both <doc-anchor-trigger to="#fileNameCasing">fileNameCasing</doc-anchor-trigger> and <doc-anchor-trigger to="#outputby">outputBy</doc-anchor-trigger> options will be ignored from <code v-pre>bridge.json</code> file.</p>
+</doc-alert>
+<doc-anchor-target id="configuration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration">#</doc-anchor-trigger>
+        <span><code v-pre>configuration</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>Override project&#x27;s &#x27;Configuration&#x27; used for paths. By default, this value is queried from the project.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;configuration&quot;: &quot;Release&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>The above example will force to get DLLs from <code v-pre>bin/Release/</code> regardless of current project&#x27;s selected configuration (<code v-pre>Debug</code> for example).</p>
+<doc-anchor-target id="console">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#console">#</doc-anchor-trigger>
+        <span><code v-pre>console</code></span>
+    </h2>
+</doc-anchor-target>
+<p>Enables global configuration of <strong>Bridge Console</strong> functionality.</p>
+<p>By default, the <code v-pre>bridge.console.js</code> file is generated and included in the project output. To disable the <strong>Bridge Console</strong>, the <code v-pre>bridge.console.js</code> file can be removed from your .html file, or by setting <code v-pre>&quot;enabled&quot;: false</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>enabled</code></td>
+<td>bool</td>
+<td>Set to <code v-pre>true</code> to include <strong>Bridge Console</strong>. Default is <code v-pre>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;console&quot;: {
+    &quot;enabled&quot;: true
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="defineconstants">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#defineconstants">#</doc-anchor-trigger>
+        <span><code v-pre>defineConstants</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>List&lt;string&gt;</code></p>
+<p>Override project&#x27;s <code v-pre>&lt;DefineConstants&gt;</code> setting/tag in .csproj file. By default, the list is loaded off the .csproj.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;defineConstants&quot;: [ &quot;MyConstant1&quot;, &quot;MyConstant2&quot; ]
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="dependencies">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dependencies">#</doc-anchor-trigger>
+        <span><code v-pre>dependencies</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>List&lt;IPluginDependency&gt;</code></p>
+<p>Determines a list of required plugins loaded before building the Bridge.NET project. By default, no plugin is required (empty list).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;dependencies&quot;: [
+    { &quot;dependencyName&quot;: &quot;MyPlugin1&quot;, variableName: &quot;MyVar1&quot; },
+    { &quot;dependencyName&quot;: &quot;MyPlugin2&quot;, variableName: &quot;MyVar2&quot; }
+  ]
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="namedfunctions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#namedfunctions">#</doc-anchor-trigger>
+        <span><code v-pre>namedFunctions</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>NamedFunctionMode</code></p>
+<p>Creates named function expressions in the emitted JavaScript functions. The default value is <code v-pre>None</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;namedFunctions&quot;: &quot;FullName&quot;
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public class Program
+{
+    public void DoSomething()
+    {
+    }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// If None (default)
+DoSomething: function () { }
+
+// If Name
+DoSomething: function DoSomething() { }
+
+// If FullName
+DoSomething: function Program_DoSomething() { }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>NamedFunctionMode</strong> includes the following options:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>None</code></td>
+<td>No named function expressions.</td>
+</tr>
+<tr>
+<td><code v-pre>Name</code></td>
+<td>Named function expressions is composed of Method name.</td>
+</tr>
+<tr>
+<td><code v-pre>FullName</code></td>
+<td>Named function expressions is composed of Class name and Method name.</td>
+</tr>
+</tbody>
+</table>
+<p>The setting is available in <code v-pre>bridge.json</code> and would apply the extra function name to all Methods in the whole assembly. It&#x27;s an assembly level on or off setting, with an explicit decision to enable. Please see Issue <a href="https://github.com/bridgedotnet/Bridge/issues/2407">#2407</a> for more information.</p>
+<doc-anchor-target id="filename">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#filename">#</doc-anchor-trigger>
+        <span><code v-pre>fileName</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>The file name where the JavaScript files are copied to. If omitted, it is <code v-pre>[namespace].js</code> by default.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;fileName&quot;: &quot;demo.js&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>You can decorate any class with a <code v-pre>[FileName('myClass.js')]</code> attribute. The class script will be generated to the defined file. It supersedes a global fileName setting.</p>
+<doc-anchor-target id="filenamecasing">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#filenamecasing">#</doc-anchor-trigger>
+        <span><code v-pre>fileNameCasing</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>Sets the filename casing convention used while generating the <code v-pre>.js</code> files. Default is <code v-pre>CamelCase</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;fileNameCasing&quot;: &quot;Lowercase&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="options-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-1">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="camelcase">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#camelcase">#</doc-anchor-trigger>
+        <span>CamelCase</span>
+    </h4>
+</doc-anchor-target>
+<p>Groups and converts all filenames by lowerCamelCase.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">namespace Demo =&gt; demo.js
+namespace Demo.Utilities =&gt; demo.utilities.js
+namespace DemoUtilities =&gt; demoUtilities.js</code></pre>
+</doc-codeblock></div>
+<p>This is the default functionality of Bridge.</p>
+<doc-anchor-target id="lowercase">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#lowercase">#</doc-anchor-trigger>
+        <span>Lowercase</span>
+    </h4>
+</doc-anchor-target>
+<p>Groups and converts all filenames to lowercase.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">namespace Demo =&gt; demo.js
+namespace Demo.Utilities =&gt; demo.utilities.js
+namespace DemoUtilities =&gt; demoutilities.js</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="none">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#none">#</doc-anchor-trigger>
+        <span>None</span>
+    </h4>
+</doc-anchor-target>
+<p>No case conversion is applied.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">namespace Demo =&gt; Demo.js
+namespace Demo.Utilities =&gt; Demo.Utilities.js
+namespace DemoUtilities =&gt; DemoUtilities.js</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="generatedocumentation">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#generatedocumentation">#</doc-anchor-trigger>
+        <span><code v-pre>generateDocumentation</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>DocumentationMode</code></p>
+<p>Options to manage the output of JSDoc-compatible documentation in the generated JavaScript and TypeScript definition files. Default is <code v-pre>Basic</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;generateDocumentation&quot;: &quot;Full&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="options-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-2">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>string</td>
+<td>Suppresses all JSDoc comments.</td>
+</tr>
+<tr>
+<td>Basic</td>
+<td>string</td>
+<td>Translates any existing XML Doc comments into JSDoc comments.</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>string</td>
+<td>Annotates all generated JavaScript and TypeScript definitions with JSDoc comments.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="generatetypescript">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#generatetypescript">#</doc-anchor-trigger>
+        <span><code v-pre>generateTypeScript</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>boolean</code></p>
+<p>Toggles TypeScript support. If set to <code v-pre>true</code> TypeScript definitions (<strong>.d.ts</strong>) are generated along with the matching JavaScript files. <code v-pre>false</code>, by default.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;generateTypeScript&quot;: true
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="html">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#html">#</doc-anchor-trigger>
+        <span><code v-pre>html</code></span>
+    </h2>
+</doc-anchor-target>
+<p>Automatically generate a <code v-pre>index.html</code> file and add the file to the <code v-pre>output</code> directory.</p>
+<p>The html file will be configured by the Bridge compiler to include the JavaScript files for the project.</p>
+<p>The <code v-pre>index.html</code> can be opened in a browser to run the project.</p>
+<doc-anchor-target id="options-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-3">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>disabled</code></td>
+<td>bool</td>
+<td><code v-pre>true</code> to disable automatic generation of the html file. Default is <code v-pre>false</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>title</code></td>
+<td>string</td>
+<td>A custom string to use as the html files <code v-pre>&lt;title&gt;</code> value.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;html&quot;: {
+    &quot;disabled&quot;: false,
+    &quot;title&quot;: &quot;My Bridge Demo App&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="loader">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#loader">#</doc-anchor-trigger>
+        <span><code v-pre>loader</code></span>
+    </h2>
+</doc-anchor-target>
+<p>Bridge supports <strong>AMD</strong>, <code v-pre>CommonJS</code>, <strong>UMD</strong> and <strong>ES6</strong> Modules (<strong>AMD</strong> is default).</p>
+<p>The <code v-pre>[Module]</code> attribute can be applied to a class or assembly (in this case all classes belonging to the assembly will be included in the module).</p>
+<p>The <code v-pre>[Module]</code> attribute can accept module type and/or module name. Required module code depends on module type (for example, <code v-pre>define</code> method is generated for <strong>AMD</strong>).</p>
+<p>By default, if an application uses a module, Bridge will generate code to load that module (for example, using <code v-pre>require</code> method). All modules will be loaded during application startup.</p>
+<p>If you want to load modules manually (for example, bundle into one file and manually include in your .html) then module loading can be disabled using the <code v-pre>loader</code> config.</p>
+<p>See Issue <a href="https://github.com/bridgedotnet/Bridge/issues/2217">#2217</a> for additional details.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>type</code></td>
+<td><code v-pre>AMD</code>, <code v-pre>CommonJS</code>, <code v-pre>ES6</code></td>
+<td>The Module loading system. Default is <code v-pre>&quot;AMD&quot;</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>loaderFunction</code></td>
+<td><code v-pre>string</code></td>
+<td>A custom loader function. Default is <code v-pre>&quot;require&quot;</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>manualLoading</code></td>
+<td><code v-pre>bool</code></td>
+<td><code v-pre>true</code> to disable automatic modules loading. Default is <code v-pre>false</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>manualLoadingMask</code></td>
+<td><code v-pre>string</code></td>
+<td>A mask to define which modules should be excluded from auto-loading. Default is <code v-pre>&quot;&quot;</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>skipManualVariables</code></td>
+<td><code v-pre>bool</code></td>
+<td><code v-pre>true</code> to disable variable generation if the module is disabled then a variable is created which will be initialized after loading that module manually if call <code v-pre>Module.Load</code> Default is <code v-pre>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;loader&quot;: {
+    &quot;type&quot;: &quot;CommonJS&quot;,
+      &quot;manualLoading&quot;: true
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="locales">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#locales">#</doc-anchor-trigger>
+        <span><code v-pre>locales</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>A semicolon-delimited list of locales to emit during Bridge build. Defaults to empty (no locale file emission). Can contain the keyword <code v-pre>all</code> or wildcard <code v-pre>*</code> (asterisk) to select locales.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  // Include all cultures
+  &quot;locales&quot;: &quot;all&quot;,
+
+  // Include three specific cultures
+  &quot;locales&quot;: &quot;en-US;pt-BR;ru-RU&quot;,
+
+  // Wildcards 
+  &quot;locales&quot;: &quot;en-*;pt-*&quot;,
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="localesfilename">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#localesfilename">#</doc-anchor-trigger>
+        <span><code v-pre>localesFileName</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>When <doc-anchor-trigger to="#combinelocales">combineLocales</doc-anchor-trigger> is used (<code v-pre>combineLocales: true</code>), specifies the filename to which emit localisation scripts. Defaults to <code v-pre>Bridge.Locales.js</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;combineLocales&quot;: true
+  &quot;localesFileName&quot;: &quot;locales.js&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="localesoutput">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#localesoutput">#</doc-anchor-trigger>
+        <span><code v-pre>localesOutput</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>Output folder to locale files&#x27; output. Either an absolute path or relative to Bridge&#x27;s <doc-anchor-trigger to="#output">output</doc-anchor-trigger> path.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  // A project root folder name
+  &quot;localesOutput&quot;: &quot;locales&quot;,
+
+  // Relative path from the project root
+  &quot;localesOutput&quot;: &quot;/home/customers/site/js/locales&quot;,
+
+  // Full local path anywhere
+  &quot;localesOutput&quot;: &quot;c:/inetpub/site/js/locales&quot;,
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="logging">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#logging">#</doc-anchor-trigger>
+        <span><code v-pre>logging</code></span>
+    </h2>
+</doc-anchor-target>
+<p>Add compilation logging to your Project by setting the <code v-pre>logging</code> config in the Projects <code v-pre>bridge.json</code> file.</p>
+<p>The logger will output a tab-delimited <code v-pre>bridge.log</code> file with the following fields in each row:</p>
+<ul>
+<li>timestamp (if enabled in config)</li>
+<li>level</li>
+<li>source</li>
+<li>message</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>level</code></td>
+<td><code v-pre>None</code>, <code v-pre>Error</code>, <code v-pre>Warning</code>, <code v-pre>Info</code>, and <code v-pre>Trace</code></td>
+<td>The level of logging to perform. Default is <code v-pre>&quot;None&quot;</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>timestamps</code></td>
+<td><code v-pre>true</code> or <code v-pre>false</code></td>
+<td>Include a timestamp for each log item. Default is <code v-pre>true</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>maxSize</code></td>
+<td><code v-pre>16777216</code></td>
+<td>Maximum log file size in bytes. Default is <code v-pre>16777216</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>path</code></td>
+<td><code v-pre>&quot;&quot;</code></td>
+<td>Relative to the bridge output folder, defaults to the <doc-anchor-trigger to="#output">output</doc-anchor-trigger> location.</td>
+</tr>
+<tr>
+<td><code v-pre>fileName</code></td>
+<td><code v-pre>&quot;bridge.log&quot;</code></td>
+<td>The name of the log file. Default is <code v-pre>&quot;bridge.log&quot;</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>The following sample demonstrates adding <code v-pre>&quot;Trace&quot;</code> level logging.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;logging&quot;: {
+    &quot;level&quot;: &quot;Trace&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">bridge.log</div>
+<pre class="language-none"><code v-pre class="language-none">2017-06-30T20:02:07:847     Trace       Reading define constants...
+2017-06-30T20:02:07:854     Trace       Reading define constants done
+2017-06-30T20:02:07:860     Trace       Reading project file done
+2017-06-30T20:02:07:866     Trace       Inspecting references...
+2017-06-30T20:03:47:187     Trace    Bridge    Inspecting references done
+2017-06-30T20:03:47:195     Trace    Bridge    Discovering plugins...
+2017-06-30T20:03:47:202     Trace    Bridge    Current domain bridge.exe</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="module">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#module">#</doc-anchor-trigger>
+        <span><code v-pre>module</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>The global Module setting. If set up, the entire project is considered as one Module. Though, you are still able to define a Module attribute on the class level.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;module&quot;: &quot;MyModule&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="output">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#output">#</doc-anchor-trigger>
+        <span><code v-pre>output</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>The output folder path for generated JavaScript. A non-absolute path is concatenated with the project&#x27;s root. Absolute paths are also permitted.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  // Send to the projects /bin/ folder
+  &quot;output&quot;: &quot;$(OutDir)/bridge/&quot; 
+
+  // A relative path from Project root
+  &quot;output&quot;: &quot;../Bridge/output&quot; 
+
+  // An absolute path
+  &quot;output&quot;: &quot;c:/output&quot; 
+}</code></pre>
+</doc-codeblock></div>
+<p>The following MSBuild properties are supported within <code v-pre>output</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>$AssemblyName</code></td>
+</tr>
+<tr>
+<td><code v-pre>$CheckForOverflowUnderflow</code></td>
+</tr>
+<tr>
+<td><code v-pre>$Configuration</code></td>
+</tr>
+<tr>
+<td><code v-pre>$DefineConstants</code></td>
+</tr>
+<tr>
+<td><code v-pre>$OutDir</code></td>
+</tr>
+<tr>
+<td><code v-pre>$OutputPath</code></td>
+</tr>
+<tr>
+<td><code v-pre>$OutputType</code></td>
+</tr>
+<tr>
+<td><code v-pre>$Platform</code></td>
+</tr>
+<tr>
+<td><code v-pre>$RootNamespace</code></td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="outputby">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#outputby">#</doc-anchor-trigger>
+        <span><code v-pre>outputBy</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>OutputBy</code></p>
+<p>Options to manage JavaScript output folders and files. Defaults to <code v-pre>Project</code> (<code v-pre>Namespace</code> before <strong>v16.0</strong>).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;outputBy&quot;: &quot;NamespacePath&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="options-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-4">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>OutputBy</strong> includes the following options:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>Class</code></td>
+<td>The class name will be the file name. If there are classes with same names in different namespaces, the generated JavaScript will be combined into one file. For example, if the class name is <strong>Helpers</strong>, the file name will be <code v-pre>Helpers.js</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>ClassPath</code></td>
+<td>A folder hierarchy is created using the class name, and a folder is created for each unique word (split by &#x27;.&#x27;) in the class namespace. For example, if the class <strong>Helpers</strong> is within the <strong>Demo</strong> namespace, the file path and name will be <code v-pre>Demo/Helpers.js</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>Module</code></td>
+<td>The ModuleAttribute value is used as the file name if set on a class. For example, if <code v-pre>[Module(&quot;MyModuleName&quot;)]</code> is set, the file name will be <code v-pre>MyModuleName.js</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>Namespace</code></td>
+<td>The full namespace is used as the file name. This is the <strong>default</strong> if the option is omitted (before <code v-pre>v16.0</code>). For example, if <strong>Demo.Utilities</strong> is the namespace, the file name will be <code v-pre>Demo.Utilities.js</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>NamespacePath</code></td>
+<td>The class namespace is split (by &#x27;.&#x27;) and a folder is created for each individual value, except the last value which becomes the file name. For example, if <strong>Demo.Utilities</strong> is the namespace, the file path and name will be <code v-pre>/Demo/Utilities.js</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>Project</code></td>
+<td>All generated JavaScript for the project is added to one <code v-pre>[ProjectName].js</code> file. This is the <strong>default</strong> if the option is omitted (since <strong>v16.0</strong>). For example, if the project name is <strong>MyUtilities</strong>, the file name will be <code v-pre>MyUtilities.js</code>. This can be overridden by setting the fileName option within bridge.json, or by using the <code v-pre>[FileName]</code> <code v-pre>Attribute</code> on the assembly or class levels.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="outputformatting">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#outputformatting">#</doc-anchor-trigger>
+        <span><code v-pre>outputFormatting</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>Determines whether <strong>only formatted</strong>, <strong>only minified</strong> or <strong>both</strong> versions of the resulting <code v-pre>.js</code> files will be output. Default is <code v-pre>Both</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;outputFormatting&quot;: &quot;Formatted&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="options-5">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-5">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>Both</code></td>
+<td>Creates both minified and non-minified versions of each .js file. Example, <code v-pre>classLibrary1.js</code>, <code v-pre>bridge.js</code>, <code v-pre>classLibrary1.min.js</code>, and <code v-pre>bridge.min.js</code>. Default is <code v-pre>Both</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>Formatted</code></td>
+<td>Creates only non-minified versions of the .js files. Example, <code v-pre>classLibrary1.js</code> and <code v-pre>bridge.js</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>Minified</code></td>
+<td>Creates only minified versions of the .js files. Example, <code v-pre>classLibrary1.min.js</code> and <code v-pre>bridge.min.js</code>.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="pluginspath">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#pluginspath">#</doc-anchor-trigger>
+        <span><code v-pre>pluginsPath</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>string</code></p>
+<p>The folder path to search for translation plug-ins.</p>
+<p>A non-absolute path is concatenated with the project&#x27;s root.</p>
+<p>Absolute paths are also permitted, but relative paths will work better cross-platform.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  // Folder from project root
+  &quot;pluginsPath&quot;: &quot;Bridge/plugins&quot;,
+
+  // Relative path from project root
+  &quot;pluginsPath&quot;: &quot;../Bridge/plugins&quot;,
+
+  // Unix absolute path
+  &quot;pluginsPath&quot;: &quot;/home/myUser/projects/Bridge/plugins&quot;,
+
+  // Windows absolute path
+  &quot;pluginsPath&quot;: &quot;c:/Users/myUser/projects/Bridge/plugins&quot;,
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="preservemembercase">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#preservemembercase">#</doc-anchor-trigger>
+        <span><code v-pre>preserveMemberCase</code></span>
+    </h2>
+</doc-anchor-target>
+<p>Removed in Bridge 16.0. Please use the <a href="../../attributes/attribute_reference/#convention"><code v-pre>[Convention]</code></a> Attribute which offers expanded functionality.</p>
+<doc-anchor-target id="reflection">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reflection">#</doc-anchor-trigger>
+        <span><code v-pre>reflection</code></span>
+    </h2>
+</doc-anchor-target>
+<p>By default, Reflection metadata is automatically generated in a separate .meta.js file.</p>
+<p>Generation of the metadata JavaScript file can be disabled by setting <code v-pre>disabled</code> to <code v-pre>true</code>. For example, adding the following <code v-pre>reflection</code> config section to your projects <code v-pre>bridge.json</code> file will disable reflection metadata generation.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;reflection&quot;: {
+    &quot;disabled&quot;: true
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>The metadata can be included directly within the projects JavaScript file, instead of a separate file, by setting <code v-pre>target</code> to <code v-pre>Inline</code>.</p>
+<doc-anchor-target id="options-6">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-6">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>disabled</code></td>
+<td><code v-pre>true</code> or <code v-pre>false</code></td>
+<td><code v-pre>true</code> to disable automatic generation of reflection metadata. Default is <code v-pre>false</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>filter</code></td>
+<td><code v-pre>string</code></td>
+<td>Filter for type names. The filter string for <code v-pre>[assembly: Reflectable(string filter]</code> also support wildcard characters such as <code v-pre>*</code> and <code v-pre>?</code>. The full name of a type will be matched with filter string. Multiple conditions can be defined by <code v-pre>;</code> as a separator. If <code v-pre>!</code> is set for a condition then it means <em>not</em>. For example, <code v-pre>&quot;System.*;!System.CompilerService.*&quot;</code> instructs the Bridge compiler to render metadata for all types from the <code v-pre>System</code> namespace except for types from <code v-pre>System.CompilerService.*</code> namespaces. The filter is applied for types from all referenced assemblies, not only from the current assembly.</td>
+</tr>
+<tr>
+<td><code v-pre>memberAccessibility</code></td>
+<td><code v-pre>&quot;None&quot;</code>, <code v-pre>&quot;PublicAndProtected&quot;</code>, <code v-pre>&quot;NonPrivate&quot;</code>, and <code v-pre>&quot;All&quot;</code></td>
+<td>Define Member Accessibility for the reflection metadata.</td>
+</tr>
+<tr>
+<td><code v-pre>output</code></td>
+<td><code v-pre>string</code></td>
+<td>The filename where reflection metadata will be rendered to.</td>
+</tr>
+<tr>
+<td><code v-pre>target</code></td>
+<td><code v-pre>&quot;File&quot;</code> and <code v-pre>&quot;Inline&quot;</code></td>
+<td>Set to <code v-pre>Inline</code> to include metadata directly within the projects generated JavaScript file. Default is <code v-pre>&quot;File&quot;</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>typeAccessibility</code></td>
+<td><code v-pre>&quot;None&quot;</code>, <code v-pre>&quot;Public&quot;</code>, <code v-pre>&quot;NonPrivate&quot;</code>, <code v-pre>&quot;Anonymous&quot;</code>, <code v-pre>&quot;NonAnonymous&quot;</code>, and <code v-pre>&quot;All&quot;</code></td>
+<td>Filter for type accessibility, for example if set <code v-pre>&quot;Public&quot;</code> then metadata will be rendered for public types only. Please note that it is flags enum.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="report">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#report">#</doc-anchor-trigger>
+        <span><code v-pre>report</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>boolean</code>, <code v-pre>string</code>, or <code v-pre>object</code></p>
+<p>Dump a build resources&#x27; log for your Project by setting the <code v-pre>report</code> config in the Project&#x27;s <code v-pre>bridge.json</code> file.</p>
+<p>The file will be output by default as <code v-pre>bridge.report.log</code>, containing the list of javascript files built and their sizes in human-readable format.</p>
+<p>The setting basically accepts a true/false value, a string with the directory or filename to output as, or an object with more details on how the file should be output.</p>
+<p>If the providing an object as its parameter, it will accept the following values</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>enabled</code></td>
+<td><code v-pre>true</code> and <code v-pre>false</code></td>
+<td>Whether to output a file called <code v-pre>bridge.report.log</code> in the output folder.</td>
+</tr>
+<tr>
+<td><code v-pre>fileName</code></td>
+<td><code v-pre>string</code></td>
+<td>Filename to output the report file as.</td>
+</tr>
+<tr>
+<td><code v-pre>path</code></td>
+<td><code v-pre>string</code></td>
+<td>Path to output report files to.</td>
+</tr>
+</tbody>
+</table>
+<p>Dump a <code v-pre>bridge.report.log</code> file in the current javascript output directory:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;report&quot;: true
+}</code></pre>
+</doc-codeblock></div>
+<p>Create a subdirectory to place the <code v-pre>bridge.report.log</code> file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;report&quot;: &quot;reports/&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>Specify the filename to output the report as:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;report&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;fileName&quot;: &quot;myreport.log&quot;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">bridge.report.log</div>
+<pre class="language-none"><code v-pre class="language-none">Resources:
+    MyClassFile.js             1.445 KB
+    MyProject.js               0.514 KB</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="resources">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#resources">#</doc-anchor-trigger>
+        <span><code v-pre>resources</code></span>
+    </h2>
+</doc-anchor-target>
+<p>The <code v-pre>resources</code> config instructs the Bridge compiler to:</p>
+<ol>
+<li>Control the embedding of resources (what and where).</li>
+<li>Control the extraction of embedded resources.</li>
+<li>Specifying the output of file types (<code v-pre>*.d.ts</code> and <code v-pre>*.js</code>) and exact file names in a certain order- <code v-pre>files</code> setting.</li>
+<li>Combine the items above into one file with a given <code v-pre>name</code>. <code v-pre>name</code> setting can have <code v-pre>#</code> symbol to specify assembly name the resource name should be applied to: <code v-pre>&quot;3rdPartyAssembly#script.js&quot;</code></li>
+<li>Provide header and footer; A header can be specified either in a special <code v-pre>header</code> setting (path to a file or string content) or as the first item within <code v-pre>files</code>; if a footer required then it can be the last item in <code v-pre>files</code>.</li>
+<li>Specify a <code v-pre>remark</code> for each file. Rendered to the top of each file.</li>
+<li>Exclude existing resources (for example, locales).</li>
+<li>Specify if the composed resources are to be saved as a file  - <code v-pre>extract</code> setting.</li>
+<li>Specify if output path should be changed (<code v-pre>resources.output</code> setting).</li>
+<li>Existing config option related to output/resources <doc-anchor-trigger to="#injectScriptToAssembly">injectScriptToAssembly</doc-anchor-trigger> will be moved into <code v-pre>resources</code> section and renamed to <code v-pre>inject</code>.</li>
+<li>If no <code v-pre>resources</code> section specified, then the default behaviour is to inject all the output files as Embedded Resources.</li>
+</ol>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;resources&quot;: [{
+      // A default section (a section with no name setting)
+      // Should be one for all resources.
+      // 
+      // Values defined here will be applied to all resources (if not overridden).
+
+      // Inject the resource into the Assembly
+      // as an Embedded Resource. Default is true.
+      &quot;inject&quot;: true|false,
+
+      // Specifies if a line will be inserted before each file
+      // Supports tokens:
+      //     {name}
+      //     {path}
+      //     \n
+      // Default is null
+      &quot;remark&quot;: &quot;// source @{name}\n&quot;
+    }, {
+      // The resource name
+      &quot;name&quot;: &quot;bridge.js&quot;,
+      // It can specify a resource assembly to avoid collisions
+      // in case the same name used in several referenced assemblies
+      // For example, `script.js` in referenced 3rdPartyAssembly assembly:
+      // &quot;name&quot;: &quot;3rdPartyAssembly#script.js&quot;
+
+      // A string with a header content 
+      // or a path to a file with header content
+      // Supports tokens (data taken from assembly version): 
+      //     {version}
+      //     {date}
+      //     {year}
+      //     {author}
+      //     {copyright}
+      &quot;header&quot;:  &quot;../header.txt&quot;
+
+      // The resource will be written as a file as well. 
+      // Default is true
+      // A combination of name + extract (false) + no files
+      // means the Embedded Resource is not extracted
+      &quot;extract&quot;: true|false,
+
+      // If output location should be different
+      // than the bridge.json output setting.
+      // Works with extract: true setting
+      // I.e. providing a way to control the path 
+      // the embedded resources being emitted
+      &quot;output&quot;: &quot;Resources/final&quot;,
+
+      // The files to combine
+      // A combination of name + files + inject (true)
+      // means to compose files into one and inject as Embedded resources.
+      &quot;files&quot;: [
+        &quot;../Resources/misc/header.js&quot;,
+        &quot;file1.js&quot;,
+        &quot;subfolder/release.*.js&quot;, // use file mask if required
+        &quot;end.js&quot;,
+        &quot;finally.js&quot;
+      ]
+  }, {
+    &quot;name&quot;: &quot;bridge.d.ts&quot;,
+    &quot;files&quot;: [
+      &quot;../Resources/.typescript/bridge.d.ts&quot;
+    ]
+  }]
+}</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>name</code> setting can have <code v-pre>#</code> symbol to specify an assembly the resource should be applied to:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">// Specifies resource with name `script.js` in referenced 3rdPartyAssembly assembly
+&quot;name&quot;: &quot;3rdPartyAssembly#script.js&quot;,
+
+// or
+&quot;name&quot;: &quot;3rdPartyAssembly#script.css&quot;,</code></pre>
+</doc-codeblock></div>
+<p>The following MSBuild properties are supported by <code v-pre>resources</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>$AssemblyName</code></td>
+</tr>
+<tr>
+<td><code v-pre>$CheckForOverflowUnderflow</code></td>
+</tr>
+<tr>
+<td><code v-pre>$Configuration</code></td>
+</tr>
+<tr>
+<td><code v-pre>$DefineConstants</code></td>
+</tr>
+<tr>
+<td><code v-pre>$OutDir</code></td>
+</tr>
+<tr>
+<td><code v-pre>$OutputPath</code></td>
+</tr>
+<tr>
+<td><code v-pre>$OutputType</code></td>
+</tr>
+<tr>
+<td><code v-pre>$Platform</code></td>
+</tr>
+<tr>
+<td><code v-pre>$RootNamespace</code></td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="rules">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rules">#</doc-anchor-trigger>
+        <span><code v-pre>rules</code></span>
+    </h2>
+</doc-anchor-target>
+<p>The <code v-pre>rules</code> config allows for refinement of the generated JavaScript syntax created by the Bridge compiler.</p>
+<p>Rules that are configured in the <code v-pre>bridge.json</code> apply to the whole project. For finer control, such as only applying a Rule to a <strong>Class</strong>, <strong>Property</strong>, or <strong>Method</strong>, please see the <a href="../attributes/attribute-reference.md#rules"><code v-pre>[Rules]</code></a> attribute.</p>
+<p>By default, Bridge will manage the generated JavaScript, which at runtime will reproduce the expected .NET runtime result. While this JavaScript will execute efficiently and correctly, the developer may want to adjust the style of the generated syntax to create more of a <em>JavaScript style</em> to the syntax.</p>
+<p>For example, creating an Anonymous Type in C# requires that additional meta data be available at runtime which would allow for proper reflection and type checking of results. When Bridge encounters an Anonymous Type, the compiler will generate a complete class definition in JavaScript.</p>
+<p>Setting the <code v-pre>rules</code> config within your <code v-pre>bridge.json</code> files will instruct the Bridge compiler to generate a plain <code v-pre>{ }</code> JavaScript object when it encounters an Anonymous Type.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">A basic C# Anonymous Type:</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">var config = new { Id = 123 };</code></pre>
+</doc-codeblock></div>
+<p>The above C# sample will generate the following simplified JavaScript object literal instead of a fully defined anonymous type class.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">var config = { Id = 123 };</code></pre>
+</doc-codeblock></div>
+<p>The following sample demonstrates a block of <code v-pre>rules</code> config that can be added to your <code v-pre>bridge.json</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">// Rules to manage generated JavaScript syntax.
+// Default is &quot;Managed&quot;.
+&quot;rules&quot;: {
+  &quot;anonymousType&quot;: &quot;Plain&quot;,
+  &quot;arrayIndex&quot;: &quot;Managed&quot;,
+  &quot;autoProperty&quot;: &quot;Plain&quot;,
+  &quot;boxing&quot;: &quot;Managed&quot;,
+  &quot;externalCast&quot;: &quot;Plain&quot;,
+  &quot;inlineComment&quot;: &quot;Plain&quot;,
+  &quot;integer&quot;: &quot;Managed&quot;,
+  &quot;lambda&quot;: &quot;Plain&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>Other <strong>Rules</strong> are supported, as outlined in the following options.</p>
+<doc-anchor-target id="options-7">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options-7">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h3>
+</doc-anchor-target>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Options</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>anonymousType</code></td>
+<td><code v-pre>&quot;Managed&quot;</code> or <code v-pre>&quot;Plain&quot;</code></td>
+<td>Set to <code v-pre>&quot;Plain&quot;</code> to generate an object literal when an anonymous type is defined. Default is <code v-pre>&quot;Managed&quot;</code>. <doc-anchor-trigger to="#anonymoustype">Sample</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>arrayIndex</code></td>
+<td><code v-pre>&quot;Managed&quot;</code> or <code v-pre>&quot;Plain&quot;</code></td>
+<td>Set to <code v-pre>&quot;Plain&quot;</code> to avoid array index validation. Default is <code v-pre>&quot;Managed&quot;</code>. <doc-anchor-trigger to="#arrayindex">Sample</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>autoProperty</code></td>
+<td><code v-pre>Managed</code> or <code v-pre>Plain</code></td>
+<td>Set to <code v-pre>Plain</code> to generate as simple field, or <code v-pre>Managed</code> to create as a JavaScript property with getter and setter. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#autoproperty">Sample</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>boxing</code></td>
+<td><code v-pre>&quot;Managed&quot;</code> or <code v-pre>&quot;Plain&quot;</code></td>
+<td>Set to <code v-pre>&quot;Plain&quot;</code> to disable boxing. Default is <code v-pre>&quot;Managed&quot;</code>. <doc-anchor-trigger to="#boxing">Sample</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>externalCast</code></td>
+<td><code v-pre>&quot;Managed&quot;</code> or <code v-pre>&quot;Plain&quot;</code></td>
+<td>Set to <code v-pre>Plain</code> to ignore casting external entities during run-time. See also <code v-pre>[IgnoreCast]</code> attribute. Compile-time type checking still occurs in both <code v-pre>Managed</code> and <code v-pre>Plain</code> modes. Default is <code v-pre>Managed</code>. <doc-anchor-trigger to="#externalcast">Sample</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>inlineComment</code></td>
+<td><code v-pre>&quot;Managed&quot;</code> or <code v-pre>&quot;Plain&quot;</code></td>
+<td>Set to <code v-pre>&quot;Plain&quot;</code> to exclude inline comments from being transferred to the output. Default is <code v-pre>&quot;Managed&quot;</code>. <doc-anchor-trigger to="#inlinecomment">Sample</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>integer</code></td>
+<td><code v-pre>&quot;Managed&quot;</code> or <code v-pre>&quot;Plain&quot;</code></td>
+<td>Set to <code v-pre>&quot;Plain&quot;</code> to treat <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/integral-types-table">Integral</a> types as simple numbers. Avoid having Bridge manage clipping, overflow checking, casting, and arithmetic operators. Default is <code v-pre>&quot;Managed&quot;</code>. <doc-anchor-trigger to="#integer">Sample</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>lambda</code></td>
+<td><code v-pre>&quot;Managed&quot;</code> or <code v-pre>&quot;Plain&quot;</code></td>
+<td>Set to <code v-pre>&quot;Plain&quot;</code> to avoid <em>lifting</em> functions created by lambda methods into a higher scope. Default is <code v-pre>&quot;Managed&quot;</code>. <doc-anchor-trigger to="#lambda">Sample</doc-anchor-trigger>.</td>
+</tr>
+</tbody>
+</table>
+<doc-anchor-target id="anonymoustype">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#anonymoustype">#</doc-anchor-trigger>
+        <span>anonymousType</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">// C#
+var config = new { Id = 123 };</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// &quot;Managed&quot;
+var config = new $asm.$AnonymousType$1(123);
+
+// &quot;Plain&quot;
+var config = { Id: 123 };</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="arrayindex">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#arrayindex">#</doc-anchor-trigger>
+        <span>arrayIndex</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">// C#
+var arr = new int[1]; 
+arr[0] = 1;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// &quot;Managed&quot;
+var arr = System.Array.init(1, 0, System.Int32);
+arr[System.Array.index(0, arr)] = 1;
+
+// &quot;Plain&quot;
+var arr = System.Array.init(1, 0, System.Int32);
+arr[0] = 1;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="autoproperty">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#autoproperty">#</doc-anchor-trigger>
+        <span>autoProperty</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">// AutoProperty | &quot;autoProperty&quot;
+var app = new Program();
+app.Name = &quot;My App&quot;;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">
+// &quot;Managed&quot;
+// Real js getter &amp; setter are created
+app.Name = &quot;My App&quot;;
+
+// &quot;Plain&quot;
+// Just a plain js field
+app.Name = &quot;My App&quot;;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="boxing">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#boxing">#</doc-anchor-trigger>
+        <span>boxing</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">Object o = 5;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// &quot;Managed&quot;
+var o = Bridge.box(5, System.Int32);
+
+// &quot;Plain&quot;
+var o = 5;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="inlinecomment">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inlinecomment">#</doc-anchor-trigger>
+        <span>inlineComment</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">public static void DoSomething()
+{
+    // Inline comments copied to .js
+    var msg = &quot;comment or no comment?&quot;;
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Managed
+DoSomething: function () {
+    // Inline comments copied to .js
+    var msg = &quot;comment or no comment?&quot;;
+}
+
+// Plain
+DoSomething: function () {
+    var msg = &quot;comment or no comment?&quot;;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="integer">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#integer">#</doc-anchor-trigger>
+        <span>integer</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">var val = 55;
+
+var v1 = (sbyte)val;
+var v2 = (byte)val;
+var v3 = (char)val;
+var v4 = (short)val;
+var v5 = (ushort)val;
+var v6 = (int)val;
+var v7 = (uint)val;
+var v8 = (long)val;
+var v9 = (ulong)val;
+
+int i = int.MaxValue; 
+byte b1 = (byte)i;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// &quot;Managed&quot;
+var v1 = Bridge.Int.sxb(val &amp; 255);
+var v2 = val &amp; 255;
+var v3 = val &amp; 65535;
+var v4 = Bridge.Int.sxs(val &amp; 65535);
+var v5 = val &amp; 65535;
+var v6 = val;
+var v7 = val &gt;&gt;&gt; 0;
+var v8 = System.Int64(val);
+var v9 = Bridge.Int.clipu64(val);
+
+var max = 2147483647;
+var j = (max + 1) | 0;
+
+// &quot;Plain&quot;
+var v1 = val;
+var v2 = val;
+var v3 = val;
+var v4 = val;
+var v5 = val;
+var v6 = val;
+var v7 = val;
+var v8 = val;
+var v9 = val;
+
+var max = 2147483647;
+var j = max + 1;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="lambda">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#lambda">#</doc-anchor-trigger>
+        <span>lambda</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">Action a = () =&gt; Console.WriteLine(&quot;lambda!&quot;);</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Managed
+// A shared &quot;lifted&quot; function is generated.
+var a = $asm.$.Demo.Program.f1;
+...
+f1: function () {
+    System.Console.WriteLine(&quot;lambda!&quot;);
+}
+
+// Plain
+// A plain JavaScript function is generated.
+var a = function () { 
+    System.Console.WriteLine(&quot;lambda!&quot;);
+};</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="sourcemap">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sourcemap">#</doc-anchor-trigger>
+        <span><code v-pre>sourceMap</code></span>
+    </h2>
+</doc-anchor-target>
+<p>With Bridge you can debug the original C# files directly in a browser by enabling <code v-pre>sourceMap</code> support within your projects <code v-pre>bridge.json</code> file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;sourceMap&quot;: {
+    &quot;enabled&quot;: true
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>Using the browsers developer tools, breakpoints can be set and the next time the breakpoint is hit (or page refreshed), the debugger will stop on the breakpoint. The following screencast demonstrates setting a breakpoint and watching a variable.</p>
+<p><figure class="content-center">
+    <img src="../../static/bridge-sourcemap-demo.gif" alt="Bridge SourceMap Demo" />
+    <figcaption class="caption">Bridge SourceMap Demo</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="startindexinname">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#startindexinname">#</doc-anchor-trigger>
+        <span><code v-pre>startIndexInName</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>int</code></p>
+<p>When <doc-anchor-trigger to="#outputby">outputBy</doc-anchor-trigger> is either <code v-pre>ClassPath</code> or <code v-pre>NamespacePath</code>, using a value greater than 0 here will crop the resulting file name by the position specified. Default is <code v-pre>0</code> (full filename output).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;outputBy&quot;: &quot;NamespacePath&quot;,
+  &quot;startIndexInName&quot;: &quot;3&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>If a code is in namespace <code v-pre>ClassLibrary1</code>, instead of a <code v-pre>classLibrary1.js</code> file, the output file would be named <code v-pre>ClassLibrary1.js</code>.</p>
+<doc-anchor-target id="usetypedarrays">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usetypedarrays">#</doc-anchor-trigger>
+        <span><code v-pre>useTypedArrays</code></span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Type:</strong> <code v-pre>bool</code></p>
+<p>When set to true, will map an array to one of its closely corresponding <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">JavaScript Typed Array type</a>. Default is <code v-pre>false</code> (do not try to resolve arrays into javascript typed arrays).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Example</div>
+<pre class="language-csharp"><code v-pre class="language-csharp">var intArray = new int[5];</code></pre>
+</doc-codeblock></div>
+<p>If <code v-pre>useTypedArrays</code> is false:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Outpute</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">var intArray = System.Array.init(5, 0, System.Int32);</code></pre>
+</doc-codeblock></div>
+<p>If true, then:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Output</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">var intArray = System.Array.init(new Int32Array(5), System.Int32);</code></pre>
+</doc-codeblock></div>
+<p>More cases, and the expected output when <strong>true</strong> can be seen in unit tests project 06:</p>
+<ul>
+<li><a href="https://github.com/bridgedotnet/Bridge/blob/master/Compiler/TranslatorTests/TestProjects/06/BridgeIssues/N772.cs">cs source file</a></li>
+<li><a href="https://github.com/bridgedotnet/Bridge/blob/master/Compiler/TranslatorTests/TestProjects/06/Bridge/reference/TestProject.js">js result file</a></li>
+</ul>
+
+    
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            <div class="mt-14 flex flex-wrap items-center justify-between">
+    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/bridgedotnet/www.bridge.net/blob/main/src/introduction/Global_Configuration.md" target="_blank" rel="noopener">
+        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        <span>Edit this page</span>
+    </a>
+
+    <!--<p class="my-2.5 text-gray-500 dark:text-dark-350 text-sm">Last updated on <strong>2021-03-14</strong> by <strong>Geoffrey McGill</strong></p>-->
+</div>
+
+<nav class="flex mt-14">
+    <div class="w-1/2">
+        <a class="px-6 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/introduction/asynchronous_programming">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+            <span>
+                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                <span class="block mt-1">Asynchronous Programming</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="w-1/2">
+        <a class="px-6 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/introduction/linq_support">
+            <span>
+                <span class="block text-right text-xs font-normal text-gray-400 dark:text-dark-400">Next</span>
+                <span class="block mt-1">LINQ Support</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        </a>
+    </div>
+</nav>
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Copyright 2008-2021 <a href="https://object.net/">Object.NET</a>, Inc.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Global Configuration", icon: "file" }</script>
+    </body>
+</html>

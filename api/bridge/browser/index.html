@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60583944-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-60583944-1');</script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <title>Browser | Write C#. Run in a web browser.</title>
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/resources/js/config.js" defer></script>
+    <script type="text/javascript" src="/resources/js/retype.js" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <span id="docs-site-logo" class="dark:text-white text-2xl leading-snug font-semibold line-clamp-1 md:line-clamp-2">
+                    <a href="/">
+                        <img class="dark:hidden" src="/static/bridge-logo.svg">
+                        <img class="hidden dark:block" src="/static/bridge-logo-dark.svg">
+                    </a>
+                </span>
+                <span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="/introduction/getting_started">Getting Started</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+        </li>
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://deck.net/">Deck.NET</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/introduction/getting_started/">Getting Started</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bridgedotnet/Bridge">GitHub</a>
+                        </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://deck.net/">Deck.NET</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages -->            <!-- Toolbar Skeleton -->
+<div v-cloak class="sticky z-20 flex items-center justify-between h-16 px-6 bg-white border-b border-gray-200 md:h-20 md:pl-16 md:top-20 top-16 skeleton dark:bg-dark-850 dark:border-dark-650">
+    <div class="flex flex-grow">
+        <div class="w-24 h-8 mr-3 bg-gray-200 rounded loading dark:bg-dark-600"></div>
+        <div class="w-24 h-8 mr-3 bg-gray-200 rounded loading md:hidden lg:block dark:bg-dark-600"></div>
+        <div class="hidden w-24 h-8 mr-3 bg-gray-200 rounded loading sm:block md:hidden xl:block dark:bg-dark-600"></div>
+        <div class="hidden w-24 h-8 mr-3 bg-gray-200 rounded loading sm:block md:hidden xl:block dark:bg-dark-600"></div>
+    </div>
+    <div class="items-center hidden lg:flex">
+        <div class="w-24 h-4 ml-3 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+
+        <span class="relative ml-3 bg-white border border-gray-400 btn dark:bg-dark-600 dark:border-dark-650"><svg xmlns="http://www.w3.org/2000/svg" class="mr-1 -ml-1 icon-base" width="14" height="14" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M12 23c-.15 0-.31-.04-.45-.11C11.2 22.72 3 18.54 3 12V5c0-.42.26-.79.65-.94l8-3c.23-.08.48-.08.7 0l8 3c.39.15.65.52.65.94v7c0 6.54-8.2 10.72-8.55 10.89-.14.07-.3.11-.45.11zM5 5.69V12c0 4.55 5.39 7.95 7 8.86 1.61-.92 7-4.33 7-8.86V5.69l-7-2.63-7 2.63z"></path></g></svg><span>Access</span></span>
+
+        <div class="relative flex items-center ml-3" style="width: 12.4375rem;"><input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear border border-gray-400 rounded md:text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400" type="text" placeholder="Filter"></div>
+    </div>
+
+    <span class="relative inline-flex items-center justify-center w-8 h-8 p-0 text-sm font-medium leading-none text-gray-900 whitespace-no-wrap bg-white border border-gray-400 rounded cursor-pointer select-none lg:hidden sm:w-auto sm:px-3 dark:border-dark-650 dark:text-white dark:bg-dark-550 focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" class="mb-0 icon-base sm:mr-1" width="14" height="14" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"><g fill="currentColor"><path d="M14 22c-.15 0-.31-.04-.45-.11l-4-2A.988.988 0 019 19v-6.17L1.24 3.65a.995.995 0 01-.14-1.07c.16-.35.51-.58.9-.58h20c.39 0 .74.23.91.58s.11.77-.14 1.07L15 12.83V21a.999.999 0 01-1 1zm-3-3.62l2 1v-6.92c0-.24.08-.47.24-.65L19.84 4H4.16l6.61 7.81c.15.18.24.41.24.65v5.92z"></path></g></svg><span class="hidden sm:inline">Filters</span></span>
+</div>
+
+<doc-toolbar v-cloak></doc-toolbar>
+
+<!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="class-browser" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#class-browser">#</doc-anchor-trigger>
+        <span>Browser Class</span>
+    </h1>
+</doc-anchor-target>
+
+<doc-member-group id="fields">
+    <template #title>Fields</template>
+
+    <doc-member id="field-chromeversion" name="ChromeVersion" type="double" signature="public readonly static double ChromeVersion">
+        <template #name><h3>ChromeVersion</h3></template>
+    </doc-member>
+
+    <doc-member id="field-firefoxversion" name="FirefoxVersion" type="double" signature="public readonly static double FirefoxVersion">
+        <template #name><h3>FirefoxVersion</h3></template>
+    </doc-member>
+
+    <doc-member id="field-ieversion" name="IeVersion" type="double" signature="public readonly static double IeVersion">
+        <template #name><h3>IeVersion</h3></template>
+    </doc-member>
+
+    <doc-member id="field-ios" name="iOS" type="bool" signature="public readonly static bool iOS">
+        <template #name><h3>iOS</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isandroid" name="IsAndroid" type="bool" signature="public readonly static bool IsAndroid">
+        <template #name><h3>IsAndroid</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isblackberry" name="IsBlackberry" type="bool" signature="public readonly static bool IsBlackberry">
+        <template #name><h3>IsBlackberry</h3></template>
+    </doc-member>
+
+    <doc-member id="field-ischrome" name="IsChrome" type="bool" signature="public readonly static bool IsChrome">
+        <template #name><h3>IsChrome</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isdesktop" name="IsDesktop" type="bool" signature="public readonly static bool IsDesktop">
+        <template #name><h3>IsDesktop</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isff10" name="IsFF10" type="bool" signature="public readonly static bool IsFF10">
+        <template #name><h3>IsFF10</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isff3_0" name="IsFF3_0" type="bool" signature="public readonly static bool IsFF3_0">
+        <template #name><h3>IsFF3_0</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isff3_5" name="IsFF3_5" type="bool" signature="public readonly static bool IsFF3_5">
+        <template #name><h3>IsFF3_5</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isff3_6" name="IsFF3_6" type="bool" signature="public readonly static bool IsFF3_6">
+        <template #name><h3>IsFF3_6</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isff4" name="IsFF4" type="bool" signature="public readonly static bool IsFF4">
+        <template #name><h3>IsFF4</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isff5" name="IsFF5" type="bool" signature="public readonly static bool IsFF5">
+        <template #name><h3>IsFF5</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isgecko" name="IsGecko" type="bool" signature="public readonly static bool IsGecko">
+        <template #name><h3>IsGecko</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isgecko10" name="IsGecko10" type="bool" signature="public readonly static bool IsGecko10">
+        <template #name><h3>IsGecko10</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isgecko3" name="IsGecko3" type="bool" signature="public readonly static bool IsGecko3">
+        <template #name><h3>IsGecko3</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isgecko4" name="IsGecko4" type="bool" signature="public readonly static bool IsGecko4">
+        <template #name><h3>IsGecko4</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isgecko5" name="IsGecko5" type="bool" signature="public readonly static bool IsGecko5">
+        <template #name><h3>IsGecko5</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie" name="IsIE" type="bool" signature="public readonly static bool IsIE">
+        <template #name><h3>IsIE</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie10" name="IsIE10" type="bool" signature="public readonly static bool IsIE10">
+        <template #name><h3>IsIE10</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie10m" name="IsIE10m" type="bool" signature="public readonly static bool IsIE10m">
+        <template #name><h3>IsIE10m</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie10p" name="IsIE10p" type="bool" signature="public readonly static bool IsIE10p">
+        <template #name><h3>IsIE10p</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie11" name="IsIE11" type="bool" signature="public readonly static bool IsIE11">
+        <template #name><h3>IsIE11</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie11m" name="IsIE11m" type="bool" signature="public readonly static bool IsIE11m">
+        <template #name><h3>IsIE11m</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie11p" name="IsIE11p" type="bool" signature="public readonly static bool IsIE11p">
+        <template #name><h3>IsIE11p</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie6" name="IsIE6" type="bool" signature="public readonly static bool IsIE6">
+        <template #name><h3>IsIE6</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie7" name="IsIE7" type="bool" signature="public readonly static bool IsIE7">
+        <template #name><h3>IsIE7</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie7m" name="IsIE7m" type="bool" signature="public readonly static bool IsIE7m">
+        <template #name><h3>IsIE7m</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie7p" name="IsIE7p" type="bool" signature="public readonly static bool IsIE7p">
+        <template #name><h3>IsIE7p</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie8" name="IsIE8" type="bool" signature="public readonly static bool IsIE8">
+        <template #name><h3>IsIE8</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie8m" name="IsIE8m" type="bool" signature="public readonly static bool IsIE8m">
+        <template #name><h3>IsIE8m</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie8p" name="IsIE8p" type="bool" signature="public readonly static bool IsIE8p">
+        <template #name><h3>IsIE8p</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie9" name="IsIE9" type="bool" signature="public readonly static bool IsIE9">
+        <template #name><h3>IsIE9</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie9m" name="IsIE9m" type="bool" signature="public readonly static bool IsIE9m">
+        <template #name><h3>IsIE9m</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isie9p" name="IsIE9p" type="bool" signature="public readonly static bool IsIE9p">
+        <template #name><h3>IsIE9p</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isiequirks" name="IsIEQuirks" type="bool" signature="public readonly static bool IsIEQuirks">
+        <template #name><h3>IsIEQuirks</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isipad" name="IsiPad" type="bool" signature="public readonly static bool IsiPad">
+        <template #name><h3>IsiPad</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isiphone" name="IsiPhone" type="bool" signature="public readonly static bool IsiPhone">
+        <template #name><h3>IsiPhone</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isipod" name="IsiPod" type="bool" signature="public readonly static bool IsiPod">
+        <template #name><h3>IsiPod</h3></template>
+    </doc-member>
+
+    <doc-member id="field-islinux" name="IsLinux" type="bool" signature="public readonly static bool IsLinux">
+        <template #name><h3>IsLinux</h3></template>
+    </doc-member>
+
+    <doc-member id="field-ismac" name="IsMac" type="bool" signature="public readonly static bool IsMac">
+        <template #name><h3>IsMac</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isopera" name="IsOpera" type="bool" signature="public readonly static bool IsOpera">
+        <template #name><h3>IsOpera</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isopera10_5" name="IsOpera10_5" type="bool" signature="public readonly static bool IsOpera10_5">
+        <template #name><h3>IsOpera10_5</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isphone" name="IsPhone" type="bool" signature="public readonly static bool IsPhone">
+        <template #name><h3>IsPhone</h3></template>
+    </doc-member>
+
+    <doc-member id="field-issafari" name="IsSafari" type="bool" signature="public readonly static bool IsSafari">
+        <template #name><h3>IsSafari</h3></template>
+    </doc-member>
+
+    <doc-member id="field-issafari2" name="IsSafari2" type="bool" signature="public readonly static bool IsSafari2">
+        <template #name><h3>IsSafari2</h3></template>
+    </doc-member>
+
+    <doc-member id="field-issafari3" name="IsSafari3" type="bool" signature="public readonly static bool IsSafari3">
+        <template #name><h3>IsSafari3</h3></template>
+    </doc-member>
+
+    <doc-member id="field-issafari4" name="IsSafari4" type="bool" signature="public readonly static bool IsSafari4">
+        <template #name><h3>IsSafari4</h3></template>
+    </doc-member>
+
+    <doc-member id="field-issafari5" name="IsSafari5" type="bool" signature="public readonly static bool IsSafari5">
+        <template #name><h3>IsSafari5</h3></template>
+    </doc-member>
+
+    <doc-member id="field-issafari5_0" name="IsSafari5_0" type="bool" signature="public readonly static bool IsSafari5_0">
+        <template #name><h3>IsSafari5_0</h3></template>
+    </doc-member>
+
+    <doc-member id="field-issecure" name="IsSecure" type="bool" signature="public readonly static bool IsSecure">
+        <template #name><h3>IsSecure</h3></template>
+    </doc-member>
+
+    <doc-member id="field-isstrict" name="IsStrict" type="bool" signature="public readonly static bool IsStrict">
+        <template #name><h3>IsStrict</h3></template>
+    </doc-member>
+
+    <doc-member id="field-istablet" name="IsTablet" type="bool" signature="public readonly static bool IsTablet">
+        <template #name><h3>IsTablet</h3></template>
+    </doc-member>
+
+    <doc-member id="field-iswebkit" name="IsWebKit" type="bool" signature="public readonly static bool IsWebKit">
+        <template #name><h3>IsWebKit</h3></template>
+    </doc-member>
+
+    <doc-member id="field-iswindows" name="IsWindows" type="bool" signature="public readonly static bool IsWindows">
+        <template #name><h3>IsWindows</h3></template>
+    </doc-member>
+
+    <doc-member id="field-operaversion" name="OperaVersion" type="double" signature="public readonly static double OperaVersion">
+        <template #name><h3>OperaVersion</h3></template>
+    </doc-member>
+
+    <doc-member id="field-safariversion" name="SafariVersion" type="double" signature="public readonly static double SafariVersion">
+        <template #name><h3>SafariVersion</h3></template>
+    </doc-member>
+
+    <doc-member id="field-standalone" name="Standalone" type="bool" signature="public readonly static bool Standalone">
+        <template #name><h3>Standalone</h3></template>
+    </doc-member>
+
+    <doc-member id="field-webkitversion" name="WebKitVersion" type="double" signature="public readonly static double WebKitVersion">
+        <template #name><h3>WebKitVersion</h3></template>
+    </doc-member>
+</doc-member-group>
+
+
+    
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>Copyright 2008-2021 <a href="https://object.net/">Object.NET</a>, Inc.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Browser", icon: "file", relatedClasses: [{"title":"Hierarchy","isGroup":true,"children":[{"label":"Browser"}]}] }</script>
+    </body>
+</html>
