@@ -315,7 +315,7 @@
 
                 if (this.isSimpleKey) {
                     if (this.simpleBuckets != null) {
-                        if (this.simpleBuckets.hasOwnProperty(key)) {
+                        if (Object.prototype.hasOwnProperty.call(this.simpleBuckets, key)) {
                             var i = this.simpleBuckets[key];
                             delete this.simpleBuckets[key];
                             this.entries[System.Array.index(i, this.entries)].hashCode = -1;
@@ -492,7 +492,7 @@
                 }
 
                 if (this.isSimpleKey) {
-                    if (this.simpleBuckets != null && this.simpleBuckets.hasOwnProperty(key)) {
+                    if (this.simpleBuckets != null && Object.prototype.hasOwnProperty.call(this.simpleBuckets, key)) {
                         return this.simpleBuckets[key];
                     }
                 } else if (this.buckets != null) {
@@ -528,7 +528,7 @@
                 }
 
                 if (this.isSimpleKey) {
-                    if (this.simpleBuckets.hasOwnProperty(key)) {
+                    if (Object.prototype.hasOwnProperty.call(this.simpleBuckets, key)) {
                         if (add) {
                             System.ThrowHelper.ThrowArgumentException(System.ExceptionResource.Argument_AddingDuplicate);
                         }

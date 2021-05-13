@@ -6505,7 +6505,7 @@ Bridge.assembly("Bridge.ClientTest.Batch3", function ($asm, globals) {
                         var $hasOwnProperty = 4;
 
                         var o = { };
-                        o.hasOwnProperty("v");
+                        Object.prototype.hasOwnProperty.call(o, "v");
 
                         Bridge.Test.NUnit.Assert.AreEqual(4, $hasOwnProperty, "hasOwnProperty");
                     } catch ($e3) {
@@ -40645,6 +40645,38 @@ Bridge.$N1391Result =                     r;
         }
     });
 
+    /**
+     * The tests here ensures dictionaries can contain "hasOwnProperty" string
+     as keys.
+     *
+     * @public
+     * @class Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069
+     */
+    Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069", {
+        statics: {
+            methods: {
+                /**
+                 * Tests by just assigning dictionary a key named "hasOwnProperty"
+                 (sets it up to break) then add another entry (name doesn't matter,
+                 triggers the issue).
+                 *
+                 * @static
+                 * @public
+                 * @this Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069
+                 * @memberof Bridge.ClientTest.Batch3.BridgeIssues.Bridge4069
+                 * @return  {void}
+                 */
+                TestDictWithHasOwnPropertyKey: function () {
+                    var dict = new (System.Collections.Generic.Dictionary$2(System.String,System.Boolean)).ctor();
+                    dict.add("hasOwnProperty", true);
+                    dict.add("anything_else", true);
+
+                    Bridge.Test.NUnit.Assert.True(dict.getItem("hasOwnProperty"), "Dictionaries can have keys with the \"hasOwnProperty\" string.");
+                }
+            }
+        }
+    });
+
     Bridge.define("Bridge.ClientTest.Batch3.BridgeIssues.Bridge407", {
         $kind: "struct",
         statics: {
@@ -48327,14 +48359,14 @@ Bridge.$N1391Result =                     r;
                 N377: function () {
                     var objectLiteralInstance = { field1: "field1 value", field3: 7 };
 
-                    Bridge.Test.NUnit.Assert.AreEqual(true, objectLiteralInstance.hasOwnProperty("field1"), "ObjectLiteral's field with an explicit value is emitted");
+                    Bridge.Test.NUnit.Assert.AreEqual(true, Object.prototype.hasOwnProperty.call(objectLiteralInstance, "field1"), "ObjectLiteral's field with an explicit value is emitted");
                     Bridge.Test.NUnit.Assert.AreEqual("field1 value", objectLiteralInstance.field1, "ObjectLiteral's field with an explicit value is emitted correctly");
 
-                    Bridge.Test.NUnit.Assert.AreEqual(true, objectLiteralInstance.hasOwnProperty("field3"), "ObjectLiteral's field with an explicit value is emitted");
+                    Bridge.Test.NUnit.Assert.AreEqual(true, Object.prototype.hasOwnProperty.call(objectLiteralInstance, "field3"), "ObjectLiteral's field with an explicit value is emitted");
                     Bridge.Test.NUnit.Assert.AreEqual(7, objectLiteralInstance.field3, "ObjectLiteral's field with an explicit value is emitted correctly");
 
-                    Bridge.Test.NUnit.Assert.AreEqual(false, objectLiteralInstance.hasOwnProperty("field2"), "ObjectLiteral's field without an explicit value is not emitted");
-                    Bridge.Test.NUnit.Assert.AreEqual(false, objectLiteralInstance.hasOwnProperty("field4"), "ObjectLiteral's field without an explicit value is not emitted");
+                    Bridge.Test.NUnit.Assert.AreEqual(false, Object.prototype.hasOwnProperty.call(objectLiteralInstance, "field2"), "ObjectLiteral's field without an explicit value is not emitted");
+                    Bridge.Test.NUnit.Assert.AreEqual(false, Object.prototype.hasOwnProperty.call(objectLiteralInstance, "field4"), "ObjectLiteral's field without an explicit value is not emitted");
                 },
                 N383: function () {
                     var $t;
