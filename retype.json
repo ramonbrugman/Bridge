@@ -29,7 +29,11 @@
     },
     {
       "text": "GitHub",
-      "link": "https://github.com/bridgedotnet/Bridge"
+      "link": "https://github.com/bridgedotnet/Bridge/"
+    },
+    {
+      "text": "Blog",
+      "link": "https://blog.bridge.net/"
     },
     {
       "text": "Deck.NET",
